@@ -276,6 +276,20 @@ body {
     background: var(--border);
 }
 
+/* ========== HERO DIAGRAM ========== */
+.hero-diagram {
+    margin-top: 64px;
+    display: flex;
+    justify-content: center;
+}
+
+.hero-diagram img {
+    max-width: 420px;
+    width: 100%;
+    border-radius: var(--radius-lg);
+    filter: drop-shadow(0 8px 40px rgba(0, 0, 0, 0.4));
+}
+
 /* ========== HERO PROBLEM CARDS ========== */
 .hero-problems {
     display: grid;
