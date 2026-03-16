@@ -280,14 +280,10 @@ body {
 /* ========== EU BANNER ========== */
 .hero-eu-banner {
     margin-top: 48px;
-    padding: 20px 48px;
-    background: var(--gradient-accent);
-    border-radius: 60px;
-    display: inline-block;
 }
 
 .hero-eu-banner span {
-    color: #FFFFFF;
+    color: var(--accent-navy);
     font-size: 1.3rem;
     font-weight: 600;
     letter-spacing: 1px;
