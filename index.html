@@ -61,7 +61,48 @@
                 <span>Built in the EU, for the EU.</span>
             </div>
             <div class="hero-diagram">
-                <img src="sigvera-loop.png" alt="SIGVERA Closed-Loop Compliance: Detect, Diagnose, Remediate, Verify, Certify">
+                <div class="loop-container">
+                    <svg class="loop-arrows" viewBox="0 0 600 600">
+                        <!-- Curved arrows between phases -->
+                        <defs>
+                            <marker id="arrowhead" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+                                <polygon points="0 0, 10 3.5, 0 7" fill="#8993A0"/>
+                            </marker>
+                        </defs>
+                        <!-- Detect → Diagnose -->
+                        <path d="M 370 115 A 240 240 0 0 1 488 225" fill="none" stroke="#8993A0" stroke-width="2" marker-end="url(#arrowhead)" class="arrow-path"/>
+                        <!-- Diagnose → Remediate -->
+                        <path d="M 500 310 A 240 240 0 0 1 430 460" fill="none" stroke="#8993A0" stroke-width="2" marker-end="url(#arrowhead)" class="arrow-path"/>
+                        <!-- Remediate → Verify -->
+                        <path d="M 355 500 A 240 240 0 0 1 240 500" fill="none" stroke="#8993A0" stroke-width="2" marker-end="url(#arrowhead)" class="arrow-path"/>
+                        <!-- Verify → Certify -->
+                        <path d="M 163 460 A 240 240 0 0 1 100 310" fill="none" stroke="#8993A0" stroke-width="2" marker-end="url(#arrowhead)" class="arrow-path"/>
+                        <!-- Certify → Detect -->
+                        <path d="M 108 225 A 240 240 0 0 1 230 115" fill="none" stroke="#8993A0" stroke-width="2" marker-end="url(#arrowhead)" class="arrow-path"/>
+                    </svg>
+                    <!-- Phase boxes -->
+                    <div class="loop-phase phase-detect">
+                        <div class="phase-title">DETECT</div>
+                        <div class="phase-desc">Scan infrastructure against NIS2 measures</div>
+                    </div>
+                    <div class="loop-phase phase-diagnose">
+                        <div class="phase-title">DIAGNOSE</div>
+                        <div class="phase-desc">Risk analysis, prioritisation, create tickets</div>
+                    </div>
+                    <div class="loop-phase phase-remediate">
+                        <div class="phase-title">REMEDIATE</div>
+                        <div class="phase-desc">Generate and execute remediation playbooks</div>
+                    </div>
+                    <div class="loop-phase phase-verify">
+                        <div class="phase-title">VERIFY</div>
+                        <div class="phase-desc">Re-scan to confirm fixes applied</div>
+                    </div>
+                    <div class="loop-phase phase-certify">
+                        <div class="phase-title">CERTIFY</div>
+                        <div class="phase-desc">Seal evidence with cryptographic proof</div>
+                    </div>
+                    <div class="loop-center">SIGVERA</div>
+                </div>
             </div>
         </div>
     </section>
