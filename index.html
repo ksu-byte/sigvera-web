@@ -61,42 +61,25 @@
                 <span><strong>Built in the EU, for the EU.</strong></span>
             </div>
             <div class="hero-diagram">
-                <div class="loop-container">
-                    <svg class="loop-arrows" viewBox="0 0 600 600">
-                        <defs>
-                            <marker id="arrowhead" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
-                                <polygon points="0 0, 10 3.5, 0 7" fill="#8993A0"/>
-                            </marker>
-                        </defs>
-                        <!-- Detect → Diagnose -->
-                        <path d="M 375 105 A 220 220 0 0 1 440 185" fill="none" stroke="#8993A0" stroke-width="2" marker-end="url(#arrowhead)" class="arrow-path"/>
-                        <!-- Diagnose → Remediate -->
-                        <path d="M 520 290 A 220 220 0 0 1 495 430" fill="none" stroke="#8993A0" stroke-width="2" marker-end="url(#arrowhead)" class="arrow-path"/>
-                        <!-- Remediate → Verify -->
-                        <path d="M 395 515 A 220 220 0 0 1 205 515" fill="none" stroke="#8993A0" stroke-width="2" marker-end="url(#arrowhead)" class="arrow-path"/>
-                        <!-- Verify → Certify -->
-                        <path d="M 105 430 A 220 220 0 0 1 80 290" fill="none" stroke="#8993A0" stroke-width="2" marker-end="url(#arrowhead)" class="arrow-path"/>
-                        <!-- Certify → Detect -->
-                        <path d="M 100 180 A 220 220 0 0 1 225 95" fill="none" stroke="#8993A0" stroke-width="2" marker-end="url(#arrowhead)" class="arrow-path"/>
-                    </svg>
-                    <!-- Phase boxes -->
-                    <div class="loop-phase phase-detect">
+                <div class="loop-container" id="loopContainer">
+                    <svg class="loop-arrows" id="loopArrows" viewBox="0 0 600 600"></svg>
+                    <div class="loop-phase phase-detect" data-phase="0">
                         <div class="phase-title">DETECT</div>
                         <div class="phase-desc">Scan infrastructure against NIS2 measures</div>
                     </div>
-                    <div class="loop-phase phase-diagnose">
+                    <div class="loop-phase phase-diagnose" data-phase="1">
                         <div class="phase-title">DIAGNOSE</div>
                         <div class="phase-desc">Risk analysis, prioritisation, create tickets</div>
                     </div>
-                    <div class="loop-phase phase-remediate">
+                    <div class="loop-phase phase-remediate" data-phase="2">
                         <div class="phase-title">REMEDIATE</div>
                         <div class="phase-desc">Generate and execute remediation playbooks</div>
                     </div>
-                    <div class="loop-phase phase-verify">
+                    <div class="loop-phase phase-verify" data-phase="3">
                         <div class="phase-title">VERIFY</div>
                         <div class="phase-desc">Re-scan to confirm fixes applied</div>
                     </div>
-                    <div class="loop-phase phase-certify">
+                    <div class="loop-phase phase-certify" data-phase="4">
                         <div class="phase-title">CERTIFY</div>
                         <div class="phase-desc">Seal evidence with cryptographic proof</div>
                     </div>
@@ -287,6 +270,88 @@
             el.classList.add('fade-in');
             observer.observe(el);
         });
+
+        // Dynamic arrow drawing
+        function drawLoopArrows() {
+            const container = document.getElementById('loopContainer');
+            const svg = document.getElementById('loopArrows');
+            if (!container || !svg) return;
+            const cRect = container.getBoundingClientRect();
+            const W = cRect.width, H = cRect.height;
+            svg.setAttribute('viewBox', '0 0 ' + W + ' ' + H);
+            svg.innerHTML = '';
+
+            // Defs
+            const ns = 'http://www.w3.org/2000/svg';
+            const defs = document.createElementNS(ns, 'defs');
+            const marker = document.createElementNS(ns, 'marker');
+            marker.setAttribute('id', 'ah');
+            marker.setAttribute('markerWidth', '10');
+            marker.setAttribute('markerHeight', '7');
+            marker.setAttribute('refX', '9');
+            marker.setAttribute('refY', '3.5');
+            marker.setAttribute('orient', 'auto');
+            const poly = document.createElementNS(ns, 'polygon');
+            poly.setAttribute('points', '0 0, 10 3.5, 0 7');
+            poly.setAttribute('fill', '#8993A0');
+            marker.appendChild(poly);
+            defs.appendChild(marker);
+            svg.appendChild(defs);
+
+            const phases = container.querySelectorAll('.loop-phase');
+            const order = [0, 1, 2, 3, 4];
+            const boxes = [];
+            phases.forEach(p => {
+                const r = p.getBoundingClientRect();
+                boxes.push({
+                    cx: r.left - cRect.left + r.width / 2,
+                    cy: r.top - cRect.top + r.height / 2,
+                    w: r.width,
+                    h: r.height
+                });
+            });
+
+            const centerX = W / 2, centerY = H / 2;
+
+            for (let i = 0; i < 5; i++) {
+                const from = boxes[order[i]];
+                const to = boxes[order[(i + 1) % 5]];
+
+                // Find exit point on edge of "from" box toward center, then outward
+                const fromAngle = Math.atan2(from.cy - centerY, from.cx - centerX);
+                const toAngle = Math.atan2(to.cy - centerY, to.cx - centerX);
+
+                // Start/end on box edges facing the arc direction
+                const midAngle = (fromAngle + toAngle) / 2 + (toAngle < fromAngle ? Math.PI : 0);
+                
+                // Exit from box edge toward next box
+                const sx = from.cx + Math.cos(midAngle) * (from.w / 2 + 8);
+                const sy = from.cy + Math.sin(midAngle) * (from.h / 2 + 8);
+                const ex = to.cx - Math.cos(midAngle) * (to.w / 2 + 8);
+                const ey = to.cy - Math.sin(midAngle) * (to.h / 2 + 8);
+
+                // Control point - push outward from center
+                const mx = (sx + ex) / 2;
+                const my = (sy + ey) / 2;
+                const pushAngle = Math.atan2(my - centerY, mx - centerX);
+                const pushDist = 60;
+                const cpx = mx + Math.cos(pushAngle) * pushDist;
+                const cpy = my + Math.sin(pushAngle) * pushDist;
+
+                const path = document.createElementNS(ns, 'path');
+                path.setAttribute('d', 'M ' + sx + ' ' + sy + ' Q ' + cpx + ' ' + cpy + ' ' + ex + ' ' + ey);
+                path.setAttribute('fill', 'none');
+                path.setAttribute('stroke', '#8993A0');
+                path.setAttribute('stroke-width', '2');
+                path.setAttribute('marker-end', 'url(#ah)');
+                path.classList.add('arrow-path');
+                path.style.animationDelay = (i * 0.2) + 's';
+                svg.appendChild(path);
+            }
+        }
+
+        window.addEventListener('load', () => setTimeout(drawLoopArrows, 100));
+        window.addEventListener('resize', drawLoopArrows);
     </script>
     <!--Start of Tawk.to Script-->
     <script type="text/javascript">
