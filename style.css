@@ -257,12 +257,9 @@ body {
 
 .stat-number {
     display: block;
-    font-size: 2rem;
-    font-weight: 700;
-    background: var(--gradient-accent);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
+    font-size: 2.4rem;
+    font-weight: 800;
+    color: var(--accent-navy);
 }
 
 .stat-label {
@@ -285,8 +282,8 @@ body {
 
 .hero-eu-banner span {
     color: var(--accent-navy);
-    font-size: 1.5rem;
-    font-weight: 700;
+    font-size: 1.6rem;
+    font-weight: 800;
     letter-spacing: 1px;
 }
 
