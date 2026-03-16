@@ -644,6 +644,30 @@ body {
     justify-content: center;
 }
 
+/* ========== LINKEDIN SECTION ========== */
+.linkedin-section {
+    padding: 40px 0;
+    text-align: center;
+}
+
+.linkedin-text {
+    font-size: 1.05rem;
+    color: var(--text-secondary);
+}
+
+.linkedin-text a {
+    color: var(--accent-navy);
+    font-weight: 600;
+    text-decoration: none;
+    border-bottom: 1px solid var(--accent-navy);
+    transition: var(--transition);
+}
+
+.linkedin-text a:hover {
+    color: var(--accent-steel);
+    border-color: var(--accent-steel);
+}
+
 /* ========== FOOTER ========== */
 .footer {
     padding: 64px 0 32px;
