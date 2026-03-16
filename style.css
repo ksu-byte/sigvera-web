@@ -277,6 +277,22 @@ body {
     background: var(--border);
 }
 
+/* ========== EU BANNER ========== */
+.hero-eu-banner {
+    margin-top: 48px;
+    padding: 20px 48px;
+    background: var(--gradient-accent);
+    border-radius: 60px;
+    display: inline-block;
+}
+
+.hero-eu-banner span {
+    color: #FFFFFF;
+    font-size: 1.3rem;
+    font-weight: 600;
+    letter-spacing: 1px;
+}
+
 /* ========== HERO DIAGRAM ========== */
 .hero-diagram {
     margin-top: 64px;
