@@ -1,23 +1,23 @@
 /* ========== DESIGN TOKENS ========== */
 :root {
-    --bg-primary: #0A1220;
-    --bg-secondary: #0F1A2E;
-    --bg-card: #121D33;
-    --bg-card-hover: #162440;
-    --border: rgba(100, 160, 220, 0.1);
-    --border-hover: rgba(100, 160, 220, 0.25);
-    --text-primary: #E8EDF4;
-    --text-secondary: #8B9BB5;
-    --text-muted: #5A6A84;
-    --accent-cyan: #4ECDC4;
-    --accent-gold: #C9A84C;
-    --accent-blue: #3B82F6;
-    --gradient-hero: linear-gradient(135deg, #0A1220 0%, #0F2027 50%, #0A1220 100%);
-    --gradient-card: linear-gradient(145deg, rgba(18, 29, 51, 0.8), rgba(10, 18, 32, 0.9));
-    --gradient-accent: linear-gradient(135deg, #4ECDC4, #3B82F6);
-    --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.3);
-    --shadow-md: 0 4px 24px rgba(0, 0, 0, 0.4);
-    --shadow-lg: 0 8px 48px rgba(0, 0, 0, 0.5);
+    --bg-primary: #FFFFFF;
+    --bg-secondary: #F5F6F8;
+    --bg-card: #FFFFFF;
+    --bg-card-hover: #F0F2F5;
+    --border: rgba(0, 0, 0, 0.08);
+    --border-hover: rgba(0, 0, 0, 0.15);
+    --text-primary: #1A2332;
+    --text-secondary: #555F6D;
+    --text-muted: #8993A0;
+    --accent-navy: #1A3A5C;
+    --accent-steel: #2E6B9E;
+    --accent-blue: #2563EB;
+    --gradient-hero: linear-gradient(135deg, #F8F9FB 0%, #EEF1F5 50%, #F8F9FB 100%);
+    --gradient-card: linear-gradient(145deg, #FFFFFF, #FAFBFC);
+    --gradient-accent: linear-gradient(135deg, #1A3A5C, #2E6B9E);
+    --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.06);
+    --shadow-md: 0 4px 16px rgba(0, 0, 0, 0.08);
+    --shadow-lg: 0 8px 32px rgba(0, 0, 0, 0.1);
     --radius-sm: 8px;
     --radius-md: 12px;
     --radius-lg: 20px;
@@ -73,10 +73,11 @@ body {
 }
 
 .nav-scrolled {
-    background: rgba(10, 18, 32, 0.95);
+    background: rgba(255, 255, 255, 0.95);
     backdrop-filter: blur(20px);
     padding: 12px 0;
     border-bottom: 1px solid var(--border);
+    box-shadow: var(--shadow-sm);
 }
 
 .nav-container {
@@ -118,7 +119,7 @@ body {
 
 .nav-cta {
     background: var(--gradient-accent);
-    color: var(--bg-primary) !important;
+    color: #FFFFFF !important;
     padding: 10px 24px;
     border-radius: 50px;
     font-weight: 600 !important;
@@ -126,7 +127,7 @@ body {
 
 .nav-cta:hover {
     transform: translateY(-1px);
-    box-shadow: 0 4px 20px rgba(78, 205, 196, 0.3);
+    box-shadow: 0 4px 20px rgba(26, 58, 92, 0.25);
 }
 
 /* ========== HERO ========== */
@@ -145,8 +146,8 @@ body {
     position: absolute;
     inset: 0;
     background-image:
-        linear-gradient(rgba(78, 205, 196, 0.03) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(78, 205, 196, 0.03) 1px, transparent 1px);
+        linear-gradient(rgba(26, 58, 92, 0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(26, 58, 92, 0.03) 1px, transparent 1px);
     background-size: 60px 60px;
     mask-image: radial-gradient(ellipse at center, black 30%, transparent 70%);
     -webkit-mask-image: radial-gradient(ellipse at center, black 30%, transparent 70%);
@@ -164,8 +165,8 @@ body {
     padding: 8px 20px;
     border-radius: 50px;
     border: 1px solid var(--border-hover);
-    background: rgba(78, 205, 196, 0.05);
-    color: var(--accent-cyan);
+    background: rgba(26, 58, 92, 0.05);
+    color: var(--accent-navy);
     font-size: 0.85rem;
     font-weight: 500;
     letter-spacing: 1px;
@@ -217,12 +218,12 @@ body {
 
 .btn-primary {
     background: var(--gradient-accent);
-    color: var(--bg-primary);
+    color: #FFFFFF;
 }
 
 .btn-primary:hover {
     transform: translateY(-2px);
-    box-shadow: 0 6px 30px rgba(78, 205, 196, 0.3);
+    box-shadow: 0 6px 30px rgba(26, 58, 92, 0.2);
 }
 
 .btn-secondary {
@@ -232,8 +233,8 @@ body {
 }
 
 .btn-secondary:hover {
-    background: rgba(78, 205, 196, 0.05);
-    border-color: var(--accent-cyan);
+    background: rgba(26, 58, 92, 0.04);
+    border-color: var(--accent-navy);
 }
 
 .btn-large {
@@ -287,7 +288,7 @@ body {
     max-width: 700px;
     width: 100%;
     border-radius: var(--radius-lg);
-    filter: drop-shadow(0 8px 40px rgba(0, 0, 0, 0.4));
+    filter: drop-shadow(0 4px 20px rgba(0, 0, 0, 0.1));
 }
 
 /* ========== HERO PROBLEM CARDS ========== */
@@ -341,8 +342,8 @@ body {
     display: inline-block;
     padding: 6px 16px;
     border-radius: 50px;
-    background: rgba(78, 205, 196, 0.08);
-    color: var(--accent-cyan);
+    background: rgba(26, 58, 92, 0.06);
+    color: var(--accent-steel);
     font-size: 0.8rem;
     font-weight: 600;
     letter-spacing: 1.5px;
@@ -374,19 +375,20 @@ body {
     border: 1px solid var(--border);
     border-radius: var(--radius-md);
     transition: var(--transition);
+    box-shadow: var(--shadow-sm);
 }
 
 .feature-card:hover {
-    border-color: var(--accent-cyan);
+    border-color: var(--accent-steel);
     transform: translateY(-4px);
-    box-shadow: 0 8px 40px rgba(78, 205, 196, 0.08);
+    box-shadow: var(--shadow-md);
 }
 
 .feature-icon-wrap {
     width: 56px;
     height: 56px;
     border-radius: var(--radius-sm);
-    background: rgba(78, 205, 196, 0.08);
+    background: rgba(26, 58, 92, 0.06);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -431,14 +433,15 @@ body {
 }
 
 .framework-card:hover {
-    border-color: var(--accent-gold);
+    border-color: var(--accent-steel);
     transform: translateY(-2px);
+    box-shadow: var(--shadow-md);
 }
 
 .framework-name {
     font-size: 1.6rem;
     font-weight: 700;
-    color: var(--accent-gold);
+    color: var(--accent-navy);
     margin-bottom: 8px;
     letter-spacing: 1px;
 }
@@ -501,7 +504,7 @@ body {
     text-align: center;
     padding: 80px 40px;
     border-radius: var(--radius-lg);
-    background: linear-gradient(145deg, rgba(78, 205, 196, 0.05), rgba(59, 130, 246, 0.05));
+    background: linear-gradient(145deg, rgba(26, 58, 92, 0.03), rgba(46, 107, 158, 0.03));
     border: 1px solid var(--border-hover);
 }
 
@@ -564,7 +567,7 @@ body {
 }
 
 .footer-links a:hover {
-    color: var(--accent-cyan);
+    color: var(--accent-navy);
 }
 
 .footer-bottom {
