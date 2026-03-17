@@ -287,17 +287,16 @@
             observer.observe(el);
         });
 
-        // Dynamic arrow drawing
+        // Dynamic arrow drawing - hardcoded bezier paths
         function drawLoopArrows() {
             const container = document.getElementById('loopContainer');
             const svg = document.getElementById('loopArrows');
             if (!container || !svg) return;
             const cRect = container.getBoundingClientRect();
             const W = cRect.width, H = cRect.height;
-            svg.setAttribute('viewBox', '0 0 ' + W + ' ' + H);
+            svg.setAttribute('viewBox', '0 0 600 600');
             svg.innerHTML = '';
 
-            // Defs
             const ns = 'http://www.w3.org/2000/svg';
             const defs = document.createElementNS(ns, 'defs');
             const marker = document.createElementNS(ns, 'marker');
@@ -309,53 +308,29 @@
             marker.setAttribute('orient', 'auto');
             const poly = document.createElementNS(ns, 'polygon');
             poly.setAttribute('points', '0 0, 10 3.5, 0 7');
-            poly.setAttribute('fill', '#8993A0');
+            poly.setAttribute('fill', '#6B7B8D');
             marker.appendChild(poly);
             defs.appendChild(marker);
             svg.appendChild(defs);
 
-            const phases = container.querySelectorAll('.loop-phase');
-            const order = [0, 1, 2, 3, 4];
-            const boxes = [];
-            phases.forEach(p => {
-                const r = p.getBoundingClientRect();
-                boxes.push({
-                    cx: r.left - cRect.left + r.width / 2,
-                    cy: r.top - cRect.top + r.height / 2,
-                    w: r.width,
-                    h: r.height
-                });
-            });
+            // Hardcoded paths for 600x600 viewBox
+            // Box centers: DETECT(300,78), DIAGNOSE(515,223), REMEDIATE(470,492), VERIFY(130,492), CERTIFY(85,223)
+            const arrows = [
+                // DETECT → DIAGNOSE: exit bottom-right, enter top-left, arc outward top-right
+                'M 375 100 Q 480 80 460 180',
+                // DIAGNOSE → REMEDIATE: exit bottom, enter top, arc outward right
+                'M 530 275 Q 600 380 520 445',
+                // REMEDIATE → VERIFY: exit left, enter right, arc outward bottom
+                'M 395 510 Q 300 590 205 510',
+                // VERIFY → CERTIFY: exit top, enter bottom, arc outward left
+                'M 80 445 Q 0 380 70 275',
+                // CERTIFY → DETECT: exit top-right, enter bottom-left, arc outward top-left
+                'M 140 180 Q 120 80 225 100'
+            ];
 
-            const centerX = W / 2, centerY = H / 2;
-
-            for (let i = 0; i < 5; i++) {
-                const from = boxes[order[i]];
-                const to = boxes[order[(i + 1) % 5]];
-
-                // Find exit point on edge of "from" box toward center, then outward
-                const fromAngle = Math.atan2(from.cy - centerY, from.cx - centerX);
-                const toAngle = Math.atan2(to.cy - centerY, to.cx - centerX);
-
-                // Start/end on box edges facing the arc direction
-                const midAngle = (fromAngle + toAngle) / 2 + (toAngle < fromAngle ? Math.PI : 0);
-                
-                // Exit from box edge toward next box
-                const sx = from.cx + Math.cos(midAngle) * (from.w / 2 + 8);
-                const sy = from.cy + Math.sin(midAngle) * (from.h / 2 + 8);
-                const ex = to.cx - Math.cos(midAngle) * (to.w / 2 + 8);
-                const ey = to.cy - Math.sin(midAngle) * (to.h / 2 + 8);
-
-                // Control point - push outward from center
-                const mx = (sx + ex) / 2;
-                const my = (sy + ey) / 2;
-                const pushAngle = Math.atan2(my - centerY, mx - centerX);
-                const pushDist = 60;
-                const cpx = mx + Math.cos(pushAngle) * pushDist;
-                const cpy = my + Math.sin(pushAngle) * pushDist;
-
+            arrows.forEach((d, i) => {
                 const path = document.createElementNS(ns, 'path');
-                path.setAttribute('d', 'M ' + sx + ' ' + sy + ' Q ' + cpx + ' ' + cpy + ' ' + ex + ' ' + ey);
+                path.setAttribute('d', d);
                 path.setAttribute('fill', 'none');
                 path.setAttribute('stroke', '#8993A0');
                 path.setAttribute('stroke-width', '2');
@@ -363,7 +338,7 @@
                 path.classList.add('arrow-path');
                 path.style.animationDelay = (i * 0.2) + 's';
                 svg.appendChild(path);
-            }
+            });
         }
 
         window.addEventListener('load', () => setTimeout(drawLoopArrows, 100));
