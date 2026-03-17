@@ -398,9 +398,9 @@
                     const pt2 = edgePt(b[ti], te, b[fi].cx);
                     sx = pt1.x; sy = pt1.y; ex = pt2.x; ey = pt2.y;
                 } else if (i === 3) {
-                    // VERIFY → CERTIFY: align vertically at CERTIFY center x
-                    const pt1 = edgePt(b[fi], fe, b[ti].cx);
-                    const pt2 = edgePt(b[ti], te, b[ti].cx);
+                    // VERIFY → CERTIFY: align vertically at VERIFY center x
+                    const pt1 = edgePt(b[fi], fe, b[fi].cx);
+                    const pt2 = edgePt(b[ti], te, b[fi].cx);
                     sx = pt1.x; sy = pt1.y; ex = pt2.x; ey = pt2.y;
                 } else {
                     const pt1 = edgePt(b[fi], fe);
