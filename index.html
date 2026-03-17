@@ -391,15 +391,19 @@
 
             conns.forEach(([fi, fe, ti, te], i) => {
                 let sx, sy, ex, ey;
+                const pArr = Array.from(phases);
 
-                if (i === 1) {
-                    // DIAGNOSE → REMEDIATE: perfectly vertical, use average x
-                    const midX = (b[fi].cx + b[ti].cx) / 2;
-                    const pt1 = edgePt(b[fi], fe, midX);
-                    const pt2 = edgePt(b[ti], te, midX);
-                    sx = pt1.x; sy = pt1.y; ex = pt2.x; ey = pt2.y;
-                } else if (i === 3) {
-                    // VERIFY → CERTIFY: perfectly vertical, use average x
+                if (i === 2) {
+                    // REMEDIATE → VERIFY: horizontal line at bottom of blue title
+                    const title1 = pArr[fi].querySelector('.phase-title');
+                    const title2 = pArr[ti].querySelector('.phase-title');
+                    const y1 = title1.getBoundingClientRect().bottom - cRect.top;
+                    const y2 = title2.getBoundingClientRect().bottom - cRect.top;
+                    const arrowY = (y1 + y2) / 2;
+                    sx = b[fi].left; sy = arrowY;
+                    ex = b[ti].right; ey = arrowY;
+                } else if (i === 1 || i === 3) {
+                    // Vertical arrows: use average cx
                     const midX = (b[fi].cx + b[ti].cx) / 2;
                     const pt1 = edgePt(b[fi], fe, midX);
                     const pt2 = edgePt(b[ti], te, midX);
