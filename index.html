@@ -38,7 +38,7 @@
             <h1>Continuous NIS2 compliance. Cryptographic proof.<br><span class="hero-highlight">Always audit-ready.</span></h1>
             <p class="hero-subtitle">SIGVERA continuously assesses your NIS2 security posture, generates cryptographic evidence, and delivers real-time compliance scoring. Audits become a formality, not a fire drill.</p>
             <div class="hero-cta-group">
-                <a href="#contact" class="btn btn-primary">Request a Demo</a>
+                <a href="#" class="btn btn-primary" onclick="openContactModal(); return false;">Request a Demo</a>
                 <a href="#how-it-works" class="btn btn-secondary">See How It Works</a>
             </div>
             <div class="hero-stats">
@@ -212,7 +212,7 @@
                 <h2>Ready to automate your NIS2 compliance?</h2>
                 <p>Join organizations that are replacing manual audit preparation with continuous, AI-driven compliance assurance.</p>
                 <div class="cta-buttons">
-                    <a href="mailto:info@virtualis.hr" class="btn btn-primary btn-large">Request a Demo</a>
+                    <a href="#" class="btn btn-primary btn-large" onclick="openContactModal(); return false;">Request a Demo</a>
                 </div>
             </div>
         </div>
@@ -224,6 +224,49 @@
             <p class="linkedin-text">For the latest updates, follow us on <a href="https://www.linkedin.com/company/sigvera" target="_blank">LinkedIn</a>.</p>
         </div>
     </section>
+
+    <!-- Contact Modal -->
+    <div class="modal-overlay" id="contactModal">
+        <div class="modal-card">
+            <button class="modal-close" onclick="closeContactModal()">&times;</button>
+            <h2>Get in Touch</h2>
+            <p class="modal-subtitle">Tell us what you're looking for and we'll get back to you shortly.</p>
+            <form id="contactForm" onsubmit="submitContactForm(event)">
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="contactName">Name</label>
+                        <input type="text" id="contactName" name="name" required placeholder="Your full name">
+                    </div>
+                    <div class="form-group">
+                        <label for="contactEmail">Email</label>
+                        <input type="email" id="contactEmail" name="email" required placeholder="work@company.com">
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="contactCompany">Company</label>
+                        <input type="text" id="contactCompany" name="company" placeholder="Your organization">
+                    </div>
+                    <div class="form-group">
+                        <label for="contactInquiry">Inquiry Type</label>
+                        <select id="contactInquiry" name="inquiry" required>
+                            <option value="" disabled selected>Select an option</option>
+                            <option value="Request a Demo">Request a Demo</option>
+                            <option value="More Information">More Information</option>
+                            <option value="Partnership">Partnership Inquiry</option>
+                            <option value="Pricing">Pricing</option>
+                            <option value="Other">Other</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="contactMessage">Message</label>
+                    <textarea id="contactMessage" name="message" rows="4" placeholder="Tell us about your compliance needs..."></textarea>
+                </div>
+                <button type="submit" class="btn btn-primary btn-large" style="width: 100%;">Send Message</button>
+            </form>
+        </div>
+    </div>
 
     <!-- Footer -->
     <footer class="footer">
@@ -344,6 +387,40 @@
 
         window.addEventListener('load', () => setTimeout(drawLoopArrows, 100));
         window.addEventListener('resize', drawLoopArrows);
+
+        // Contact modal
+        function openContactModal() {
+            document.getElementById('contactModal').classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+        function closeContactModal() {
+            document.getElementById('contactModal').classList.remove('active');
+            document.body.style.overflow = '';
+        }
+        document.getElementById('contactModal').addEventListener('click', function(e) {
+            if (e.target === this) closeContactModal();
+        });
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') closeContactModal();
+        });
+        function submitContactForm(e) {
+            e.preventDefault();
+            const name = document.getElementById('contactName').value;
+            const email = document.getElementById('contactEmail').value;
+            const company = document.getElementById('contactCompany').value;
+            const inquiry = document.getElementById('contactInquiry').value;
+            const message = document.getElementById('contactMessage').value;
+            const subject = encodeURIComponent('SIGVERA — ' + inquiry);
+            const body = encodeURIComponent(
+                'Name: ' + name + '\n' +
+                'Email: ' + email + '\n' +
+                'Company: ' + company + '\n' +
+                'Inquiry: ' + inquiry + '\n\n' +
+                message
+            );
+            window.location.href = 'mailto:info@virtualis.hr?subject=' + subject + '&body=' + body;
+            closeContactModal();
+        }
     </script>
     <!--Start of Tawk.to Script-->
     <script type="text/javascript">
