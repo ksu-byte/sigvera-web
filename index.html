@@ -393,14 +393,16 @@
                 let sx, sy, ex, ey;
 
                 if (i === 1) {
-                    // DIAGNOSE → REMEDIATE: align vertically at DIAGNOSE center x
-                    const pt1 = edgePt(b[fi], fe, b[fi].cx);
-                    const pt2 = edgePt(b[ti], te, b[fi].cx);
+                    // DIAGNOSE → REMEDIATE: perfectly vertical, use average x
+                    const midX = (b[fi].cx + b[ti].cx) / 2;
+                    const pt1 = edgePt(b[fi], fe, midX);
+                    const pt2 = edgePt(b[ti], te, midX);
                     sx = pt1.x; sy = pt1.y; ex = pt2.x; ey = pt2.y;
                 } else if (i === 3) {
-                    // VERIFY → CERTIFY: align vertically at VERIFY center x
-                    const pt1 = edgePt(b[fi], fe, b[fi].cx);
-                    const pt2 = edgePt(b[ti], te, b[fi].cx);
+                    // VERIFY → CERTIFY: perfectly vertical, use average x
+                    const midX = (b[fi].cx + b[ti].cx) / 2;
+                    const pt1 = edgePt(b[fi], fe, midX);
+                    const pt2 = edgePt(b[ti], te, midX);
                     sx = pt1.x; sy = pt1.y; ex = pt2.x; ey = pt2.y;
                 } else {
                     const pt1 = edgePt(b[fi], fe);
