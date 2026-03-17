@@ -287,7 +287,7 @@
             observer.observe(el);
         });
 
-        // Dynamic arrow drawing
+        // Dynamic arrow drawing - simple circular arcs
         function drawLoopArrows() {
             const container = document.getElementById('loopContainer');
             const svg = document.getElementById('loopArrows');
@@ -301,73 +301,59 @@
             const defs = document.createElementNS(ns, 'defs');
             const marker = document.createElementNS(ns, 'marker');
             marker.setAttribute('id', 'ah');
-            marker.setAttribute('markerWidth', '12');
-            marker.setAttribute('markerHeight', '8');
-            marker.setAttribute('refX', '11');
-            marker.setAttribute('refY', '4');
+            marker.setAttribute('markerWidth', '10');
+            marker.setAttribute('markerHeight', '7');
+            marker.setAttribute('refX', '9');
+            marker.setAttribute('refY', '3.5');
             marker.setAttribute('orient', 'auto');
             const poly = document.createElementNS(ns, 'polygon');
-            poly.setAttribute('points', '0 0, 12 4, 0 8');
+            poly.setAttribute('points', '0 0, 10 3.5, 0 7');
             poly.setAttribute('fill', '#2E6B9E');
             marker.appendChild(poly);
             defs.appendChild(marker);
             svg.appendChild(defs);
 
+            // Get box centers
             const phases = container.querySelectorAll('.loop-phase');
-            const b = [];
+            const boxes = [];
             phases.forEach(p => {
                 const r = p.getBoundingClientRect();
-                const x = r.left - cRect.left, y = r.top - cRect.top;
-                b.push({
-                    cx: x + r.width / 2, cy: y + r.height / 2,
-                    w: r.width, h: r.height,
-                    top: { x: x + r.width / 2, y: y },
-                    bottom: { x: x + r.width / 2, y: y + r.height },
-                    left: { x: x, y: y + r.height / 2 },
-                    right: { x: x + r.width, y: y + r.height / 2 }
+                boxes.push({
+                    cx: r.left - cRect.left + r.width / 2,
+                    cy: r.top - cRect.top + r.height / 2
                 });
             });
 
-            const centerX = W / 2, centerY = H / 2;
+            const cx = W / 2, cy = H / 2;
 
-            // 0=DETECT(top), 1=DIAGNOSE(right), 2=REMEDIATE(bot-right), 3=VERIFY(bot-left), 4=CERTIFY(left)
-            const connections = [
-                { from: b[0], exit: 'right',  to: b[1], enter: 'top'    },
-                { from: b[1], exit: 'bottom', to: b[2], enter: 'top'    },
-                { from: b[2], exit: 'left',   to: b[3], enter: 'right'  },
-                { from: b[3], exit: 'top',    to: b[4], enter: 'bottom' },
-                { from: b[4], exit: 'top',    to: b[0], enter: 'left'   }
-            ];
+            // Average distance from center + offset = arc radius
+            const avg = boxes.reduce((s, b) =>
+                s + Math.sqrt((b.cx - cx) ** 2 + (b.cy - cy) ** 2), 0) / 5;
+            const R = avg + 35;
 
-            connections.forEach((c, i) => {
-                const sx = c.from[c.exit].x, sy = c.from[c.exit].y;
-                const ex = c.to[c.enter].x, ey = c.to[c.enter].y;
+            // Point on the circle at each box's angle
+            const pts = boxes.map(b => {
+                const a = Math.atan2(b.cy - cy, b.cx - cx);
+                return { x: cx + Math.cos(a) * R, y: cy + Math.sin(a) * R };
+            });
 
-                // Use BOX CENTERS for outward direction (not edge midpoint)
-                const bmx = (c.from.cx + c.to.cx) / 2;
-                const bmy = (c.from.cy + c.to.cy) / 2;
-                const outAngle = Math.atan2(bmy - centerY, bmx - centerX);
-
-                // Cap curve strength: proportional to distance but max 80px
-                const dist = Math.sqrt((ex - sx) ** 2 + (ey - sy) ** 2);
-                const strength = Math.min(80, dist * 0.35);
-
-                // Control point at midpoint of start/end, pushed outward
-                const mx = (sx + ex) / 2, my = (sy + ey) / 2;
-                const cpx = mx + Math.cos(outAngle) * strength;
-                const cpy = my + Math.sin(outAngle) * strength;
+            // 5 clockwise arcs: 0→1→2→3→4→0
+            for (let i = 0; i < 5; i++) {
+                const s = pts[i];
+                const e = pts[(i + 1) % 5];
 
                 const path = document.createElementNS(ns, 'path');
-                path.setAttribute('d', 'M ' + sx + ' ' + sy + ' Q ' + cpx + ' ' + cpy + ' ' + ex + ' ' + ey);
+                path.setAttribute('d',
+                    'M ' + s.x + ' ' + s.y + ' A ' + R + ' ' + R + ' 0 0 1 ' + e.x + ' ' + e.y);
                 path.setAttribute('fill', 'none');
                 path.setAttribute('stroke', '#2E6B9E');
-                path.setAttribute('stroke-width', '2');
-                path.setAttribute('stroke-opacity', '0.5');
+                path.setAttribute('stroke-width', '1.5');
+                path.setAttribute('stroke-opacity', '0.45');
                 path.setAttribute('marker-end', 'url(#ah)');
                 path.classList.add('arrow-path');
                 path.style.animationDelay = (i * 0.15) + 's';
                 svg.appendChild(path);
-            });
+            }
         }
 
         window.addEventListener('load', () => setTimeout(drawLoopArrows, 100));
