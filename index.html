@@ -287,7 +287,7 @@
             observer.observe(el);
         });
 
-        // Dynamic arrow drawing - simple circular arcs
+        // Dynamic arrow drawing
         function drawLoopArrows() {
             const container = document.getElementById('loopContainer');
             const svg = document.getElementById('loopArrows');
@@ -297,6 +297,7 @@
             svg.setAttribute('viewBox', '0 0 ' + W + ' ' + H);
             svg.innerHTML = '';
 
+            // Defs
             const ns = 'http://www.w3.org/2000/svg';
             const defs = document.createElementNS(ns, 'defs');
             const marker = document.createElementNS(ns, 'marker');
@@ -308,50 +309,59 @@
             marker.setAttribute('orient', 'auto');
             const poly = document.createElementNS(ns, 'polygon');
             poly.setAttribute('points', '0 0, 10 3.5, 0 7');
-            poly.setAttribute('fill', '#2E6B9E');
+            poly.setAttribute('fill', '#8993A0');
             marker.appendChild(poly);
             defs.appendChild(marker);
             svg.appendChild(defs);
 
-            // Get box centers
             const phases = container.querySelectorAll('.loop-phase');
+            const order = [0, 1, 2, 3, 4];
             const boxes = [];
             phases.forEach(p => {
                 const r = p.getBoundingClientRect();
                 boxes.push({
                     cx: r.left - cRect.left + r.width / 2,
-                    cy: r.top - cRect.top + r.height / 2
+                    cy: r.top - cRect.top + r.height / 2,
+                    w: r.width,
+                    h: r.height
                 });
             });
 
-            const cx = W / 2, cy = H / 2;
+            const centerX = W / 2, centerY = H / 2;
 
-            // Average distance from center + offset = arc radius
-            const avg = boxes.reduce((s, b) =>
-                s + Math.sqrt((b.cx - cx) ** 2 + (b.cy - cy) ** 2), 0) / 5;
-            const R = avg + 35;
-
-            // Point on the circle at each box's angle
-            const pts = boxes.map(b => {
-                const a = Math.atan2(b.cy - cy, b.cx - cx);
-                return { x: cx + Math.cos(a) * R, y: cy + Math.sin(a) * R };
-            });
-
-            // 5 clockwise arcs: 0→1→2→3→4→0
             for (let i = 0; i < 5; i++) {
-                const s = pts[i];
-                const e = pts[(i + 1) % 5];
+                const from = boxes[order[i]];
+                const to = boxes[order[(i + 1) % 5]];
+
+                // Find exit point on edge of "from" box toward center, then outward
+                const fromAngle = Math.atan2(from.cy - centerY, from.cx - centerX);
+                const toAngle = Math.atan2(to.cy - centerY, to.cx - centerX);
+
+                // Start/end on box edges facing the arc direction
+                const midAngle = (fromAngle + toAngle) / 2 + (toAngle < fromAngle ? Math.PI : 0);
+                
+                // Exit from box edge toward next box
+                const sx = from.cx + Math.cos(midAngle) * (from.w / 2 + 8);
+                const sy = from.cy + Math.sin(midAngle) * (from.h / 2 + 8);
+                const ex = to.cx - Math.cos(midAngle) * (to.w / 2 + 8);
+                const ey = to.cy - Math.sin(midAngle) * (to.h / 2 + 8);
+
+                // Control point - push outward from center
+                const mx = (sx + ex) / 2;
+                const my = (sy + ey) / 2;
+                const pushAngle = Math.atan2(my - centerY, mx - centerX);
+                const pushDist = 60;
+                const cpx = mx + Math.cos(pushAngle) * pushDist;
+                const cpy = my + Math.sin(pushAngle) * pushDist;
 
                 const path = document.createElementNS(ns, 'path');
-                path.setAttribute('d',
-                    'M ' + s.x + ' ' + s.y + ' A ' + R + ' ' + R + ' 0 0 1 ' + e.x + ' ' + e.y);
+                path.setAttribute('d', 'M ' + sx + ' ' + sy + ' Q ' + cpx + ' ' + cpy + ' ' + ex + ' ' + ey);
                 path.setAttribute('fill', 'none');
-                path.setAttribute('stroke', '#2E6B9E');
-                path.setAttribute('stroke-width', '1.5');
-                path.setAttribute('stroke-opacity', '0.45');
+                path.setAttribute('stroke', '#8993A0');
+                path.setAttribute('stroke-width', '2');
                 path.setAttribute('marker-end', 'url(#ah)');
                 path.classList.add('arrow-path');
-                path.style.animationDelay = (i * 0.15) + 's';
+                path.style.animationDelay = (i * 0.2) + 's';
                 svg.appendChild(path);
             }
         }
