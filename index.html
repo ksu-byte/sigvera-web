@@ -314,62 +314,56 @@
             svg.appendChild(defs);
 
             const phases = container.querySelectorAll('.loop-phase');
-            const boxes = [];
+            const b = [];
             phases.forEach(p => {
                 const r = p.getBoundingClientRect();
-                boxes.push({
-                    cx: r.left - cRect.left + r.width / 2,
-                    cy: r.top - cRect.top + r.height / 2,
-                    w: r.width,
-                    h: r.height,
-                    l: r.left - cRect.left,
-                    t: r.top - cRect.top,
-                    r: r.left - cRect.left + r.width,
-                    b: r.top - cRect.top + r.height
+                const x = r.left - cRect.left, y = r.top - cRect.top;
+                b.push({
+                    cx: x + r.width / 2, cy: y + r.height / 2,
+                    w: r.width, h: r.height,
+                    top: { x: x + r.width / 2, y: y },
+                    bottom: { x: x + r.width / 2, y: y + r.height },
+                    left: { x: x, y: y + r.height / 2 },
+                    right: { x: x + r.width, y: y + r.height / 2 }
                 });
             });
 
+            // Explicit connections: [fromBox, exitEdge, toBox, entryEdge, curveOffset]
+            // 0=DETECT(top), 1=DIAGNOSE(right), 2=REMEDIATE(bot-right), 3=VERIFY(bot-left), 4=CERTIFY(left)
+            const pad = 4;
+            const connections = [
+                { from: b[0], exit: 'right',  to: b[1], enter: 'top',    curve: 1.0 },
+                { from: b[1], exit: 'bottom', to: b[2], enter: 'top',    curve: 1.0 },
+                { from: b[2], exit: 'bottom', to: b[3], enter: 'bottom', curve: 0.5 },
+                { from: b[3], exit: 'top',    to: b[4], enter: 'bottom', curve: 1.0 },
+                { from: b[4], exit: 'top',    to: b[0], enter: 'left',   curve: 1.0 }
+            ];
+
             const centerX = W / 2, centerY = H / 2;
 
-            // Get point on box edge closest to a target point
-            function edgePoint(box, tx, ty, pad) {
-                const dx = tx - box.cx, dy = ty - box.cy;
-                const hw = box.w / 2 + pad, hh = box.h / 2 + pad;
-                const sx = Math.abs(dx) < 0.01 ? 1000 : hw / Math.abs(dx);
-                const sy = Math.abs(dy) < 0.01 ? 1000 : hh / Math.abs(dy);
-                const s = Math.min(sx, sy);
-                return { x: box.cx + dx * s, y: box.cy + dy * s };
-            }
+            connections.forEach((c, i) => {
+                const sx = c.from[c.exit].x, sy = c.from[c.exit].y;
+                const ex = c.to[c.enter].x, ey = c.to[c.enter].y;
 
-            // order: DETECT(0) -> DIAGNOSE(1) -> REMEDIATE(2) -> VERIFY(3) -> CERTIFY(4) -> DETECT(0)
-            for (let i = 0; i < 5; i++) {
-                const from = boxes[i];
-                const to = boxes[(i + 1) % 5];
-
-                // Calculate a control point that arcs outward from center
-                const mx = (from.cx + to.cx) / 2;
-                const my = (from.cy + to.cy) / 2;
+                // Push control point outward from diagram center
+                const mx = (sx + ex) / 2, my = (sy + ey) / 2;
                 const outAngle = Math.atan2(my - centerY, mx - centerX);
-                const dist = Math.sqrt((to.cx - from.cx) ** 2 + (to.cy - from.cy) ** 2);
-                const arcStrength = Math.max(50, dist * 0.35);
-                const cpx = mx + Math.cos(outAngle) * arcStrength;
-                const cpy = my + Math.sin(outAngle) * arcStrength;
-
-                // Start from box edge toward control point, end at box edge from control point
-                const start = edgePoint(from, cpx, cpy, 6);
-                const end = edgePoint(to, cpx, cpy, 6);
+                const dist = Math.sqrt((ex - sx) ** 2 + (ey - sy) ** 2);
+                const strength = dist * 0.4 * c.curve;
+                const cpx = mx + Math.cos(outAngle) * strength;
+                const cpy = my + Math.sin(outAngle) * strength;
 
                 const path = document.createElementNS(ns, 'path');
-                path.setAttribute('d', 'M ' + start.x + ' ' + start.y + ' Q ' + cpx + ' ' + cpy + ' ' + end.x + ' ' + end.y);
+                path.setAttribute('d', 'M ' + sx + ' ' + sy + ' Q ' + cpx + ' ' + cpy + ' ' + ex + ' ' + ey);
                 path.setAttribute('fill', 'none');
                 path.setAttribute('stroke', '#2E6B9E');
-                path.setAttribute('stroke-width', '2.5');
-                path.setAttribute('stroke-opacity', '0.6');
+                path.setAttribute('stroke-width', '2');
+                path.setAttribute('stroke-opacity', '0.5');
                 path.setAttribute('marker-end', 'url(#ah)');
                 path.classList.add('arrow-path');
-                path.style.animationDelay = (i * 0.2) + 's';
+                path.style.animationDelay = (i * 0.15) + 's';
                 svg.appendChild(path);
-            }
+            });
         }
 
         window.addEventListener('load', () => setTimeout(drawLoopArrows, 100));
