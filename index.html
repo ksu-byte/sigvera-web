@@ -402,11 +402,15 @@
                     const arrowY = (y1 + y2) / 2;
                     sx = b[fi].left; sy = arrowY;
                     ex = b[ti].right; ey = arrowY;
-                } else if (i === 1 || i === 3) {
-                    // Vertical arrows: use average cx
-                    const midX = (b[fi].cx + b[ti].cx) / 2;
-                    const pt1 = edgePt(b[fi], fe, midX);
-                    const pt2 = edgePt(b[ti], te, midX);
+                } else if (i === 1) {
+                    // DIAGNOSE → REMEDIATE: vertical at DIAGNOSE.cx (aligned with DETECT→DIAGNOSE endpoint)
+                    const pt1 = edgePt(b[fi], fe, b[fi].cx);
+                    const pt2 = edgePt(b[ti], te, b[fi].cx);
+                    sx = pt1.x; sy = pt1.y; ex = pt2.x; ey = pt2.y;
+                } else if (i === 3) {
+                    // VERIFY → CERTIFY: vertical at CERTIFY.cx (aligned with CERTIFY→DETECT startpoint)
+                    const pt1 = edgePt(b[fi], fe, b[ti].cx);
+                    const pt2 = edgePt(b[ti], te, b[ti].cx);
                     sx = pt1.x; sy = pt1.y; ex = pt2.x; ey = pt2.y;
                 } else {
                     const pt1 = edgePt(b[fi], fe);
