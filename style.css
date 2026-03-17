@@ -368,7 +368,7 @@ body {
 .phase-detect    { top: 30px;  left: 50%;  transform: translateX(-50%); }
 .phase-diagnose  { top: 175px; right: 10px; }
 .phase-remediate { bottom: 60px; right: 55px; }
-.phase-verify    { bottom: 60px; left: 55px; }
+.phase-verify    { bottom: 77px; left: 55px; }
 .phase-certify   { top: 175px; left: 10px; }
 
 .phase-detect:hover    { transform: translateX(-50%) scale(1.08); }
