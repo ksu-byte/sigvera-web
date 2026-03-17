@@ -367,10 +367,10 @@ body {
 
 /* Positions: circular layout */
 .phase-detect    { top: 30px;  left: 50%;  transform: translateX(-50%); }
-.phase-diagnose  { top: 175px; right: 55px; }
+.phase-diagnose  { top: 175px; right: 10px; }
 .phase-remediate { bottom: 60px; right: 55px; }
 .phase-verify    { bottom: 77px; left: 55px; }
-.phase-certify   { top: 175px; left: 55px; }
+.phase-certify   { top: 175px; left: 10px; }
 
 .phase-detect:hover    { transform: translateX(-50%) scale(1.08); }
 
@@ -397,10 +397,10 @@ body {
     .phase-desc { font-size: 0.6rem; padding: 6px; }
     .loop-center { font-size: 1rem; }
     .phase-detect    { top: 10px; }
-    .phase-diagnose  { top: 95px; right: 20px; }
+    .phase-diagnose  { top: 95px; right: 0; }
     .phase-remediate { bottom: 25px; right: 20px; }
     .phase-verify    { bottom: 35px; left: 20px; }
-    .phase-certify   { top: 95px; left: 20px; }
+    .phase-certify   { top: 95px; left: 0; }
 }
 
 /* ========== HERO PROBLEM CARDS ========== */
