@@ -313,19 +313,20 @@
             defs.appendChild(marker);
             svg.appendChild(defs);
 
-            // Hardcoded paths for 600x600 viewBox
-            // Box centers: DETECT(300,78), DIAGNOSE(515,223), REMEDIATE(470,492), VERIFY(130,492), CERTIFY(85,223)
+            // Arrows based on exact measured box positions (600x600 viewBox)
+            // DETECT: (225,30)-(375,149)  DIAGNOSE: (440,175)-(590,294)
+            // REMEDIATE: (395,421)-(545,540)  VERIFY: (55,438)-(205,540)  CERTIFY: (10,175)-(160,277)
             const arrows = [
-                // DETECT → DIAGNOSE: exit bottom-right, enter top-left, arc outward top-right
-                'M 375 100 Q 480 80 460 180',
-                // DIAGNOSE → REMEDIATE: exit bottom, enter top, arc outward right
-                'M 530 275 Q 600 380 520 445',
-                // REMEDIATE → VERIFY: exit left, enter right, arc outward bottom
-                'M 395 510 Q 300 590 205 510',
-                // VERIFY → CERTIFY: exit top, enter bottom, arc outward left
-                'M 80 445 Q 0 380 70 275',
-                // CERTIFY → DETECT: exit top-right, enter bottom-left, arc outward top-left
-                'M 140 180 Q 120 80 225 100'
+                // DETECT → DIAGNOSE: right edge of DETECT → top edge of DIAGNOSE
+                'M 375 90 Q 470 60 515 175',
+                // DIAGNOSE → REMEDIATE: bottom edge of DIAGNOSE → right edge of REMEDIATE
+                'M 515 294 Q 610 390 545 480',
+                // REMEDIATE → VERIFY: left edge of REMEDIATE → right edge of VERIFY
+                'M 395 489 Q 300 600 205 489',
+                // VERIFY → CERTIFY: top edge of VERIFY → bottom edge of CERTIFY
+                'M 130 438 Q -10 380 85 277',
+                // CERTIFY → DETECT: top edge of CERTIFY → left edge of DETECT
+                'M 85 175 Q -10 60 225 90'
             ];
 
             arrows.forEach((d, i) => {
