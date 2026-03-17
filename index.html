@@ -405,21 +405,41 @@
         });
         function submitContactForm(e) {
             e.preventDefault();
-            const name = document.getElementById('contactName').value;
-            const email = document.getElementById('contactEmail').value;
-            const company = document.getElementById('contactCompany').value;
-            const inquiry = document.getElementById('contactInquiry').value;
-            const message = document.getElementById('contactMessage').value;
-            const subject = encodeURIComponent('SIGVERA — ' + inquiry);
-            const body = encodeURIComponent(
-                'Name: ' + name + '\n' +
-                'Email: ' + email + '\n' +
-                'Company: ' + company + '\n' +
-                'Inquiry: ' + inquiry + '\n\n' +
-                message
-            );
-            window.location.href = 'mailto:info@virtualis.hr?subject=' + subject + '&body=' + body;
-            closeContactModal();
+            const btn = e.target.querySelector('button[type="submit"]');
+            const origText = btn.textContent;
+            btn.textContent = 'Sending...';
+            btn.disabled = true;
+
+            const formData = new FormData();
+            formData.append('name', document.getElementById('contactName').value);
+            formData.append('email', document.getElementById('contactEmail').value);
+            formData.append('company', document.getElementById('contactCompany').value);
+            formData.append('inquiry', document.getElementById('contactInquiry').value);
+            formData.append('message', document.getElementById('contactMessage').value);
+            formData.append('_subject', 'SIGVERA — ' + document.getElementById('contactInquiry').value);
+            formData.append('_captcha', 'false');
+            formData.append('_template', 'table');
+
+            fetch('https://formsubmit.co/ajax/info@virtualis.hr', {
+                method: 'POST',
+                body: formData
+            })
+            .then(r => r.json())
+            .then(data => {
+                if (data.success) {
+                    e.target.innerHTML = '<div style="text-align:center;padding:40px 0;"><div style="font-size:48px;margin-bottom:16px;">✓</div><h3 style="color:#2E6B9E;margin-bottom:8px;">Message Sent!</h3><p style="color:#64748b;">We\'ll get back to you shortly.</p></div>';
+                    setTimeout(closeContactModal, 3000);
+                } else {
+                    btn.textContent = origText;
+                    btn.disabled = false;
+                    alert('Something went wrong. Please try again.');
+                }
+            })
+            .catch(() => {
+                btn.textContent = origText;
+                btn.disabled = false;
+                alert('Network error. Please try again.');
+            });
         }
     </script>
     <!--Start of Tawk.to Script-->
