@@ -318,15 +318,15 @@
             // REMEDIATE: (395,421)-(545,540)  VERIFY: (55,438)-(205,540)  CERTIFY: (10,175)-(160,277)
             const arrows = [
                 // DETECT → DIAGNOSE: right edge of DETECT → top edge of DIAGNOSE
-                'M 375 90 Q 470 60 515 175',
+                'M 375 90 Q 480 60 515 175',
                 // DIAGNOSE → REMEDIATE: bottom edge of DIAGNOSE → right edge of REMEDIATE
                 'M 515 294 Q 610 390 545 480',
                 // REMEDIATE → VERIFY: left edge of REMEDIATE → right edge of VERIFY
                 'M 395 489 Q 300 600 205 489',
-                // VERIFY → CERTIFY: top edge of VERIFY → bottom edge of CERTIFY
-                'M 130 438 Q -10 380 85 277',
+                // VERIFY → CERTIFY: left edge of VERIFY → bottom edge of CERTIFY
+                'M 55 489 Q 10 380 85 277',
                 // CERTIFY → DETECT: top edge of CERTIFY → left edge of DETECT
-                'M 85 175 Q -10 60 225 90'
+                'M 85 175 Q 50 60 225 90'
             ];
 
             arrows.forEach((d, i) => {
