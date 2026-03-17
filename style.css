@@ -477,8 +477,6 @@ body {
 }
 
 .origin-content {
-    max-width: 720px;
-    margin: 0 auto;
 }
 
 .origin-content p {
@@ -497,8 +495,7 @@ body {
 }
 
 .origin-quote {
-    max-width: 640px;
-    margin: 48px auto 0;
+    margin: 48px 0 0;
     padding: 32px 40px;
     border-left: 3px solid var(--accent-steel);
     background: rgba(26, 58, 92, 0.03);
