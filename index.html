@@ -330,14 +330,14 @@
             observer.observe(el);
         });
 
-        // Dynamic arrow drawing - hardcoded bezier paths
+        // Dynamic arrow drawing - reads actual box positions, works on all screen sizes
         function drawLoopArrows() {
             const container = document.getElementById('loopContainer');
             const svg = document.getElementById('loopArrows');
             if (!container || !svg) return;
             const cRect = container.getBoundingClientRect();
             const W = cRect.width, H = cRect.height;
-            svg.setAttribute('viewBox', '0 0 600 600');
+            svg.setAttribute('viewBox', '0 0 ' + W + ' ' + H);
             svg.innerHTML = '';
 
             const ns = 'http://www.w3.org/2000/svg';
@@ -356,25 +356,60 @@
             defs.appendChild(marker);
             svg.appendChild(defs);
 
-            // Arrows based on exact measured box positions (600x600 viewBox)
-            // DETECT: (225,30)-(375,149)  DIAGNOSE: (440,175)-(590,294)
-            // REMEDIATE: (395,421)-(545,540)  VERIFY: (55,438)-(205,540)  CERTIFY: (10,175)-(160,277)
-            const arrows = [
-                // DETECT → DIAGNOSE
-                'M 375 90 L 515 175',
-                // DIAGNOSE → REMEDIATE: vertical down right side (aligned with arrow above at x=515)
-                'M 515 294 L 515 421',
-                // REMEDIATE → VERIFY: horizontal
-                'M 395 472 L 205 472',
-                // VERIFY → CERTIFY: vertical up left side (aligned with arrow above at x=85)
-                'M 85 421 L 85 277',
-                // CERTIFY → DETECT
-                'M 85 175 L 225 90'
+            const phases = container.querySelectorAll('.loop-phase');
+            const b = [];
+            phases.forEach(p => {
+                const r = p.getBoundingClientRect();
+                const x = r.left - cRect.left, y = r.top - cRect.top;
+                b.push({
+                    cx: x + r.width / 2, cy: y + r.height / 2,
+                    top: y, bottom: y + r.height,
+                    left: x, right: x + r.width
+                });
+            });
+            // 0=DETECT, 1=DIAGNOSE, 2=REMEDIATE, 3=VERIFY, 4=CERTIFY
+
+            // Connections: [from, exit-edge, to, enter-edge]
+            // exit/enter: which edge of the box the arrow touches
+            const conns = [
+                [0, 'right',  1, 'top'],     // DETECT → DIAGNOSE
+                [1, 'bottom', 2, 'top'],      // DIAGNOSE → REMEDIATE (vertical)
+                [2, 'left',   3, 'right'],    // REMEDIATE → VERIFY (horizontal)
+                [3, 'top',    4, 'bottom'],   // VERIFY → CERTIFY (vertical)
+                [4, 'top',    0, 'left']      // CERTIFY → DETECT
             ];
 
-            arrows.forEach((d, i) => {
+            function edgePt(box, edge, alignX) {
+                // Returns a point on the box edge, optionally aligned to alignX for vertical lines
+                switch(edge) {
+                    case 'top':    return { x: alignX !== undefined ? alignX : box.cx, y: box.top };
+                    case 'bottom': return { x: alignX !== undefined ? alignX : box.cx, y: box.bottom };
+                    case 'left':   return { x: box.left, y: box.cy };
+                    case 'right':  return { x: box.right, y: box.cy };
+                }
+            }
+
+            conns.forEach(([fi, fe, ti, te], i) => {
+                let sx, sy, ex, ey;
+
+                if (i === 1) {
+                    // DIAGNOSE → REMEDIATE: align vertically at DIAGNOSE center x
+                    const pt1 = edgePt(b[fi], fe, b[fi].cx);
+                    const pt2 = edgePt(b[ti], te, b[fi].cx);
+                    sx = pt1.x; sy = pt1.y; ex = pt2.x; ey = pt2.y;
+                } else if (i === 3) {
+                    // VERIFY → CERTIFY: align vertically at CERTIFY center x
+                    const pt1 = edgePt(b[fi], fe, b[ti].cx);
+                    const pt2 = edgePt(b[ti], te, b[ti].cx);
+                    sx = pt1.x; sy = pt1.y; ex = pt2.x; ey = pt2.y;
+                } else {
+                    const pt1 = edgePt(b[fi], fe);
+                    const pt2 = edgePt(b[ti], te);
+                    sx = pt1.x; sy = pt1.y; ex = pt2.x; ey = pt2.y;
+                }
+
                 const path = document.createElementNS(ns, 'path');
-                path.setAttribute('d', d);
+                path.setAttribute('d', 'M ' + sx + ' ' + sy + ' L ' + ex + ' ' + ey);
                 path.setAttribute('fill', 'none');
                 path.setAttribute('stroke', '#8993A0');
                 path.setAttribute('stroke-width', '2');
