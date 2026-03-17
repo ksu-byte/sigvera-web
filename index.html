@@ -328,28 +328,32 @@
                 });
             });
 
-            // Explicit connections: [fromBox, exitEdge, toBox, entryEdge, curveOffset]
-            // 0=DETECT(top), 1=DIAGNOSE(right), 2=REMEDIATE(bot-right), 3=VERIFY(bot-left), 4=CERTIFY(left)
-            const pad = 4;
-            const connections = [
-                { from: b[0], exit: 'right',  to: b[1], enter: 'top',    curve: 1.0 },
-                { from: b[1], exit: 'bottom', to: b[2], enter: 'top',    curve: 1.0 },
-                { from: b[2], exit: 'bottom', to: b[3], enter: 'bottom', curve: 0.5 },
-                { from: b[3], exit: 'top',    to: b[4], enter: 'bottom', curve: 1.0 },
-                { from: b[4], exit: 'top',    to: b[0], enter: 'left',   curve: 1.0 }
-            ];
-
             const centerX = W / 2, centerY = H / 2;
+
+            // 0=DETECT(top), 1=DIAGNOSE(right), 2=REMEDIATE(bot-right), 3=VERIFY(bot-left), 4=CERTIFY(left)
+            const connections = [
+                { from: b[0], exit: 'right',  to: b[1], enter: 'top'    },
+                { from: b[1], exit: 'bottom', to: b[2], enter: 'top'    },
+                { from: b[2], exit: 'left',   to: b[3], enter: 'right'  },
+                { from: b[3], exit: 'top',    to: b[4], enter: 'bottom' },
+                { from: b[4], exit: 'top',    to: b[0], enter: 'left'   }
+            ];
 
             connections.forEach((c, i) => {
                 const sx = c.from[c.exit].x, sy = c.from[c.exit].y;
                 const ex = c.to[c.enter].x, ey = c.to[c.enter].y;
 
-                // Push control point outward from diagram center
-                const mx = (sx + ex) / 2, my = (sy + ey) / 2;
-                const outAngle = Math.atan2(my - centerY, mx - centerX);
+                // Use BOX CENTERS for outward direction (not edge midpoint)
+                const bmx = (c.from.cx + c.to.cx) / 2;
+                const bmy = (c.from.cy + c.to.cy) / 2;
+                const outAngle = Math.atan2(bmy - centerY, bmx - centerX);
+
+                // Cap curve strength: proportional to distance but max 80px
                 const dist = Math.sqrt((ex - sx) ** 2 + (ey - sy) ** 2);
-                const strength = dist * 0.4 * c.curve;
+                const strength = Math.min(80, dist * 0.35);
+
+                // Control point at midpoint of start/end, pushed outward
+                const mx = (sx + ex) / 2, my = (sy + ey) / 2;
                 const cpx = mx + Math.cos(outAngle) * strength;
                 const cpy = my + Math.sin(outAngle) * strength;
 
