@@ -391,7 +391,7 @@ body {
 @media (max-width: 768px) {
     .loop-container {
         width: 340px;
-        height: 340px;
+        height: 400px;
     }
     .loop-phase { width: 90px; }
     .phase-title { font-size: 0.65rem; padding: 8px 4px; }
@@ -399,8 +399,8 @@ body {
     .loop-center { font-size: 1rem; }
     .phase-detect    { top: 10px; }
     .phase-diagnose  { top: 95px; right: 0; }
-    .phase-remediate { top: 230px; right: 20px; }
-    .phase-verify    { top: 230px; left: 20px; }
+    .phase-remediate { top: 280px; right: 20px; }
+    .phase-verify    { top: 280px; left: 20px; }
     .phase-certify   { top: 95px; left: 0; }
 }
 
