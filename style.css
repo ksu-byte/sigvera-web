@@ -363,6 +363,7 @@ body {
     color: var(--text-secondary);
     line-height: 1.4;
     box-shadow: var(--shadow-sm);
+    min-height: 52px;
 }
 
 /* Positions: circular layout */
@@ -399,7 +400,7 @@ body {
     .phase-detect    { top: 10px; }
     .phase-diagnose  { top: 95px; right: 0; }
     .phase-remediate { bottom: 25px; right: 20px; }
-    .phase-verify    { bottom: 35px; left: 20px; }
+    .phase-verify    { bottom: 25px; left: 20px; }
     .phase-certify   { top: 95px; left: 0; }
 }
 
