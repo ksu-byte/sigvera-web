@@ -2,6 +2,12 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <script>
+        // Auto-redirect Croatian browsers to /hr/ (skip if user explicitly chose EN)
+        if (!localStorage.getItem('sigvera_lang') && navigator.language && navigator.language.startsWith('hr')) {
+            window.location.replace('/hr/');
+        }
+    </script>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SIGVERA — AI-Native NIS2 Compliance Platform | Always Audit Ready</title>
     <meta name="description" content="SIGVERA automates NIS2 compliance with AI-powered continuous security assessment, cryptographic evidence trails, and real-time compliance scoring. Built in the EU, for the EU.">
@@ -61,7 +67,7 @@
                 <a href="#features">Features</a>
                 <a href="#frameworks">Frameworks</a>
                 <a href="#how-it-works">How It Works</a>
-                <a href="hr/">HR</a>
+                <a href="hr/" onclick="localStorage.removeItem('sigvera_lang')">HR</a>
                 <a href="#contact" class="nav-cta">Get in Touch</a>
             </div>
         </div>
