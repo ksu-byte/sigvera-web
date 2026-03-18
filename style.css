@@ -369,8 +369,8 @@ body {
 /* Positions: circular layout */
 .phase-detect    { top: 30px;  left: 50%;  transform: translateX(-50%); }
 .phase-diagnose  { top: 175px; right: 10px; }
-.phase-remediate { bottom: 68px; right: 55px; }
-.phase-verify    { bottom: 68px; left: 55px; }
+.phase-remediate { top: 420px; right: 55px; }
+.phase-verify    { top: 420px; left: 55px; }
 .phase-certify   { top: 175px; left: 10px; }
 
 .phase-detect:hover    { transform: translateX(-50%) scale(1.08); }
@@ -399,8 +399,8 @@ body {
     .loop-center { font-size: 1rem; }
     .phase-detect    { top: 10px; }
     .phase-diagnose  { top: 95px; right: 0; }
-    .phase-remediate { bottom: 25px; right: 20px; }
-    .phase-verify    { bottom: 25px; left: 20px; }
+    .phase-remediate { top: 230px; right: 20px; }
+    .phase-verify    { top: 230px; left: 20px; }
     .phase-certify   { top: 95px; left: 0; }
 }
 
