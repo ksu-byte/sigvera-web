@@ -150,12 +150,12 @@
             </div>
             <div class="feature-tabs-container">
                 <div class="tab-nav">
-                    <button class="tab-btn active" data-tab="tabDashboard"><span class="tab-btn-icon">📊</span> Nadzorna ploča</button>
-                    <button class="tab-btn" data-tab="tabAnalysis"><span class="tab-btn-icon">🔍</span> AI Gap analiza</button>
-                    <button class="tab-btn" data-tab="tabEvidence"><span class="tab-btn-icon">🔗</span> Lanac dokaza</button>
-                    <button class="tab-btn" data-tab="tabRemediation"><span class="tab-btn-icon">🛠️</span> Remedijacija</button>
-                    <button class="tab-btn" data-tab="tabReporting"><span class="tab-btn-icon">📄</span> Izvještavanje</button>
-                    <button class="tab-btn" data-tab="tabIntegration"><span class="tab-btn-icon">🔌</span> Integracije</button>
+                    <button class="tab-btn active" data-tab="tabDashboard"><span class="tab-btn-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg></span> Nadzorna ploča</button>
+                    <button class="tab-btn" data-tab="tabAnalysis"><span class="tab-btn-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.35-4.35"/><path d="M8 11h6M11 8v6"/></svg></span> AI Gap analiza</button>
+                    <button class="tab-btn" data-tab="tabEvidence"><span class="tab-btn-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="4" y="4" width="6" height="6" rx="1"/><rect x="14" y="14" width="6" height="6" rx="1"/><path d="M10 7h4l-4 10h4"/></svg></span> Lanac dokaza</button>
+                    <button class="tab-btn" data-tab="tabRemediation"><span class="tab-btn-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg></span> Remedijacija</button>
+                    <button class="tab-btn" data-tab="tabReporting"><span class="tab-btn-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg></span> Izvještavanje</button>
+                    <button class="tab-btn" data-tab="tabIntegration"><span class="tab-btn-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="3"/><path d="M12 1v4M12 19v4M4.22 4.22l2.83 2.83M16.95 16.95l2.83 2.83M1 12h4M19 12h4M4.22 19.78l2.83-2.83M16.95 7.05l2.83-2.83"/></svg></span> Integracije</button>
                 </div>
                 <div class="tab-panels">
                     <div class="tab-panel active" id="tabDashboard">
@@ -170,6 +170,10 @@
                             <div class="mockup-bar"><span class="mockup-bar-label">NIS2</span><div class="mockup-bar-track"><div class="mockup-bar-fill" style="width:87%"></div></div><span class="mockup-bar-value">87%</span></div>
                             <div class="mockup-bar"><span class="mockup-bar-label">DORA</span><div class="mockup-bar-track"><div class="mockup-bar-fill" style="width:72%"></div></div><span class="mockup-bar-value">72%</span></div>
                             <div class="mockup-bar"><span class="mockup-bar-label">ISO 27001</span><div class="mockup-bar-track"><div class="mockup-bar-fill" style="width:64%"></div></div><span class="mockup-bar-value">64%</span></div>
+                            <div style="display:flex;justify-content:center;margin-top:16px;gap:24px">
+                                <div style="text-align:center"><div style="width:64px;height:64px;border-radius:50%;border:4px solid var(--accent-steel);border-top-color:transparent;display:flex;align-items:center;justify-content:center;margin:0 auto 6px"><span style="font-weight:700;color:var(--accent-navy);font-size:0.85rem">74%</span></div><span style="font-size:0.7rem;color:var(--text-muted)">Ukupni rezultat</span></div>
+                                <div style="text-align:center"><div style="width:64px;height:64px;border-radius:50%;border:4px solid #22c55e;border-left-color:transparent;display:flex;align-items:center;justify-content:center;margin:0 auto 6px"><span style="font-weight:700;color:#16a34a;font-size:0.85rem">↑ 12%</span></div><span style="font-size:0.7rem;color:var(--text-muted)">30d Trend</span></div>
+                            </div>
                         </div>
                     </div>
                     <div class="tab-panel" id="tabAnalysis">
@@ -181,6 +185,14 @@
                             <li>Prioritizirano bodovanje rizika prema ozbiljnosti</li>
                             <li>Kontinuirana ponovna procjena — ne jednokratni snimak</li>
                         </ul>
+                        <div class="tab-visual">
+                            <div style="display:flex;flex-direction:column;gap:8px">
+                                <div style="display:flex;align-items:center;gap:10px;padding:8px 12px;background:#fff;border-radius:6px;border-left:3px solid #ef4444"><span style="font-size:0.7rem;font-weight:700;color:#ef4444;min-width:55px">KRITIČNO</span><span style="font-size:0.8rem;color:var(--text-secondary)">MFA nije aktiviran za admin račune</span><span style="margin-left:auto;font-size:0.7rem;color:var(--text-muted)">Čl. 30(1)(j)</span></div>
+                                <div style="display:flex;align-items:center;gap:10px;padding:8px 12px;background:#fff;border-radius:6px;border-left:3px solid #f59e0b"><span style="font-size:0.7rem;font-weight:700;color:#f59e0b;min-width:55px">VISOKO</span><span style="font-size:0.8rem;color:var(--text-secondary)">Nema šifriranja za backup pohranu</span><span style="margin-left:auto;font-size:0.7rem;color:var(--text-muted)">Čl. 30(1)(e)</span></div>
+                                <div style="display:flex;align-items:center;gap:10px;padding:8px 12px;background:#fff;border-radius:6px;border-left:3px solid #3b82f6"><span style="font-size:0.7rem;font-weight:700;color:#3b82f6;min-width:55px">SREDNJE</span><span style="font-size:0.8rem;color:var(--text-secondary)">IR plan nije testiran 12 mjeseci</span><span style="margin-left:auto;font-size:0.7rem;color:var(--text-muted)">Čl. 30(1)(b)</span></div>
+                                <div style="display:flex;align-items:center;gap:10px;padding:8px 12px;background:#fff;border-radius:6px;border-left:3px solid #22c55e"><span style="font-size:0.7rem;font-weight:700;color:#22c55e;min-width:55px">PROŠLO</span><span style="font-size:0.8rem;color:var(--text-secondary)">Mrežna segmentacija ispravno konfigurirana</span><span style="margin-left:auto;font-size:0.7rem;color:var(--text-muted)">Čl. 30(1)(d)</span></div>
+                            </div>
+                        </div>
                     </div>
                     <div class="tab-panel" id="tabEvidence">
                         <h3>Kriptografski lanac dokaza</h3>
@@ -191,6 +203,15 @@
                             <li>Potpuna revizijska staza — tko je što provjerio, kada i što je nađeno</li>
                             <li>Revizori verificiraju matematiku, ne vašu riječ</li>
                         </ul>
+                        <div class="tab-visual">
+                            <div style="display:flex;flex-direction:column;gap:2px;align-items:center">
+                                <div style="background:#fff;border:1px solid var(--border);border-radius:8px;padding:10px 16px;width:100%;max-width:380px;text-align:center"><div style="font-size:0.7rem;color:var(--text-muted);margin-bottom:2px">Blok #1847 · 2026-03-19 14:32:01 UTC</div><code style="font-size:0.7rem;color:var(--accent-navy)">sha256:a3f8c1...7e92b4</code><div style="font-size:0.72rem;color:var(--text-secondary);margin-top:4px">✓ Politika pristupa verificirana</div></div>
+                                <div style="color:var(--accent-steel);font-size:1.2rem">↓</div>
+                                <div style="background:#fff;border:1px solid var(--border);border-radius:8px;padding:10px 16px;width:100%;max-width:380px;text-align:center"><div style="font-size:0.7rem;color:var(--text-muted);margin-bottom:2px">Blok #1848 · 2026-03-19 14:32:18 UTC</div><code style="font-size:0.7rem;color:var(--accent-navy)">sha256:b7d4e2...1f83a6</code><div style="font-size:0.72rem;color:var(--text-secondary);margin-top:4px">✓ Provjera pravila vatrozida</div></div>
+                                <div style="color:var(--accent-steel);font-size:1.2rem">↓</div>
+                                <div style="background:#fff;border:1px solid var(--border);border-radius:8px;padding:10px 16px;width:100%;max-width:380px;text-align:center"><div style="font-size:0.7rem;color:var(--text-muted);margin-bottom:2px">Blok #1849 · 2026-03-19 14:32:35 UTC</div><code style="font-size:0.7rem;color:var(--accent-navy)">sha256:c9e5f3...4a27d8</code><div style="font-size:0.72rem;color:var(--text-secondary);margin-top:4px">✓ MFA provedba validirana</div></div>
+                            </div>
+                        </div>
                     </div>
                     <div class="tab-panel" id="tabRemediation">
                         <h3>Pametna remedijacija</h3>
@@ -200,6 +221,13 @@
                             <li>Rangirano po utjecaju na usklađenost i ozbiljnosti rizika</li>
                             <li>Praćenje napretka s dokazima o rješavanju</li>
                         </ul>
+                        <div class="tab-visual">
+                            <div style="display:flex;flex-direction:column;gap:8px">
+                                <div style="display:flex;align-items:center;gap:10px;padding:10px 14px;background:#fff;border-radius:6px;border:1px solid var(--border)"><span style="width:20px;height:20px;border-radius:50%;background:#22c55e;display:flex;align-items:center;justify-content:center;color:#fff;font-size:0.7rem;flex-shrink:0">✓</span><span style="font-size:0.82rem;color:var(--text-secondary);text-decoration:line-through">Aktiviraj MFA za sve admin račune</span><span style="margin-left:auto;font-size:0.65rem;background:rgba(34,197,94,0.1);color:#16a34a;padding:2px 8px;border-radius:50px;font-weight:600">Gotovo</span></div>
+                                <div style="display:flex;align-items:center;gap:10px;padding:10px 14px;background:#fff;border-radius:6px;border:1px solid var(--border)"><span style="width:20px;height:20px;border-radius:50%;background:#3b82f6;display:flex;align-items:center;justify-content:center;color:#fff;font-size:0.65rem;flex-shrink:0">…</span><span style="font-size:0.82rem;color:var(--text-secondary)">Konfiguriraj šifriranje za backupe</span><span style="margin-left:auto;font-size:0.65rem;background:rgba(59,130,246,0.1);color:#3b82f6;padding:2px 8px;border-radius:50px;font-weight:600">U tijeku</span></div>
+                                <div style="display:flex;align-items:center;gap:10px;padding:10px 14px;background:#fff;border-radius:6px;border:1px solid var(--border)"><span style="width:20px;height:20px;border-radius:50%;background:var(--border);display:flex;align-items:center;justify-content:center;flex-shrink:0"></span><span style="font-size:0.82rem;color:var(--text-secondary)">Zakaži godišnje testiranje IR plana</span><span style="margin-left:auto;font-size:0.65rem;background:rgba(107,114,128,0.1);color:#6b7280;padding:2px 8px;border-radius:50px;font-weight:600">Na čekanju</span></div>
+                            </div>
+                        </div>
                     </div>
                     <div class="tab-panel" id="tabReporting">
                         <h3>Automatizirano izvještavanje</h3>
@@ -210,6 +238,13 @@
                             <li>Nadzorne ploče trendova usklađenosti</li>
                             <li>Izvoz u PDF, CSV i strukturirane formate</li>
                         </ul>
+                        <div class="tab-visual">
+                            <div style="display:flex;gap:12px">
+                                <div style="flex:1;background:#fff;border:1px solid var(--border);border-radius:8px;padding:14px;text-align:center"><svg viewBox="0 0 24 24" fill="none" stroke="var(--accent-steel)" stroke-width="1.5" style="width:28px;height:28px;margin:0 auto 8px;display:block"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/></svg><div style="font-size:0.78rem;font-weight:600;color:var(--accent-navy)">Sažetak za upravu</div><div style="font-size:0.65rem;color:var(--text-muted);margin-top:2px">PDF · 12 stranica</div></div>
+                                <div style="flex:1;background:#fff;border:1px solid var(--border);border-radius:8px;padding:14px;text-align:center"><svg viewBox="0 0 24 24" fill="none" stroke="var(--accent-steel)" stroke-width="1.5" style="width:28px;height:28px;margin:0 auto 8px;display:block"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg><div style="font-size:0.78rem;font-weight:600;color:var(--accent-navy)">Tehnički izvještaj</div><div style="font-size:0.65rem;color:var(--text-muted);margin-top:2px">PDF · 48 stranica</div></div>
+                                <div style="flex:1;background:#fff;border:1px solid var(--border);border-radius:8px;padding:14px;text-align:center"><svg viewBox="0 0 24 24" fill="none" stroke="var(--accent-steel)" stroke-width="1.5" style="width:28px;height:28px;margin:0 auto 8px;display:block"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg><div style="font-size:0.78rem;font-weight:600;color:var(--accent-navy)">Trend nadzorna ploča</div><div style="font-size:0.65rem;color:var(--text-muted);margin-top:2px">Uživo · Interaktivno</div></div>
+                            </div>
+                        </div>
                     </div>
                     <div class="tab-panel" id="tabIntegration">
                         <h3>Neovisne integracije</h3>
@@ -221,6 +256,19 @@
                             <li>ITSM: ServiceNow, Jira, Freshservice</li>
                             <li>Izgrađeno na open-weight AI (Mistral) — EU suverenitet podataka</li>
                         </ul>
+                        <div class="tab-visual">
+                            <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:8px">
+                                <div style="background:#fff;border:1px solid var(--border);border-radius:6px;padding:10px;text-align:center;font-size:0.78rem;font-weight:600;color:var(--accent-navy)">Wazuh</div>
+                                <div style="background:#fff;border:1px solid var(--border);border-radius:6px;padding:10px;text-align:center;font-size:0.78rem;font-weight:600;color:var(--accent-navy)">Cisco FTD</div>
+                                <div style="background:#fff;border:1px solid var(--border);border-radius:6px;padding:10px;text-align:center;font-size:0.78rem;font-weight:600;color:var(--accent-navy)">Fortinet</div>
+                                <div style="background:#fff;border:1px solid var(--border);border-radius:6px;padding:10px;text-align:center;font-size:0.78rem;font-weight:600;color:var(--accent-navy)">Azure AD</div>
+                                <div style="background:#fff;border:1px solid var(--border);border-radius:6px;padding:10px;text-align:center;font-size:0.78rem;font-weight:600;color:var(--accent-navy)">Splunk</div>
+                                <div style="background:#fff;border:1px solid var(--border);border-radius:6px;padding:10px;text-align:center;font-size:0.78rem;font-weight:600;color:var(--accent-navy)">ServiceNow</div>
+                                <div style="background:#fff;border:1px solid var(--border);border-radius:6px;padding:10px;text-align:center;font-size:0.78rem;font-weight:600;color:var(--accent-navy)">Okta</div>
+                                <div style="background:#fff;border:1px solid var(--border);border-radius:6px;padding:10px;text-align:center;font-size:0.78rem;font-weight:600;color:var(--accent-navy)">Palo Alto</div>
+                                <div style="background:#fff;border:1px solid var(--border);border-radius:6px;padding:10px;text-align:center;font-size:0.78rem;font-weight:600;color:var(--accent-navy)">Sentinel</div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>

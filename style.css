@@ -1344,7 +1344,8 @@ body.has-announcement .policy-page { padding-top: 160px; }
     font-weight: 600;
     border-left-color: var(--accent-steel);
 }
-.tab-btn-icon { font-size: 1.2rem; flex-shrink: 0; }
+.tab-btn-icon { width: 20px; height: 20px; flex-shrink: 0; display: flex; align-items: center; justify-content: center; }
+.tab-btn-icon svg { width: 18px; height: 18px; }
 .tab-panel {
     display: none;
     padding: 36px;
