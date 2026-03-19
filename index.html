@@ -761,11 +761,14 @@
                 path.setAttribute('stroke-width', '2');
                 path.setAttribute('marker-end', 'url(#ah)');
                 path.classList.add('arrow-path');
-                // If animation already completed, show arrow immediately
+                svg.appendChild(path);
+                // Set dasharray/dashoffset to actual path length
+                var len = path.getTotalLength();
+                path.style.strokeDasharray = len;
+                path.style.strokeDashoffset = len;
                 if (typeof loopAnimationDone !== 'undefined' && loopAnimationDone) {
                     path.style.strokeDashoffset = '0';
                 }
-                svg.appendChild(path);
             });
         }
 

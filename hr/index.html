@@ -732,10 +732,13 @@
                 path.setAttribute('stroke-width', '2');
                 path.setAttribute('marker-end', 'url(#ah)');
                 path.classList.add('arrow-path');
+                svg.appendChild(path);
+                var len = path.getTotalLength();
+                path.style.strokeDasharray = len;
+                path.style.strokeDashoffset = len;
                 if (typeof loopAnimationDone !== 'undefined' && loopAnimationDone) {
                     path.style.strokeDashoffset = '0';
                 }
-                svg.appendChild(path);
             });
         }
 
