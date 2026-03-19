@@ -43,6 +43,13 @@
     <link rel="stylesheet" href="../style.css">
 </head>
 <body>
+    <!-- Announcement Bar -->
+    <div class="announcement-bar" id="announcementBar">
+        <span>NIS2 je na snazi — Je li vaša organizacija usklađena?</span>
+        <a href="#" onclick="openContactModal(); return false;">Provjerite uskladenost →</a>
+        <button class="announcement-bar-close" onclick="dismissAnnouncement()" aria-label="Zatvori">✕</button>
+    </div>
+
     <!-- Navigation -->
     <nav class="nav" id="nav">
         <div class="nav-container">
@@ -68,6 +75,7 @@
             <p class="hero-subtitle">SIGVERA kontinuirano procjenjuje vašu NIS2 usklađenost, generira kriptografske dokaze i prikazuje razinu usklađenosti u stvarnom vremenu. Revizije postaju formalnost, a ne gašenje požara.</p>
             <div class="hero-cta-group">
                 <a href="#" class="btn btn-primary" onclick="openContactModal(); return false;">Zatražite Demo</a>
+                <a href="#" class="btn btn-secondary" onclick="openDemoModal(); return false;">▶ Pogledaj Demo</a>
                 <a href="#how-it-works" class="btn btn-secondary">Pogledajte kako radi</a>
             </div>
             <div class="hero-stats">
@@ -133,37 +141,87 @@
         </div>
     </section>
 
-    <!-- Features Section -->
+    <!-- Features Section (Tabbed) -->
     <section class="features" id="features">
         <div class="container">
             <div class="section-header">
                 <span class="section-tag">Ključne mogućnosti</span>
                 <h2>Sve što trebate za usklađenost. Na jednom mjestu.</h2>
             </div>
-            <div class="features-grid">
-                <div class="feature-card">
-                    <h3>AI gap analiza</h3>
-                    <p>AI skenira vašu infrastrukturu, pronalazi propuste i povezuje ih s regulativom koja vam je važna. Sve automatski.</p>
+            <div class="feature-tabs-container">
+                <div class="tab-nav">
+                    <button class="tab-btn active" data-tab="tabDashboard"><span class="tab-btn-icon">📊</span> Nadzorna ploča</button>
+                    <button class="tab-btn" data-tab="tabAnalysis"><span class="tab-btn-icon">🔍</span> AI Gap analiza</button>
+                    <button class="tab-btn" data-tab="tabEvidence"><span class="tab-btn-icon">🔗</span> Lanac dokaza</button>
+                    <button class="tab-btn" data-tab="tabRemediation"><span class="tab-btn-icon">🛠️</span> Remedijacija</button>
+                    <button class="tab-btn" data-tab="tabReporting"><span class="tab-btn-icon">📄</span> Izvještavanje</button>
+                    <button class="tab-btn" data-tab="tabIntegration"><span class="tab-btn-icon">🔌</span> Integracije</button>
                 </div>
-                <div class="feature-card">
-                    <h3>Kriptografski lanac dokaza</h3>
-                    <p>Svaka provjera usklađenosti proizvodi nepromjenjiv, vremenski označen trag dokaza. Revizori ga mogu neovisno verificirati, bez oslanjanja na vašu riječ.</p>
-                </div>
-                <div class="feature-card">
-                    <h3>Kontinuirana usklađenost</h3>
-                    <p>Pogledajte gdje stojite upravo sada, kroz svaki okvir. Vaša pozicija usklađenosti se kontinuirano ažurira, tako da nikada ne morate nagađati.</p>
-                </div>
-                <div class="feature-card">
-                    <h3>Neovisna integracija</h3>
-                    <p>SIGVERA se povezuje s onim što već koristite. Wazuh, Cisco, Fortinet, Azure AD, ITSM. Bez zamjene postojećeg, bez novih agenata za instalaciju.</p>
-                </div>
-                <div class="feature-card">
-                    <h3>Automatizirana dokumentacija</h3>
-                    <p>Trebate izvješće za upravu ili detaljan tehnički izvještaj? Generirajte ga jednim klikom, potkrijepljeno stvarnim dokazima.</p>
-                </div>
-                <div class="feature-card">
-                    <h3>EU suverenitet podataka</h3>
-                    <p>Izgrađeno na open-weight AI modelima (Mistral), hostirano na EU infrastrukturi. Vaši podaci nikada ne napuštaju Europu.</p>
+                <div class="tab-panels">
+                    <div class="tab-panel active" id="tabDashboard">
+                        <h3>Nadzorna ploča usklađenosti u stvarnom vremenu</h3>
+                        <p>Pratite svoju usklađenost kroz sve okvire, kontinuirano ažurirano. Bez kvartalnih tablica.</p>
+                        <ul class="tab-highlights">
+                            <li>Živi rezultat usklađenosti po okviru (NIS2, DORA, ISO 27001)</li>
+                            <li>Analiza trendova — pratite napredak ili regresiju</li>
+                            <li>Vizualni pregled za upravu i nadzorni odbor</li>
+                        </ul>
+                        <div class="tab-visual">
+                            <div class="mockup-bar"><span class="mockup-bar-label">NIS2</span><div class="mockup-bar-track"><div class="mockup-bar-fill" style="width:87%"></div></div><span class="mockup-bar-value">87%</span></div>
+                            <div class="mockup-bar"><span class="mockup-bar-label">DORA</span><div class="mockup-bar-track"><div class="mockup-bar-fill" style="width:72%"></div></div><span class="mockup-bar-value">72%</span></div>
+                            <div class="mockup-bar"><span class="mockup-bar-label">ISO 27001</span><div class="mockup-bar-track"><div class="mockup-bar-fill" style="width:64%"></div></div><span class="mockup-bar-value">64%</span></div>
+                        </div>
+                    </div>
+                    <div class="tab-panel" id="tabAnalysis">
+                        <h3>AI Gap analiza</h3>
+                        <p>Naš AI skenira vašu infrastrukturu kao revizor, automatski mapirajući svaki nalaz prema regulatornim zahtjevima.</p>
+                        <ul class="tab-highlights">
+                            <li>Automatizirano skeniranje SIEM-a, vatrozida, pružatelja identiteta</li>
+                            <li>Mapiranje nalaza na specifične članke i kontrole</li>
+                            <li>Prioritizirano bodovanje rizika prema ozbiljnosti</li>
+                            <li>Kontinuirana ponovna procjena — ne jednokratni snimak</li>
+                        </ul>
+                    </div>
+                    <div class="tab-panel" id="tabEvidence">
+                        <h3>Kriptografski lanac dokaza</h3>
+                        <p>Svaka provjera proizvodi nepromjenjiv, vremenski označen trag dokaza koji revizori mogu neovisno verificirati.</p>
+                        <ul class="tab-highlights">
+                            <li>SHA-256 hash lanac koji povezuje svaki dokaz</li>
+                            <li>Vremenske oznake otporne na manipulaciju</li>
+                            <li>Potpuna revizijska staza — tko je što provjerio, kada i što je nađeno</li>
+                            <li>Revizori verificiraju matematiku, ne vašu riječ</li>
+                        </ul>
+                    </div>
+                    <div class="tab-panel" id="tabRemediation">
+                        <h3>Pametna remedijacija</h3>
+                        <p>Ne samo pronaći propuste — i ispraviti ih. SIGVERA generira konkretne korake za popravak vezane uz vašu infrastrukturu.</p>
+                        <ul class="tab-highlights">
+                            <li>Automatski generirani koraci remedijacije za svaki nalaz</li>
+                            <li>Rangirano po utjecaju na usklađenost i ozbiljnosti rizika</li>
+                            <li>Praćenje napretka s dokazima o rješavanju</li>
+                        </ul>
+                    </div>
+                    <div class="tab-panel" id="tabReporting">
+                        <h3>Automatizirano izvještavanje</h3>
+                        <p>Generirajte izvješća za upravu i detaljne tehničke izvještaje jednim klikom, potkrijepljene stvarnim dokazima.</p>
+                        <ul class="tab-highlights">
+                            <li>Izvješće za upravu i nadzorni odbor</li>
+                            <li>Detaljan tehnički izvještaj za revizore i IT timove</li>
+                            <li>Nadzorne ploče trendova usklađenosti</li>
+                            <li>Izvoz u PDF, CSV i strukturirane formate</li>
+                        </ul>
+                    </div>
+                    <div class="tab-panel" id="tabIntegration">
+                        <h3>Neovisne integracije</h3>
+                        <p>SIGVERA se povezuje s onim što već koristite. Bez zamjene, bez novih agenata.</p>
+                        <ul class="tab-highlights">
+                            <li>SIEM: Wazuh, Splunk, Microsoft Sentinel</li>
+                            <li>Vatrozidi: Cisco FTD, Fortinet, Palo Alto</li>
+                            <li>Identitet: Azure AD, Okta, LDAP</li>
+                            <li>ITSM: ServiceNow, Jira, Freshservice</li>
+                            <li>Izgrađeno na open-weight AI (Mistral) — EU suverenitet podataka</li>
+                        </ul>
+                    </div>
                 </div>
             </div>
         </div>
@@ -189,6 +247,22 @@
                     <div class="framework-name">ISO 27001</div>
                     <div class="framework-desc">Upravljanje informacijskom sigurnošću</div>
                 </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Impact Stats -->
+    <section class="impact-stats">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag">Utjecaj platforme</span>
+                <h2>Mjerljivo ubrzanje uskladenosti</h2>
+            </div>
+            <div class="impact-stats-grid">
+                <div class="impact-stat"><span class="impact-stat-number">10x</span><span class="impact-stat-label">Brža priprema revizije</span><span class="impact-stat-desc">Od tjedana ručnog prikupljanja dokaza do kontinuirane uskladenosti</span></div>
+                <div class="impact-stat"><span class="impact-stat-number">90%</span><span class="impact-stat-label">Manje ručnog rada</span><span class="impact-stat-desc">Automatizirano prikupljanje dokaza zamjenjuje tablice i screenshotove</span></div>
+                <div class="impact-stat"><span class="impact-stat-number">30+</span><span class="impact-stat-label">NIS2 mjera</span><span class="impact-stat-desc">Svih 10 mjera članka 30 mapirano na automatizirane kontrole</span></div>
+                <div class="impact-stat"><span class="impact-stat-number">&lt;24h</span><span class="impact-stat-label">Prvi rezultat</span><span class="impact-stat-desc">Povežite infrastrukturu danas, dobijte rezultat uskladenosti sutra</span></div>
             </div>
         </div>
     </section>
@@ -233,12 +307,28 @@
         </div>
     </section>
 
+    <!-- Resources Section -->
+    <section class="resources-section" id="resources">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag">Resursi</span>
+                <h2>Ubrzajte svoj put do usklađenosti</h2>
+            </div>
+            <div class="resources-grid">
+                <a class="resource-card" href="#" onclick="openContactModal(); return false;"><span class="resource-tag guide">Vodič</span><h3>NIS2 kontrolna lista usklađenosti</h3><p>Svih 10 mjera članka 30 mapirano na praktične kontrole. Ključna lista za svakog CISO-a koji se priprema za NIS2.</p><span class="resource-card-cta">Preuzmite vodič →</span></a>
+                <a class="resource-card" href="#" onclick="openContactModal(); return false;"><span class="resource-tag report">Izvještaj</span><h3>Pregled EU regulativa kibernetičke sigurnosti</h3><p>NIS2, DORA i Akt o kiberotpornosti uspoređeni. Saznajte koje regulative se primjenjuju na vašu organizaciju.</p><span class="resource-card-cta">Pročitajte izvještaj →</span></a>
+                <a class="resource-card" href="#" onclick="openContactModal(); return false;"><span class="resource-tag blog">Blog</span><h3>Od ručnih revizija do AI usklađenosti</h3><p>Kako AI transformira način na koji organizacije dokazuju usklađenost — i zašto su kriptografski lanci dokaza budućnost.</p><span class="resource-card-cta">Pročitajte članak →</span></a>
+                <a class="resource-card" href="#" onclick="openContactModal(); return false;"><span class="resource-tag guide">Vodič</span><h3>Izgradnja kriptografskog lanca dokaza</h3><p>Zašto su nepromjenjivi revizijski tragovi važni za modernu usklađenost. Tehnički uvid u arhitekturu dokaza SIGVERE.</p><span class="resource-card-cta">Preuzmite vodič →</span></a>
+            </div>
+        </div>
+    </section>
+
     <!-- CTA Section -->
     <section class="cta-section" id="contact">
         <div class="container">
             <div class="cta-card">
                 <h2>Jeste li spremni automatizirati vašu NIS2 usklađenost?</h2>
-                <p>Pridružite se organizacijama koje su zamijenile ručnu pripremu revizije s AI platformom za kontinuiranu usklađenost.</p>
+                <p>Pridružite se organizacijama koje zamjenjuju ručnu pripremu revizije s AI platformom za kontinuiranu usklađenost.</p>
                 <div class="cta-buttons">
                     <a href="#" class="btn btn-primary btn-large" onclick="openContactModal(); return false;">Zatražite Demo</a>
                 </div>
@@ -252,6 +342,19 @@
             <p class="linkedin-text">Za najnovije vijesti, pratite nas na <a href="https://www.linkedin.com/company/sigvera" target="_blank">LinkedInu</a>.</p>
         </div>
     </section>
+
+    <!-- Demo Coming Soon Modal -->
+    <div class="modal-overlay" id="demoModal">
+        <div class="modal-card">
+            <button class="modal-close" onclick="closeDemoModal()">&times;</button>
+            <div class="demo-modal-content">
+                <div class="demo-modal-icon">🎬</div>
+                <h3>Demo video uskoro</h3>
+                <p>Pripremamo detaljan video pregled SIGVERA platforme. Ostavite svoje podatke da vas obavijestimo kada bude spreman.</p>
+                <a href="#" class="btn btn-primary" onclick="closeDemoModal(); openContactModal(); return false;">Obavijestite me</a>
+            </div>
+        </div>
+    </div>
 
     <!-- Contact Modal -->
     <div class="modal-overlay" id="contactModal">
@@ -295,6 +398,43 @@
             </form>
         </div>
     </div>
+
+    <!-- Tab Switching + Announcement Bar + Demo Modal JS -->
+    <script>
+        document.querySelectorAll('.tab-btn').forEach(function(btn) {
+            btn.addEventListener('click', function() {
+                document.querySelectorAll('.tab-btn').forEach(function(b) { b.classList.remove('active'); });
+                document.querySelectorAll('.tab-panel').forEach(function(p) { p.classList.remove('active'); });
+                btn.classList.add('active');
+                document.getElementById(btn.dataset.tab).classList.add('active');
+            });
+        });
+        function dismissAnnouncement() {
+            var bar = document.getElementById('announcementBar');
+            if (bar) bar.remove();
+            document.body.classList.remove('has-announcement');
+            localStorage.setItem('sigvera_announcement_dismissed', '1');
+        }
+        (function() {
+            if (localStorage.getItem('sigvera_announcement_dismissed')) {
+                var bar = document.getElementById('announcementBar');
+                if (bar) bar.remove();
+            } else {
+                document.body.classList.add('has-announcement');
+            }
+        })();
+        function openDemoModal() {
+            document.getElementById('demoModal').classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+        function closeDemoModal() {
+            document.getElementById('demoModal').classList.remove('active');
+            document.body.style.overflow = '';
+        }
+        document.getElementById('demoModal').addEventListener('click', function(e) {
+            if (e.target === this) closeDemoModal();
+        });
+    </script>
 
     <!-- Cookie Consent Banner -->
     <div class="cookie-banner" id="cookieBanner">
@@ -345,6 +485,10 @@
                 <div class="footer-brand">
                     <span class="logo-text">SIGVERA</span>
                     <p>AI automatizacija usklađenosti kibernetičke sigurnosti s kriptografskim tragom dokaza.</p>
+                    <div class="social-icons">
+                        <a href="https://www.linkedin.com/company/sigvera" target="_blank" class="social-icon" aria-label="LinkedIn"><svg viewBox="0 0 24 24"><path d="M20.47 2H3.53A1.45 1.45 0 002 3.47v17.06A1.45 1.45 0 003.47 22h17.06A1.45 1.45 0 0022 20.53V3.47A1.45 1.45 0 0020.47 2zM8.09 18.74h-3v-9h3v9zM6.59 8.48a1.56 1.56 0 110-3.12 1.56 1.56 0 010 3.12zM18.91 18.74h-3v-4.26c0-1.14-.03-2.61-1.59-2.61-1.59 0-1.84 1.24-1.84 2.53v4.34h-3v-9h2.89v1.17h.04a3.16 3.16 0 012.85-1.56c3.05 0 3.61 2.01 3.61 4.62v4.77z"/></svg></a>
+                        <a href="https://youtube.com/@sigvera" target="_blank" class="social-icon" aria-label="YouTube"><svg viewBox="0 0 24 24"><path d="M23.5 6.19a3 3 0 00-2.11-2.12C19.55 3.5 12 3.5 12 3.5s-7.55 0-9.39.57A3 3 0 00.5 6.19 31.5 31.5 0 000 12a31.5 31.5 0 00.5 5.81 3 3 0 002.11 2.12c1.84.57 9.39.57 9.39.57s7.55 0 9.39-.57a3 3 0 002.11-2.12A31.5 31.5 0 0024 12a31.5 31.5 0 00-.5-5.81zM9.55 15.57V8.43L15.82 12l-6.27 3.57z"/></svg></a>
+                    </div>
                 </div>
                 <div class="footer-links">
                     <h4>Platforma</h4>

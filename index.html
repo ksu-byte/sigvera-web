@@ -57,6 +57,13 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
+    <!-- Announcement Bar -->
+    <div class="announcement-bar" id="announcementBar">
+        <span>NIS2 enforcement is here — Is your organization compliant?</span>
+        <a href="#" onclick="openContactModal(); return false;">Check Your Readiness →</a>
+        <button class="announcement-bar-close" onclick="dismissAnnouncement()" aria-label="Close">✕</button>
+    </div>
+
     <!-- Navigation -->
     <nav class="nav" id="nav">
         <div class="nav-container">
@@ -82,6 +89,7 @@
             <p class="hero-subtitle">SIGVERA continuously assesses your NIS2 security posture, generates cryptographic evidence, and delivers real-time compliance scoring. Audits become a formality, not a fire drill.</p>
             <div class="hero-cta-group">
                 <a href="#" class="btn btn-primary" onclick="openContactModal(); return false;">Request a Demo</a>
+                <a href="#" class="btn btn-secondary" onclick="openDemoModal(); return false;">▶ Watch Demo</a>
                 <a href="#how-it-works" class="btn btn-secondary">See How It Works</a>
             </div>
             <div class="hero-stats">
@@ -148,37 +156,87 @@
         </div>
     </section>
 
-    <!-- Features Section -->
+    <!-- Features Section (Tabbed) -->
     <section class="features" id="features">
         <div class="container">
             <div class="section-header">
                 <span class="section-tag">Core Capabilities</span>
                 <h2>Compliance automation, reimagined from the ground up</h2>
             </div>
-            <div class="features-grid">
-                <div class="feature-card">
-                    <h3>AI-Powered Assessment</h3>
-                    <p>Our AI engine reads your infrastructure like an auditor would, then maps every finding against the regulatory requirements that matter to you. Automatically.</p>
+            <div class="feature-tabs-container">
+                <div class="tab-nav">
+                    <button class="tab-btn active" data-tab="tabDashboard"><span class="tab-btn-icon">📊</span> Compliance Dashboard</button>
+                    <button class="tab-btn" data-tab="tabAnalysis"><span class="tab-btn-icon">🔍</span> AI Gap Analysis</button>
+                    <button class="tab-btn" data-tab="tabEvidence"><span class="tab-btn-icon">🔗</span> Evidence Chain</button>
+                    <button class="tab-btn" data-tab="tabRemediation"><span class="tab-btn-icon">🛠️</span> Smart Remediation</button>
+                    <button class="tab-btn" data-tab="tabReporting"><span class="tab-btn-icon">📄</span> Audit Reporting</button>
+                    <button class="tab-btn" data-tab="tabIntegration"><span class="tab-btn-icon">🔌</span> Integrations</button>
                 </div>
-                <div class="feature-card">
-                    <h3>Cryptographic Evidence Chain</h3>
-                    <p>Every compliance check produces a tamper-proof, timestamped evidence trail. Auditors can verify it independently, without relying on your word.</p>
-                </div>
-                <div class="feature-card">
-                    <h3>Continuous Compliance Scoring</h3>
-                    <p>See where you stand right now, across every framework. Your compliance posture updates continuously, so you never have to wonder.</p>
-                </div>
-                <div class="feature-card">
-                    <h3>Vendor-Neutral Integration</h3>
-                    <p>SIGVERA plugs into what you already run. Wazuh, Cisco, Fortinet, Azure AD, ITSM. No rip-and-replace, no new agents to deploy.</p>
-                </div>
-                <div class="feature-card">
-                    <h3>Automated Documentation</h3>
-                    <p>Need a board-ready executive summary or a detailed technical report? Generate it in one click, backed by real evidence.</p>
-                </div>
-                <div class="feature-card">
-                    <h3>EU Data Sovereignty</h3>
-                    <p>Built on open-weight AI models (Mistral), hosted on EU infrastructure. Your data never leaves Europe.</p>
+                <div class="tab-panels">
+                    <div class="tab-panel active" id="tabDashboard">
+                        <h3>Real-Time Compliance Dashboard</h3>
+                        <p>See your compliance posture across every framework, updated continuously. No more quarterly spreadsheets.</p>
+                        <ul class="tab-highlights">
+                            <li>Live compliance score per framework (NIS2, DORA, ISO 27001)</li>
+                            <li>Trend analysis — track improvements or regressions over time</li>
+                            <li>Executive-friendly visual overview for board presentations</li>
+                        </ul>
+                        <div class="tab-visual">
+                            <div class="mockup-bar"><span class="mockup-bar-label">NIS2</span><div class="mockup-bar-track"><div class="mockup-bar-fill" style="width:87%"></div></div><span class="mockup-bar-value">87%</span></div>
+                            <div class="mockup-bar"><span class="mockup-bar-label">DORA</span><div class="mockup-bar-track"><div class="mockup-bar-fill" style="width:72%"></div></div><span class="mockup-bar-value">72%</span></div>
+                            <div class="mockup-bar"><span class="mockup-bar-label">ISO 27001</span><div class="mockup-bar-track"><div class="mockup-bar-fill" style="width:64%"></div></div><span class="mockup-bar-value">64%</span></div>
+                        </div>
+                    </div>
+                    <div class="tab-panel" id="tabAnalysis">
+                        <h3>AI-Powered Gap Analysis</h3>
+                        <p>Our AI engine reads your infrastructure like an auditor would, mapping every finding against regulatory requirements automatically.</p>
+                        <ul class="tab-highlights">
+                            <li>Automated scanning of SIEM, firewalls, identity providers</li>
+                            <li>Maps findings to specific regulatory articles and controls</li>
+                            <li>Prioritized risk scoring with severity classifications</li>
+                            <li>Continuous reassessment — not a one-time snapshot</li>
+                        </ul>
+                    </div>
+                    <div class="tab-panel" id="tabEvidence">
+                        <h3>Cryptographic Evidence Chain</h3>
+                        <p>Every compliance check produces a tamper-proof, timestamped evidence trail that auditors can verify independently.</p>
+                        <ul class="tab-highlights">
+                            <li>SHA-256 hash chain linking every piece of evidence</li>
+                            <li>Tamper-proof timestamps with independent verification</li>
+                            <li>Full audit trail — who checked what, when, and what was found</li>
+                            <li>Auditors verify the math, not your word</li>
+                        </ul>
+                    </div>
+                    <div class="tab-panel" id="tabRemediation">
+                        <h3>Smart Remediation Playbooks</h3>
+                        <p>Don’t just find gaps — fix them. SIGVERA generates actionable remediation guidance tied to your specific infrastructure.</p>
+                        <ul class="tab-highlights">
+                            <li>Auto-generated remediation steps for each finding</li>
+                            <li>Priority-ranked by compliance impact and risk severity</li>
+                            <li>Progress tracking with evidence of resolution</li>
+                        </ul>
+                    </div>
+                    <div class="tab-panel" id="tabReporting">
+                        <h3>Automated Audit Reports</h3>
+                        <p>Generate board-ready executive summaries and detailed technical reports in one click, backed by real evidence.</p>
+                        <ul class="tab-highlights">
+                            <li>Executive summary for board and management</li>
+                            <li>Detailed technical report for auditors and IT teams</li>
+                            <li>Compliance trend dashboards with historical data</li>
+                            <li>Export in PDF, CSV, and structured formats</li>
+                        </ul>
+                    </div>
+                    <div class="tab-panel" id="tabIntegration">
+                        <h3>Vendor-Neutral Integrations</h3>
+                        <p>SIGVERA plugs into what you already run. No rip-and-replace, no new agents.</p>
+                        <ul class="tab-highlights">
+                            <li>SIEM: Wazuh, Splunk, Microsoft Sentinel</li>
+                            <li>Firewalls: Cisco FTD, Fortinet, Palo Alto</li>
+                            <li>Identity: Azure AD, Okta, LDAP</li>
+                            <li>ITSM: ServiceNow, Jira, Freshservice</li>
+                            <li>Built on open-weight AI (Mistral) — EU data sovereignty</li>
+                        </ul>
+                    </div>
                 </div>
             </div>
         </div>
@@ -204,6 +262,22 @@
                     <div class="framework-name">ISO 27001</div>
                     <div class="framework-desc">Information Security Management</div>
                 </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Impact Stats -->
+    <section class="impact-stats">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag">Platform Impact</span>
+                <h2>Measurable compliance acceleration</h2>
+            </div>
+            <div class="impact-stats-grid">
+                <div class="impact-stat"><span class="impact-stat-number">10x</span><span class="impact-stat-label">Faster Audit Prep</span><span class="impact-stat-desc">From weeks of manual evidence gathering to continuous compliance</span></div>
+                <div class="impact-stat"><span class="impact-stat-number">90%</span><span class="impact-stat-label">Less Manual Work</span><span class="impact-stat-desc">Automated evidence collection replaces spreadsheets and screenshots</span></div>
+                <div class="impact-stat"><span class="impact-stat-number">30+</span><span class="impact-stat-label">NIS2 Measures</span><span class="impact-stat-desc">All 10 measures of Article 30 mapped to automated controls</span></div>
+                <div class="impact-stat"><span class="impact-stat-number">&lt;24h</span><span class="impact-stat-label">First Score</span><span class="impact-stat-desc">Connect your infrastructure today, get your compliance score tomorrow</span></div>
             </div>
         </div>
     </section>
@@ -248,12 +322,28 @@
         </div>
     </section>
 
+    <!-- Resources Section -->
+    <section class="resources-section" id="resources">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag">Resources</span>
+                <h2>Accelerate your compliance journey</h2>
+            </div>
+            <div class="resources-grid">
+                <a class="resource-card" href="#" onclick="openContactModal(); return false;"><span class="resource-tag guide">Guide</span><h3>NIS2 Compliance Checklist</h3><p>All 10 measures of Article 30 mapped to practical controls. The essential checklist for every CISO preparing for NIS2 compliance.</p><span class="resource-card-cta">Download Guide →</span></a>
+                <a class="resource-card" href="#" onclick="openContactModal(); return false;"><span class="resource-tag report">Report</span><h3>EU Cybersecurity Regulation Overview</h3><p>NIS2, DORA, and the Cyber Resilience Act compared side by side. Understand which regulations apply to your organization.</p><span class="resource-card-cta">Read Report →</span></a>
+                <a class="resource-card" href="#" onclick="openContactModal(); return false;"><span class="resource-tag blog">Blog</span><h3>From Manual Audits to AI-Driven Compliance</h3><p>How AI is transforming the way organizations prove compliance — and why cryptographic evidence chains are the future.</p><span class="resource-card-cta">Read Article →</span></a>
+                <a class="resource-card" href="#" onclick="openContactModal(); return false;"><span class="resource-tag guide">Guide</span><h3>Building a Cryptographic Evidence Chain</h3><p>Why tamper-proof audit trails matter for modern compliance. A technical deep dive into SIGVERA’s evidence architecture.</p><span class="resource-card-cta">Download Guide →</span></a>
+            </div>
+        </div>
+    </section>
+
     <!-- CTA Section -->
     <section class="cta-section" id="contact">
         <div class="container">
             <div class="cta-card">
                 <h2>Ready to automate your NIS2 compliance?</h2>
-                <p>Join organizations that are replacing manual audit preparation with continuous, AI-driven compliance assurance.</p>
+                <p>Join organizations replacing manual audit preparation with continuous, AI-driven compliance assurance.</p>
                 <div class="cta-buttons">
                     <a href="#" class="btn btn-primary btn-large" onclick="openContactModal(); return false;">Request a Demo</a>
                 </div>
@@ -267,6 +357,19 @@
             <p class="linkedin-text">For the latest updates, follow us on <a href="https://www.linkedin.com/company/sigvera" target="_blank">LinkedIn</a>.</p>
         </div>
     </section>
+
+    <!-- Demo Coming Soon Modal -->
+    <div class="modal-overlay" id="demoModal">
+        <div class="modal-card">
+            <button class="modal-close" onclick="closeDemoModal()">&times;</button>
+            <div class="demo-modal-content">
+                <div class="demo-modal-icon">🎬</div>
+                <h3>Product Demo Coming Soon</h3>
+                <p>We're preparing an in-depth video walkthrough of the SIGVERA platform. Leave your details to be notified when it's ready.</p>
+                <a href="#" class="btn btn-primary" onclick="closeDemoModal(); openContactModal(); return false;">Notify Me When Ready</a>
+            </div>
+        </div>
+    </div>
 
     <!-- Contact Modal -->
     <div class="modal-overlay" id="contactModal">
@@ -310,6 +413,48 @@
             </form>
         </div>
     </div>
+
+    <!-- Tab Switching + Announcement Bar + Demo Modal JS -->
+    <script>
+        // Feature tabs
+        document.querySelectorAll('.tab-btn').forEach(function(btn) {
+            btn.addEventListener('click', function() {
+                document.querySelectorAll('.tab-btn').forEach(function(b) { b.classList.remove('active'); });
+                document.querySelectorAll('.tab-panel').forEach(function(p) { p.classList.remove('active'); });
+                btn.classList.add('active');
+                document.getElementById(btn.dataset.tab).classList.add('active');
+            });
+        });
+
+        // Announcement bar
+        function dismissAnnouncement() {
+            var bar = document.getElementById('announcementBar');
+            if (bar) bar.remove();
+            document.body.classList.remove('has-announcement');
+            localStorage.setItem('sigvera_announcement_dismissed', '1');
+        }
+        (function() {
+            if (localStorage.getItem('sigvera_announcement_dismissed')) {
+                var bar = document.getElementById('announcementBar');
+                if (bar) bar.remove();
+            } else {
+                document.body.classList.add('has-announcement');
+            }
+        })();
+
+        // Demo modal
+        function openDemoModal() {
+            document.getElementById('demoModal').classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+        function closeDemoModal() {
+            document.getElementById('demoModal').classList.remove('active');
+            document.body.style.overflow = '';
+        }
+        document.getElementById('demoModal').addEventListener('click', function(e) {
+            if (e.target === this) closeDemoModal();
+        });
+    </script>
 
     <!-- Cookie Consent Banner -->
     <div class="cookie-banner" id="cookieBanner">
@@ -360,6 +505,10 @@
                 <div class="footer-brand">
                     <span class="logo-text">SIGVERA</span>
                     <p>AI-native cybersecurity compliance automation with cryptographic evidence trail.</p>
+                    <div class="social-icons">
+                        <a href="https://www.linkedin.com/company/sigvera" target="_blank" class="social-icon" aria-label="LinkedIn"><svg viewBox="0 0 24 24"><path d="M20.47 2H3.53A1.45 1.45 0 002 3.47v17.06A1.45 1.45 0 003.47 22h17.06A1.45 1.45 0 0022 20.53V3.47A1.45 1.45 0 0020.47 2zM8.09 18.74h-3v-9h3v9zM6.59 8.48a1.56 1.56 0 110-3.12 1.56 1.56 0 010 3.12zM18.91 18.74h-3v-4.26c0-1.14-.03-2.61-1.59-2.61-1.59 0-1.84 1.24-1.84 2.53v4.34h-3v-9h2.89v1.17h.04a3.16 3.16 0 012.85-1.56c3.05 0 3.61 2.01 3.61 4.62v4.77z"/></svg></a>
+                        <a href="https://youtube.com/@sigvera" target="_blank" class="social-icon" aria-label="YouTube"><svg viewBox="0 0 24 24"><path d="M23.5 6.19a3 3 0 00-2.11-2.12C19.55 3.5 12 3.5 12 3.5s-7.55 0-9.39.57A3 3 0 00.5 6.19 31.5 31.5 0 000 12a31.5 31.5 0 00.5 5.81 3 3 0 002.11 2.12c1.84.57 9.39.57 9.39.57s7.55 0 9.39-.57a3 3 0 002.11-2.12A31.5 31.5 0 0024 12a31.5 31.5 0 00-.5-5.81zM9.55 15.57V8.43L15.82 12l-6.27 3.57z"/></svg></a>
+                    </div>
                 </div>
                 <div class="footer-links">
                     <h4>Platform</h4>
