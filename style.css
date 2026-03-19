@@ -331,6 +331,33 @@ body {
     text-align: center;
     cursor: default;
     transition: var(--transition);
+    opacity: 0;
+    transform-origin: center;
+}
+
+.loop-container.animate-in .loop-phase {
+    animation: phaseAppear 0.5s cubic-bezier(0.34, 1.56, 0.64, 1) both;
+}
+.loop-container.animate-in .phase-detect    { animation-delay: 0.1s; }
+.loop-container.animate-in .phase-diagnose  { animation-delay: 0.4s; }
+.loop-container.animate-in .phase-remediate { animation-delay: 0.7s; }
+.loop-container.animate-in .phase-verify    { animation-delay: 1.0s; }
+.loop-container.animate-in .phase-certify   { animation-delay: 1.3s; }
+
+@keyframes phaseAppear {
+    0% { opacity: 0; transform: scale(0.5) translateY(20px); }
+    60% { opacity: 1; transform: scale(1.06) translateY(-3px); }
+    100% { opacity: 1; transform: scale(1) translateY(0); }
+}
+
+/* Override phaseAppear for detect which has translateX */
+.loop-container.animate-in .phase-detect {
+    animation-name: phaseAppearCenter;
+}
+@keyframes phaseAppearCenter {
+    0% { opacity: 0; transform: translateX(-50%) scale(0.5) translateY(20px); }
+    60% { opacity: 1; transform: translateX(-50%) scale(1.06) translateY(-3px); }
+    100% { opacity: 1; transform: translateX(-50%) scale(1) translateY(0); }
 }
 
 .loop-phase:hover {
@@ -386,6 +413,25 @@ body {
     font-weight: 600;
     color: var(--accent-navy);
     letter-spacing: 3px;
+    opacity: 0;
+}
+.loop-container.animate-in .loop-center {
+    animation: centerReveal 0.7s ease-out both;
+    animation-delay: 1.7s;
+}
+@keyframes centerReveal {
+    0% { opacity: 0; transform: translate(-50%, -50%) scale(0.7); letter-spacing: 10px; }
+    100% { opacity: 1; transform: translate(-50%, -50%) scale(1); letter-spacing: 3px; }
+}
+
+/* Arrows start hidden until animate-in */
+.loop-arrows {
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+.loop-container.animate-in .loop-arrows {
+    opacity: 1;
+    transition-delay: 0.05s;
 }
 
 @media (max-width: 768px) {
