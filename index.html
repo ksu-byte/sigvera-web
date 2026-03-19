@@ -483,28 +483,28 @@
         })();
 
         // Loop diagram staggered animation on scroll
+        var loopAnimationDone = false;
         (function() {
             var loop = document.getElementById('loopContainer');
             if (!loop) return;
 
             function runSequence() {
                 var phases = loop.querySelectorAll('.loop-phase');
-                var arrows = loop.querySelectorAll('.arrow-path');
                 var center = loop.querySelector('.loop-center');
-                // Order: DETECT(0), DIAGNOSE(1), REMEDIATE(2), VERIFY(3), CERTIFY(4)
-                // Arrows: 0=DETECT→DIAGNOSE, 1=DIAGNOSE→REMEDIATE, 2=REMEDIATE→VERIFY, 3=VERIFY→CERTIFY, 4=CERTIFY→DETECT
+                // Re-query arrows each time since they're dynamically created
+                function getArrow(i) { var a = loop.querySelectorAll('.arrow-path'); return a[i]; }
                 var seq = [
                     [200,   function() { if (phases[0]) phases[0].classList.add('phase-visible'); }],
-                    [700,   function() { if (arrows[0]) arrows[0].classList.add('arrow-visible'); }],
+                    [700,   function() { var a = getArrow(0); if (a) a.classList.add('arrow-visible'); }],
                     [1000,  function() { if (phases[1]) phases[1].classList.add('phase-visible'); }],
-                    [1500,  function() { if (arrows[1]) arrows[1].classList.add('arrow-visible'); }],
+                    [1500,  function() { var a = getArrow(1); if (a) a.classList.add('arrow-visible'); }],
                     [1800,  function() { if (phases[2]) phases[2].classList.add('phase-visible'); }],
-                    [2300,  function() { if (arrows[2]) arrows[2].classList.add('arrow-visible'); }],
+                    [2300,  function() { var a = getArrow(2); if (a) a.classList.add('arrow-visible'); }],
                     [2600,  function() { if (phases[3]) phases[3].classList.add('phase-visible'); }],
-                    [3100,  function() { if (arrows[3]) arrows[3].classList.add('arrow-visible'); }],
+                    [3100,  function() { var a = getArrow(3); if (a) a.classList.add('arrow-visible'); }],
                     [3400,  function() { if (phases[4]) phases[4].classList.add('phase-visible'); }],
-                    [3900,  function() { if (arrows[4]) arrows[4].classList.add('arrow-visible'); }],
-                    [4400,  function() { if (center) center.classList.add('center-visible'); }]
+                    [3900,  function() { var a = getArrow(4); if (a) a.classList.add('arrow-visible'); }],
+                    [4400,  function() { if (center) center.classList.add('center-visible'); loopAnimationDone = true; }]
                 ];
                 seq.forEach(function(s) { setTimeout(s[1], s[0]); });
             }
@@ -761,7 +761,10 @@
                 path.setAttribute('stroke-width', '2');
                 path.setAttribute('marker-end', 'url(#ah)');
                 path.classList.add('arrow-path');
-                path.style.animationDelay = (i * 0.2) + 's';
+                // If animation already completed, show arrow immediately
+                if (typeof loopAnimationDone !== 'undefined' && loopAnimationDone) {
+                    path.style.strokeDashoffset = '0';
+                }
                 svg.appendChild(path);
             });
         }
