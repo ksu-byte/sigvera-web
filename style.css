@@ -1356,11 +1356,123 @@ body.has-announcement .policy-page { padding-top: 160px; }
 }
 .tab-panel.active {
     display: block;
-    animation: tabFadeIn 0.3s ease-out;
+    animation: tabFadeIn 0.4s ease-out;
 }
 @keyframes tabFadeIn {
-    from { opacity: 0; transform: translateY(8px); }
+    from { opacity: 0; transform: translateY(10px); }
     to { opacity: 1; transform: translateY(0); }
+}
+/* Staggered child animations */
+.tab-panel.active.animating h3 {
+    animation: tabSlideUp 0.4s ease-out both;
+    animation-delay: 0.05s;
+}
+.tab-panel.active.animating > p {
+    animation: tabSlideUp 0.4s ease-out both;
+    animation-delay: 0.12s;
+}
+.tab-panel.active.animating .tab-highlights li {
+    opacity: 0;
+    animation: tabSlideUp 0.35s ease-out both;
+}
+.tab-panel.active.animating .tab-highlights li:nth-child(1) { animation-delay: 0.15s; }
+.tab-panel.active.animating .tab-highlights li:nth-child(2) { animation-delay: 0.22s; }
+.tab-panel.active.animating .tab-highlights li:nth-child(3) { animation-delay: 0.29s; }
+.tab-panel.active.animating .tab-highlights li:nth-child(4) { animation-delay: 0.36s; }
+.tab-panel.active.animating .tab-highlights li:nth-child(5) { animation-delay: 0.43s; }
+@keyframes tabSlideUp {
+    from { opacity: 0; transform: translateY(14px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+/* Animated tab-visual wrapper */
+.tab-panel.active.animating .tab-visual {
+    animation: tabVisualIn 0.45s ease-out both;
+    animation-delay: 0.25s;
+}
+@keyframes tabVisualIn {
+    from { opacity: 0; transform: translateY(16px) scale(0.97); }
+    to { opacity: 1; transform: translateY(0) scale(1); }
+}
+/* Progress bars animate their width */
+.tab-panel.active.animating .mockup-bar-fill {
+    animation: barGrow 1s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
+}
+.tab-panel.active.animating .mockup-bar:nth-child(1) .mockup-bar-fill { animation-delay: 0.35s; }
+.tab-panel.active.animating .mockup-bar:nth-child(2) .mockup-bar-fill { animation-delay: 0.5s; }
+.tab-panel.active.animating .mockup-bar:nth-child(3) .mockup-bar-fill { animation-delay: 0.65s; }
+@keyframes barGrow {
+    from { transform: scaleX(0); transform-origin: left; }
+    to { transform: scaleX(1); transform-origin: left; }
+}
+/* Severity rows / finding items slide in from left */
+.tab-panel.active.animating .tab-visual > div > div[style*="border-left"],
+.tab-panel.active.animating .tab-visual > div > div[style*="border:"] {
+    opacity: 0;
+    animation: slideInLeft 0.4s ease-out both;
+}
+.tab-panel.active.animating .tab-visual > div > div:nth-child(1) { animation-delay: 0.3s; }
+.tab-panel.active.animating .tab-visual > div > div:nth-child(2) { animation-delay: 0.42s; }
+.tab-panel.active.animating .tab-visual > div > div:nth-child(3) { animation-delay: 0.54s; }
+.tab-panel.active.animating .tab-visual > div > div:nth-child(4) { animation-delay: 0.66s; }
+@keyframes slideInLeft {
+    from { opacity: 0; transform: translateX(-20px); }
+    to { opacity: 1; transform: translateX(0); }
+}
+/* Evidence chain blocks cascade in */
+.tab-panel.active.animating .tab-visual > div[style*="align-items:center"] > div {
+    opacity: 0;
+    animation: cascadeIn 0.35s ease-out both;
+}
+.tab-panel.active.animating .tab-visual > div[style*="align-items:center"] > div:nth-child(1) { animation-delay: 0.3s; }
+.tab-panel.active.animating .tab-visual > div[style*="align-items:center"] > div:nth-child(2) { animation-delay: 0.45s; }
+.tab-panel.active.animating .tab-visual > div[style*="align-items:center"] > div:nth-child(3) { animation-delay: 0.55s; }
+.tab-panel.active.animating .tab-visual > div[style*="align-items:center"] > div:nth-child(4) { animation-delay: 0.65s; }
+.tab-panel.active.animating .tab-visual > div[style*="align-items:center"] > div:nth-child(5) { animation-delay: 0.75s; }
+@keyframes cascadeIn {
+    from { opacity: 0; transform: translateY(12px) scale(0.95); }
+    to { opacity: 1; transform: translateY(0) scale(1); }
+}
+/* Report/Integration cards pop in */
+.tab-panel.active.animating .tab-visual > div[style*="display:flex;gap"] > div,
+.tab-panel.active.animating .tab-visual > div[style*="display:grid"] > div {
+    opacity: 0;
+    animation: cardPopIn 0.35s cubic-bezier(0.34, 1.56, 0.64, 1) both;
+}
+.tab-panel.active.animating .tab-visual > div[style*="display:flex;gap"] > div:nth-child(1),
+.tab-panel.active.animating .tab-visual > div[style*="display:grid"] > div:nth-child(1) { animation-delay: 0.3s; }
+.tab-panel.active.animating .tab-visual > div[style*="display:flex;gap"] > div:nth-child(2),
+.tab-panel.active.animating .tab-visual > div[style*="display:grid"] > div:nth-child(2) { animation-delay: 0.38s; }
+.tab-panel.active.animating .tab-visual > div[style*="display:flex;gap"] > div:nth-child(3),
+.tab-panel.active.animating .tab-visual > div[style*="display:grid"] > div:nth-child(3) { animation-delay: 0.46s; }
+.tab-panel.active.animating .tab-visual > div[style*="display:grid"] > div:nth-child(4) { animation-delay: 0.54s; }
+.tab-panel.active.animating .tab-visual > div[style*="display:grid"] > div:nth-child(5) { animation-delay: 0.62s; }
+.tab-panel.active.animating .tab-visual > div[style*="display:grid"] > div:nth-child(6) { animation-delay: 0.7s; }
+.tab-panel.active.animating .tab-visual > div[style*="display:grid"] > div:nth-child(7) { animation-delay: 0.78s; }
+.tab-panel.active.animating .tab-visual > div[style*="display:grid"] > div:nth-child(8) { animation-delay: 0.86s; }
+.tab-panel.active.animating .tab-visual > div[style*="display:grid"] > div:nth-child(9) { animation-delay: 0.94s; }
+@keyframes cardPopIn {
+    from { opacity: 0; transform: scale(0.8); }
+    to { opacity: 1; transform: scale(1); }
+}
+/* Score circle widgets pulse */
+.tab-panel.active.animating div[style*="border-radius:50%;border:4px"] {
+    animation: circlePulse 0.8s ease-out both;
+    animation-delay: 0.8s;
+}
+@keyframes circlePulse {
+    0% { opacity: 0; transform: scale(0.6); }
+    60% { transform: scale(1.08); }
+    100% { opacity: 1; transform: scale(1); }
+}
+/* Tab button hover micro-animation */
+.tab-btn {
+    transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.tab-btn:hover {
+    transform: translateX(4px);
+}
+.tab-btn.active {
+    transform: translateX(0);
 }
 .tab-panel h3 {
     font-family: 'Source Serif 4', Georgia, serif;
@@ -1425,6 +1537,7 @@ body.has-announcement .policy-page { padding-top: 160px; }
     height: 100%;
     border-radius: 4px;
     background: var(--gradient-accent);
+    transform-origin: left;
 }
 .mockup-bar-value {
     font-size: 0.82rem;
@@ -1437,6 +1550,7 @@ body.has-announcement .policy-page { padding-top: 160px; }
     .feature-tabs-container { grid-template-columns: 1fr; gap: 20px; }
     .tab-nav { flex-direction: row; overflow-x: auto; gap: 0; -webkit-overflow-scrolling: touch; }
     .tab-btn { white-space: nowrap; border-left: none; border-bottom: 3px solid transparent; padding: 10px 14px; font-size: 0.82rem; }
+    .tab-btn:hover { transform: none; }
     .tab-btn.active { border-left-color: transparent; border-bottom-color: var(--accent-steel); }
     .tab-panel { padding: 24px; }
 }
