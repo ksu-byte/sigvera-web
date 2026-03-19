@@ -311,8 +311,10 @@ body {
 .arrow-path {
     stroke-dasharray: 500;
     stroke-dashoffset: 500;
+    opacity: 0;
 }
 .arrow-path.arrow-visible {
+    opacity: 1;
     animation: drawArrow 0.5s ease forwards;
 }
 
