@@ -311,19 +311,10 @@ body {
 .arrow-path {
     stroke-dasharray: 500;
     stroke-dashoffset: 500;
+}
+.arrow-path.arrow-visible {
     animation: drawArrow 0.5s ease forwards;
-    animation-play-state: paused;
 }
-
-.loop-container.animate-in .arrow-path {
-    animation-play-state: running;
-}
-/* Interleaved: arrow draws AFTER its source box appears */
-.arrow-path:nth-of-type(1) { animation-delay: 0.7s; }  /* after DETECT */
-.arrow-path:nth-of-type(2) { animation-delay: 1.5s; }  /* after DIAGNOSE */
-.arrow-path:nth-of-type(3) { animation-delay: 2.3s; }  /* after REMEDIATE */
-.arrow-path:nth-of-type(4) { animation-delay: 3.1s; }  /* after VERIFY */
-.arrow-path:nth-of-type(5) { animation-delay: 3.9s; }  /* after CERTIFY */
 
 @keyframes drawArrow {
     to { stroke-dashoffset: 0; }
@@ -340,15 +331,13 @@ body {
     transform-origin: center;
 }
 
-.loop-container.animate-in .loop-phase {
+.loop-phase.phase-visible {
     animation: phaseAppear 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) both;
 }
-/* Interleaved: box appears AFTER previous arrow draws */
-.loop-container.animate-in .phase-detect    { animation-delay: 0.2s; }  /* first */
-.loop-container.animate-in .phase-diagnose  { animation-delay: 1.0s; }  /* after arrow 1 */
-.loop-container.animate-in .phase-remediate { animation-delay: 1.8s; }  /* after arrow 2 */
-.loop-container.animate-in .phase-verify    { animation-delay: 2.6s; }  /* after arrow 3 */
-.loop-container.animate-in .phase-certify   { animation-delay: 3.4s; }  /* after arrow 4 */
+/* Override for detect which has translateX */
+.phase-detect.phase-visible {
+    animation-name: phaseAppearCenter;
+}
 
 @keyframes phaseAppear {
     0% { opacity: 0; transform: scale(0.5) translateY(20px); }
@@ -356,10 +345,6 @@ body {
     100% { opacity: 1; transform: scale(1) translateY(0); }
 }
 
-/* Override phaseAppear for detect which has translateX */
-.loop-container.animate-in .phase-detect {
-    animation-name: phaseAppearCenter;
-}
 @keyframes phaseAppearCenter {
     0% { opacity: 0; transform: translateX(-50%) scale(0.5) translateY(20px); }
     60% { opacity: 1; transform: translateX(-50%) scale(1.06) translateY(-3px); }
@@ -421,9 +406,8 @@ body {
     letter-spacing: 3px;
     opacity: 0;
 }
-.loop-container.animate-in .loop-center {
+.loop-center.center-visible {
     animation: centerReveal 0.7s ease-out both;
-    animation-delay: 4.4s;
 }
 @keyframes centerReveal {
     0% { opacity: 0; transform: translate(-50%, -50%) scale(0.7); letter-spacing: 10px; }

@@ -468,18 +468,39 @@
         (function() {
             var loop = document.getElementById('loopContainer');
             if (!loop) return;
+
+            function runSequence() {
+                var phases = loop.querySelectorAll('.loop-phase');
+                var arrows = loop.querySelectorAll('.arrow-path');
+                var center = loop.querySelector('.loop-center');
+                var seq = [
+                    [200,   function() { if (phases[0]) phases[0].classList.add('phase-visible'); }],
+                    [700,   function() { if (arrows[0]) arrows[0].classList.add('arrow-visible'); }],
+                    [1000,  function() { if (phases[1]) phases[1].classList.add('phase-visible'); }],
+                    [1500,  function() { if (arrows[1]) arrows[1].classList.add('arrow-visible'); }],
+                    [1800,  function() { if (phases[2]) phases[2].classList.add('phase-visible'); }],
+                    [2300,  function() { if (arrows[2]) arrows[2].classList.add('arrow-visible'); }],
+                    [2600,  function() { if (phases[3]) phases[3].classList.add('phase-visible'); }],
+                    [3100,  function() { if (arrows[3]) arrows[3].classList.add('arrow-visible'); }],
+                    [3400,  function() { if (phases[4]) phases[4].classList.add('phase-visible'); }],
+                    [3900,  function() { if (arrows[4]) arrows[4].classList.add('arrow-visible'); }],
+                    [4400,  function() { if (center) center.classList.add('center-visible'); }]
+                ];
+                seq.forEach(function(s) { setTimeout(s[1], s[0]); });
+            }
+
             if ('IntersectionObserver' in window) {
                 var obs = new IntersectionObserver(function(entries) {
                     entries.forEach(function(entry) {
                         if (entry.isIntersecting) {
-                            loop.classList.add('animate-in');
+                            runSequence();
                             obs.unobserve(loop);
                         }
                     });
                 }, { threshold: 0.3 });
                 obs.observe(loop);
             } else {
-                loop.classList.add('animate-in');
+                runSequence();
             }
         })();
         function dismissAnnouncement() {
