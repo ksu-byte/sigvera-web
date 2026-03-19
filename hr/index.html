@@ -296,6 +296,48 @@
         </div>
     </div>
 
+    <!-- Cookie Consent Banner -->
+    <div class="cookie-banner" id="cookieBanner">
+        <div class="cookie-banner-inner">
+            <div class="cookie-icon">🍪</div>
+            <div class="cookie-text">
+                <h3>Cijenimo vašu privatnost</h3>
+                <p>Koristimo kolačiće za live chat podršku i poboljšanje vašeg iskustva. Strogo potrebni kolačići su uvijek aktivni. Možete odabrati prihvatiti ili odbiti funkcionalne kolačiće. <a href="cookie-policy.html">Pročitajte našu Politiku kolačića</a>.</p>
+                <!-- Upravljanje postavkama -->
+                <div class="cookie-preferences" id="cookiePreferences">
+                    <div class="cookie-pref-item">
+                        <div class="cookie-pref-info">
+                            <h4>Strogo potrebni</h4>
+                            <p>Potrebni za funkcioniranje web stranice (jezik, postavke pristanka)</p>
+                        </div>
+                        <label class="cookie-toggle">
+                            <input type="checkbox" checked disabled>
+                            <span class="cookie-toggle-slider"></span>
+                        </label>
+                    </div>
+                    <div class="cookie-pref-item">
+                        <div class="cookie-pref-info">
+                            <h4>Funkcionalni</h4>
+                            <p>Live chat podrška (Tawk.to) — omogućuje pomoć u stvarnom vremenu</p>
+                        </div>
+                        <label class="cookie-toggle">
+                            <input type="checkbox" id="cookieFunctional" checked>
+                            <span class="cookie-toggle-slider"></span>
+                        </label>
+                    </div>
+                    <div class="cookie-pref-actions">
+                        <button class="cookie-btn cookie-btn-accept" onclick="savePreferences()">Spremi postavke</button>
+                    </div>
+                </div>
+            </div>
+            <div class="cookie-actions" id="cookieMainActions">
+                <button class="cookie-btn cookie-btn-accept" onclick="acceptAllCookies()">Prihvati sve</button>
+                <button class="cookie-btn cookie-btn-reject" onclick="rejectNonEssential()">Odbij nebitne</button>
+                <button class="cookie-btn cookie-btn-manage" onclick="togglePreferences()">Upravljaj postavkama</button>
+            </div>
+        </div>
+    </div>
+
     <!-- Footer -->
     <footer class="footer">
         <div class="container">
@@ -314,6 +356,11 @@
                     <h4>Tvrtka</h4>
                     <a href="https://www.linkedin.com/company/sigvera" target="_blank">LinkedIn</a>
                     <a href="#" onclick="openContactModal(); return false;">Kontakt</a>
+                </div>
+                <div class="footer-links">
+                    <h4>Pravno</h4>
+                    <a href="cookie-policy.html">Politika kolačića</a>
+                    <a href="#" id="openCookieSettings" onclick="openCookieSettings(); return false;">Postavke kolačića</a>
                 </div>
             </div>
             <div class="footer-bottom">
@@ -508,18 +555,86 @@
             });
         }
     </script>
-    <!--Start of Tawk.to Script-->
-    <script type="text/javascript">
-    var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
-    (function(){
-    var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
-    s1.async=true;
-    s1.src='https://embed.tawk.to/69b87e192cbcd11c3aa9f47a/1jjsap5ss';
-    s1.charset='UTF-8';
-    s1.setAttribute('crossorigin','*');
-    s0.parentNode.insertBefore(s1,s0);
-    })();
+    <!-- Cookie Consent + Conditional Tawk.to -->
+    <script>
+        // Cookie consent logic
+        function getCookieConsent() {
+            try {
+                return JSON.parse(localStorage.getItem('sigvera_cookie_consent'));
+            } catch (e) { return null; }
+        }
+
+        function setCookieConsent(prefs) {
+            localStorage.setItem('sigvera_cookie_consent', JSON.stringify(prefs));
+        }
+
+        function showBanner() {
+            document.getElementById('cookieBanner').classList.add('active');
+        }
+
+        function hideBanner() {
+            document.getElementById('cookieBanner').classList.remove('active');
+        }
+
+        function acceptAllCookies() {
+            setCookieConsent({ necessary: true, functional: true });
+            hideBanner();
+            loadTawkTo();
+        }
+
+        function rejectNonEssential() {
+            setCookieConsent({ necessary: true, functional: false });
+            hideBanner();
+        }
+
+        function togglePreferences() {
+            var prefs = document.getElementById('cookiePreferences');
+            var actions = document.getElementById('cookieMainActions');
+            prefs.classList.toggle('active');
+            actions.style.display = prefs.classList.contains('active') ? 'none' : '';
+        }
+
+        function savePreferences() {
+            var functional = document.getElementById('cookieFunctional').checked;
+            setCookieConsent({ necessary: true, functional: functional });
+            hideBanner();
+            if (functional) loadTawkTo();
+        }
+
+        function openCookieSettings() {
+            localStorage.removeItem('sigvera_cookie_consent');
+            document.getElementById('cookiePreferences').classList.remove('active');
+            document.getElementById('cookieMainActions').style.display = '';
+            document.getElementById('cookieFunctional').checked = true;
+            showBanner();
+        }
+
+        // Tawk.to conditional loader
+        function loadTawkTo() {
+            if (window.__tawkLoaded) return;
+            window.__tawkLoaded = true;
+            var Tawk_API = Tawk_API || {};
+            var Tawk_LoadStart = new Date();
+            var s1 = document.createElement('script');
+            var s0 = document.getElementsByTagName('script')[0];
+            s1.async = true;
+            s1.src = 'https://embed.tawk.to/69b87e192cbcd11c3aa9f47a/1jjsap5ss';
+            s1.charset = 'UTF-8';
+            s1.setAttribute('crossorigin', '*');
+            s0.parentNode.insertBefore(s1, s0);
+        }
+
+        // On page load: check consent
+        (function() {
+            var consent = getCookieConsent();
+            if (!consent) {
+                showBanner();
+            } else {
+                if (consent.functional) {
+                    loadTawkTo();
+                }
+            }
+        })();
     </script>
-    <!--End of Tawk.to Script-->
 </body>
 </html>
