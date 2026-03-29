@@ -33,6 +33,7 @@
 
 html {
     scroll-behavior: smooth;
+    font-size: 110%;
 }
 
 body {
@@ -155,7 +156,8 @@ body {
 }
 
 .hero-content {
-    max-width: 800px;
+    max-width: 1200px;
+    padding: 0 24px;
     text-align: center;
     position: relative;
     z-index: 1;
@@ -177,7 +179,7 @@ body {
 
 .hero h1 {
     font-family: 'Source Serif 4', Georgia, serif;
-    font-size: clamp(2rem, 4.5vw, 3.2rem);
+    font-size: clamp(2rem, 4.5vw, 3.8rem);
     font-weight: 700;
     line-height: 1.15;
     margin-bottom: 24px;
@@ -199,6 +201,27 @@ body {
     line-height: 1.7;
 }
 
+.hero-description {
+    max-width: 100%;
+    margin: 0 auto 40px;
+    text-align: left;
+}
+
+.hero-description p {
+    font-size: 1.05rem;
+    line-height: 1.8;
+    color: var(--text-secondary);
+    margin-bottom: 20px;
+}
+
+.hero-description p:last-child {
+    margin-bottom: 0;
+}
+
+.hero-description strong {
+    color: var(--text-primary);
+}
+
 .hero-cta-group {
     display: flex;
     gap: 16px;
@@ -209,9 +232,9 @@ body {
 /* ========== BUTTONS ========== */
 .btn {
     display: inline-block;
-    padding: 14px 32px;
+    padding: 22px 48px;
     border-radius: 50px;
-    font-size: 0.95rem;
+    font-size: 1.15rem;
     font-weight: 600;
     text-decoration: none;
     transition: var(--transition);
@@ -283,9 +306,10 @@ body {
 
 .hero-eu-banner span {
     color: var(--accent-navy);
-    font-size: 1.6rem;
-    font-weight: 800;
-    letter-spacing: 1px;
+    font-size: 1.85rem;
+    font-weight: 700;
+    letter-spacing: 3px;
+    text-transform: uppercase;
 }
 
 /* ========== HERO DIAGRAM ========== */
@@ -493,7 +517,7 @@ body {
 
 .section-header h2 {
     font-family: 'Source Serif 4', Georgia, serif;
-    font-size: clamp(1.8rem, 3.5vw, 2.5rem);
+    font-size: clamp(1.8rem, 3vw, 2.2rem);
     font-weight: 700;
     line-height: 1.2;
     letter-spacing: -0.5px;
@@ -699,7 +723,7 @@ body {
     color: var(--text-secondary);
     font-size: 1.1rem;
     margin-bottom: 40px;
-    max-width: 500px;
+    max-width: 700px;
     margin-left: auto;
     margin-right: auto;
 }
