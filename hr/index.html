@@ -11,6 +11,7 @@
     <link rel="canonical" href="https://sigvera.eu/hr/">
     <link rel="alternate" hreflang="en" href="https://sigvera.eu/">
     <link rel="alternate" hreflang="hr" href="https://sigvera.eu/hr/">
+    <link rel="alternate" hreflang="x-default" href="https://sigvera.eu/">
     <link rel="icon" type="image/png" sizes="192x192" href="/favicon.png">
     <link rel="shortcut icon" href="/favicon.ico">
     <link rel="apple-touch-icon" sizes="192x192" href="/favicon.png">
@@ -48,7 +49,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600;700&family=Source+Serif+4:wght@400;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="../style.css">
+    <link rel="stylesheet" href="../style.css?v=2">
 </head>
 <body>
     <!-- Announcement Bar -->
@@ -62,7 +63,10 @@
     <nav class="nav" id="nav">
         <div class="nav-container">
             <div class="nav-logo">
-                <a href="#hero" class="logo-text">SIGVERA</a>
+                <a href="#hero" style="display: flex; align-items: center; text-decoration: none;">
+                    <img src="../favicon.png" alt="SIGVERA Icon" style="width: 28px; height: 28px; margin-right: 12px; border-radius: 4px;">
+                    <span class="logo-text">SIGVERA</span>
+                </a>
             </div>
             <div class="nav-links">
                 <a href="#features">Značajke</a>
@@ -79,7 +83,11 @@
         <div class="hero-bg-grid"></div>
         <div class="hero-content">
             <div class="hero-badge">Prva AI NIS2 Platforma za Usklađenost</div>
-            <h1>Kontinuirana Usklađenost<br>Kriptografski Dokazi<br><span class="hero-highlight">Usklađeni, Dokazano</span></h1>
+            <h1>
+                <span class="title-line title-line-1">Kontinuirana Usklađenost</span><br>
+                <span class="title-line title-line-2">Kriptografski Dokazi</span><br>
+                <span class="title-line title-line-3 hero-highlight">Usklađeni, Dokazano</span>
+            </h1>
             <div class="hero-description">
                 <p>SIGVERA kontinuirano procjenjuje vašu NIS2 usklađenost, generira dokaze verificirane kriptografijom i prikazuje usklađenost u stvarnom vremenu. Umjesto audita jednom godišnje, screenshotova i tablica, vaša usklađenost se verificira svaki sat, automatski, prema svakom regulatornom zahtjevu.</p>
                 <p>SIGVERA se spaja na ono što već imate: <strong>SIEM, vatrozide, identity providere, backup sustave</strong> i automatski provjerava usklađenost prema NIS2 zahtjevima. Bez novih agenata, bez promjena u arhitekturi. Svaki nalaz potkrijepljen je <strong>kriptografskim lancem dokaza</strong> koji revizor može samostalno provjeriti.</p>
@@ -92,45 +100,46 @@
             </div>
             <div class="hero-stats">
                 <div class="stat">
-                    <span class="stat-number">10x</span>
+                    <span class="stat-number" data-target="10" data-suffix="x">0x</span>
                     <span class="stat-label">Brža priprema revizije</span>
                 </div>
                 <div class="stat-divider"></div>
                 <div class="stat">
-                    <span class="stat-number">24/7</span>
+                    <span class="stat-number" data-target="24" data-suffix="/7">0/7</span>
                     <span class="stat-label">Kontinuirani nadzor</span>
                 </div>
                 <div class="stat-divider"></div>
                 <div class="stat">
-                    <span class="stat-number">100%</span>
+                    <span class="stat-number" data-target="100" data-suffix="%">0%</span>
                     <span class="stat-label">EU suverenitet podataka</span>
                 </div>
             </div>
             <div class="hero-eu-banner">
                 <span><strong>EU platforma. EU podaci. Bez iznimki.</strong></span>
             </div>
-            <div class="hero-diagram">
+            <div class="hero-diagram scroll-section">
+                <h2 class="diagram-title scroll-animate delay-1">Zatvoreni ciklus usklađenosti</h2>
                 <div class="loop-container" id="loopContainer">
                     <svg class="loop-arrows" id="loopArrows" viewBox="0 0 600 600"></svg>
                     <div class="loop-phase phase-detect" data-phase="0">
-                        <div class="phase-title">DETEKTIRAJ</div>
-                        <div class="phase-desc">Skeniraj infrastrukturu prema NIS2 mjerama</div>
+                        <div class="phase-title">DETEKCIJA</div>
+                        <div class="phase-desc">Skeniranje infrastrukture prema NIS2 mjerama</div>
                     </div>
                     <div class="loop-phase phase-diagnose" data-phase="1">
-                        <div class="phase-title">DIJAGNOSTICIRAJ</div>
+                        <div class="phase-title">DIJAGNOSTIKA</div>
                         <div class="phase-desc">Analiza rizika, prioritizacija, kreiranje tiketa</div>
                     </div>
                     <div class="loop-phase phase-remediate" data-phase="2">
-                        <div class="phase-title">KORIGIRAJ</div>
-                        <div class="phase-desc">Generiraj i provedi korake za popravak</div>
+                        <div class="phase-title">KOREKCIJA</div>
+                        <div class="phase-desc">Generiranje i provedba koraka za popravak</div>
                     </div>
                     <div class="loop-phase phase-verify" data-phase="3">
-                        <div class="phase-title">VERIFICIRAJ</div>
-                        <div class="phase-desc">Provjeri jesu li popravci stvarno primijenjeni</div>
+                        <div class="phase-title">VERIFIKACIJA</div>
+                        <div class="phase-desc">Provjera jesu li popravci stvarno primijenjeni</div>
                     </div>
                     <div class="loop-phase phase-certify" data-phase="4">
-                        <div class="phase-title">CERTIFICIRAJ</div>
-                        <div class="phase-desc">Zapečati nalaze kriptografskim potpisom</div>
+                        <div class="phase-title">CERTIFIKACIJA</div>
+                        <div class="phase-desc">Svaki nalaz potpisan i nepromjenjiv</div>
                     </div>
                     <div class="loop-center">SIGVERA</div>
                 </div>
@@ -139,44 +148,44 @@
     </section>
 
     <!-- Origin Story Section -->
-    <section class="origin" id="origin">
+    <section class="origin scroll-section" id="origin">
         <div class="container">
-            <div class="section-header">
-                <span class="section-tag">Rođeno iz infrastrukture</span>
-                <h2>Nastalo iz iskustva i serverskih soba, a ne iz PowerPointa. Znamo kako izgleda audit u utorak ujutro.</h2>
+            <div class="section-header scroll-animate delay-1">
+                <span class="section-tag">Zaleđe arhitekture</span>
+                <h2>Nastalo iz inžinjerskog iskustva, a ne iz PowerPointa. Jer i mi znamo kako izgleda audit u utorak ujutro.</h2>
             </div>
             <div class="origin-content">
-                <p>SIGVERA nije nastala u laboratoriju. Nastala je u serverskim sobama, podatkovnim centrima i kontrolnim sobama reguliranih organizacija diljem EU. Više od desetljeća, tim iza SIGVERE dizajnirao je, implementirao i upravljao kritičnom IT infrastrukturom za EU institucije, regulirane financijske subjekte i operatere energetskog sektora u više EU zemalja. SIEM, vatrozidi, backup, upravljanje identitetima, nadzor. Cijeli stack.</p>
-                <p>To iskustvo otkrilo je fundamentalni raskorak: <strong>organizacije ulažu značajno u sigurnost, ali se bore dokazati da su usklađene.</strong> Revizije i dalje znače tjedne ručnog prikupljanja dokaza, mape pune screenshotova i Word dokumenata koji su zastarjeli čim su napisani. U međuvremenu, stvarni dokazi leže neiskorišteni u sustavima koji su već implementirani.</p>
-                <p>SIGVERA je razvijena da premosti taj jaz. AI platforma koja se povezuje na infrastrukturu koju organizacija već koristi i kontinuirano evaluira usklađenost s regulatornim zahtjevima. Automatski, s kriptografskim dokazom priloženim svakom nalazu.</p>
+                <p class="scroll-animate delay-2">SIGVERA nije koncipirana u <em>startup</em> inkubatoru. Nastala je u mrežnim i kontrolnim sobama strogo reguliranih organizacija diljem Europe. Više od desetljeća, IT tim u podlozi ove platforme gradio je i upravljao kritičnom arhitekturom za europske institucije, regulirane financijske subjekte i operatere energetskog sektora. SIEM rješenja, vatrozidi, masovni poslužiteljski backup, zero-trust upravljanje identitetima i cjelokupni nadzor mreže — održavali smo cijeli <em>stack</em>.</p>
+                <p class="scroll-animate delay-3">Rad na razini sistem inženjerstva i menadžmenta otkrio nam je jasan i frustrirajući apsurd: organizacije ulažu milijune u mrežnu sigurnost, ali padaju na testu kada to isto trebaju dokazati. Pripreme za zakonske revizije redovno se pretvaraju u tjedne ručnog prikupljanja dokaza, rezultirajući mapama punim <em>screenshotova</em> i IT dokumentima koji su zastarjeli čim kliknete "Spremljeno". Za to vrijeme, stvarni matematički nepobitni dokazi besmisleno leže neiskorišteni unutar sustava koji uredno rade punom parom.</p>
+                <p class="scroll-animate delay-4"><strong>SIGVERA je razvijena strateški s ciljem da se ta zastarjela paradigma zauvijek ugasi.</strong> Naša AI platforma pasivno "sjeda" na vaš postojeći mrežni hardver, preuzima funkciju najstrožeg revizora u kući i neumorno evaluira vašu usklađenost s regulatornim zahtjevima u potpunoj autonomiji. Sve to radi u tišini, gdje je svaki pronalazak ili popravak trajno i neoborivo zapečaćen kriptografskim dokazom.</p>
             </div>
         </div>
     </section>
 
     <!-- Impact Stats -->
-    <section class="impact-stats">
+    <section class="impact-stats scroll-section">
         <div class="container">
-            <div class="section-header">
+            <div class="section-header scroll-animate delay-1">
                 <span class="section-tag">Utjecaj platforme</span>
-                <h2>Mjerljivo ubrzanje uskladenosti</h2>
+                <h2>Drastično brži put do potpune usklađenosti</h2>
             </div>
             <div class="impact-stats-grid">
-                <div class="impact-stat"><span class="impact-stat-number">10x</span><span class="impact-stat-label">Brža priprema revizije</span><span class="impact-stat-desc">Od tjedana ručnog prikupljanja dokaza do kontinuirane uskladenosti</span></div>
-                <div class="impact-stat"><span class="impact-stat-number">90%</span><span class="impact-stat-label">Manje ručnog rada</span><span class="impact-stat-desc">Automatizirano prikupljanje dokaza zamjenjuje tablice i screenshotove</span></div>
-                <div class="impact-stat"><span class="impact-stat-number">30+</span><span class="impact-stat-label">NIS2 mjera</span><span class="impact-stat-desc">Svih 10 mjera članka 30 mapirano na automatizirane kontrole</span></div>
-                <div class="impact-stat"><span class="impact-stat-number">&lt;24h</span><span class="impact-stat-label">Prvi rezultat</span><span class="impact-stat-desc">Od spajanja do prvog rezultata za manje od 24 sata</span></div>
+                <div class="impact-stat scroll-animate delay-2"><span class="impact-stat-number stat-counter" data-target="10" data-suffix="x">0x</span><span class="impact-stat-label">Brža priprema revizije</span><span class="impact-stat-desc">Od tjedana ručnog prikupljanja dokaza do kontinuirane uskladenosti</span></div>
+                <div class="impact-stat scroll-animate delay-3"><span class="impact-stat-number stat-counter" data-target="90" data-suffix="%">0%</span><span class="impact-stat-label">Manje ručnog rada</span><span class="impact-stat-desc">Automatizirano prikupljanje dokaza zamjenjuje tablice i screenshotove</span></div>
+                <div class="impact-stat scroll-animate delay-4"><span class="impact-stat-number stat-counter" data-target="30" data-suffix="+">0+</span><span class="impact-stat-label">NIS2 mjera</span><span class="impact-stat-desc">Svih 10 mjera članka 30 mapirano na automatizirane kontrole</span></div>
+                <div class="impact-stat scroll-animate delay-5"><span class="impact-stat-number stat-counter" data-target="24" data-prefix="&lt;" data-suffix="h">&lt;0h</span><span class="impact-stat-label">Prvi rezultat</span><span class="impact-stat-desc">Od spajanja do prvog rezultata za manje od 24 sata</span></div>
             </div>
         </div>
     </section>
 
     <!-- Features Section (Tabbed) -->
-    <section class="features" id="features">
+    <section class="features scroll-section" id="features">
         <div class="container">
-            <div class="section-header">
+            <div class="section-header scroll-animate delay-1">
                 <span class="section-tag">Ključne mogućnosti</span>
                 <h2>Sve što trebate za usklađenost. Na jednom mjestu.</h2>
             </div>
-            <div class="feature-tabs-container">
+            <div class="feature-tabs-container scroll-animate delay-2">
                 <div class="tab-nav">
                     <button class="tab-btn active" data-tab="tabDashboard"><span class="tab-btn-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg></span> Nadzorna ploča</button>
                     <button class="tab-btn" data-tab="tabAnalysis"><span class="tab-btn-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.35-4.35"/><path d="M8 11h6M11 8v6"/></svg></span> AI Gap analiza</button>
@@ -187,31 +196,57 @@
                 </div>
                 <div class="tab-panels">
                     <div class="tab-panel active" id="tabDashboard">
-                        <h3>Nadzorna ploča usklađenosti u stvarnom vremenu</h3>
-                        <p>Pratite svoju usklađenost kroz sve okvire, kontinuirano ažurirano. Bez kvartalnih tablica.</p>
+                        <h3>Nadzorna ploča u stvarnom vremenu</h3>
+                        <p>Analizirajte razinu usklađenosti sa svim okvirima na jednom mjestu. Kontinuirano, automatski i bez zastarjelih Excel tablica.</p>
                         <ul class="tab-highlights">
-                            <li>Živi rezultat usklađenosti po okviru (NIS2, DORA, ISO 27001)</li>
-                            <li>Analiza trendova — pratite napredak ili regresiju</li>
-                            <li>Vizualni pregled za upravu i nadzorni odbor</li>
+                            <li>Trenutni status usklađenosti po okvirima (NIS2, DORA, ISO 27001)</li>
+                            <li>Analiza trendova — detaljno praćenje napretka ili usporavanja</li>
+                            <li>Pregledna vizualizacija dizajnirana specifično za upravu i nadzorni odbor</li>
                         </ul>
                         <div class="tab-visual">
                             <div class="mockup-bar"><span class="mockup-bar-label">NIS2</span><div class="mockup-bar-track"><div class="mockup-bar-fill" style="width:87%"></div></div><span class="mockup-bar-value">87%</span></div>
                             <div class="mockup-bar"><span class="mockup-bar-label">DORA</span><div class="mockup-bar-track"><div class="mockup-bar-fill" style="width:72%"></div></div><span class="mockup-bar-value">72%</span></div>
                             <div class="mockup-bar"><span class="mockup-bar-label">ISO 27001</span><div class="mockup-bar-track"><div class="mockup-bar-fill" style="width:64%"></div></div><span class="mockup-bar-value">64%</span></div>
-                            <div style="display:flex;justify-content:center;margin-top:16px;gap:24px">
-                                <div style="text-align:center"><div style="width:64px;height:64px;border-radius:50%;border:4px solid var(--accent-steel);border-top-color:transparent;display:flex;align-items:center;justify-content:center;margin:0 auto 6px"><span style="font-weight:700;color:var(--accent-navy);font-size:0.85rem">74%</span></div><span style="font-size:0.7rem;color:var(--text-muted)">Ukupni rezultat</span></div>
-                                <div style="text-align:center"><div style="width:64px;height:64px;border-radius:50%;border:4px solid #22c55e;border-left-color:transparent;display:flex;align-items:center;justify-content:center;margin:0 auto 6px"><span style="font-weight:700;color:#16a34a;font-size:0.85rem">↑ 12%</span></div><span style="font-size:0.7rem;color:var(--text-muted)">30d Trend</span></div>
+                            <div style="display:flex;justify-content:center;margin-top:24px;gap:40px;flex-wrap:wrap">
+                                <div style="text-align:center">
+                                    <div class="mockup-gauge">
+                                        <svg viewBox="0 0 36 36"><path class="gauge-bg" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" /><path class="gauge-path" style="stroke: var(--accent-steel); --target: 74;" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" /></svg>
+                                        <div class="gauge-content"><span class="gauge-number" style="color:var(--accent-navy)">74%</span></div>
+                                    </div>
+                                    <span style="font-size:0.75rem;color:var(--text-muted);font-weight:600">Ukupni rezultat</span>
+                                </div>
+                                <div style="text-align:center">
+                                    <div class="mockup-gauge">
+                                        <svg viewBox="0 0 36 36"><path class="gauge-bg" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" /><path class="gauge-path" style="stroke: #22c55e; --target: 40;" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" /></svg>
+                                        <div class="gauge-content"><span class="gauge-number" style="color:#16a34a">↑ 12%</span></div>
+                                    </div>
+                                    <span style="font-size:0.75rem;color:var(--text-muted);font-weight:600">30d Trend</span>
+                                </div>
+                                <div style="text-align:center">
+                                    <div class="mockup-gauge">
+                                        <svg viewBox="0 0 36 36"><path class="gauge-bg" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" /><path class="gauge-path" style="stroke: #ef4444; --target: 10;" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" /></svg>
+                                        <div class="gauge-content"><span class="gauge-number" style="color:#ef4444">3</span></div>
+                                    </div>
+                                    <span style="font-size:0.75rem;color:var(--text-muted);font-weight:600">Kritični propusti</span>
+                                </div>
+                                <div style="text-align:center">
+                                    <div class="mockup-gauge">
+                                        <svg viewBox="0 0 36 36"><path class="gauge-bg" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" /><path class="gauge-path" style="stroke: #3b82f6; --target: 92;" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" /></svg>
+                                        <div class="gauge-content"><span class="gauge-number" style="color:#3b82f6">248</span></div>
+                                    </div>
+                                    <span style="font-size:0.75rem;color:var(--text-muted);font-weight:600">Nadziranih čvorova</span>
+                                </div>
                             </div>
                         </div>
                     </div>
                     <div class="tab-panel" id="tabAnalysis">
-                        <h3>AI Gap analiza</h3>
-                        <p>Naš AI skenira vašu infrastrukturu kao revizor, automatski mapirajući svaki nalaz prema regulatornim zahtjevima.</p>
+                        <h3>Automatska analiza propusta (Gap Analysis)</h3>
+                        <p>Naš AI sustav skenira infrastrukturu iz perspektive tehničkog revizora i automatski preslikava svaki nalaz na konkretne zakonske i regulatorne stavke.</p>
                         <ul class="tab-highlights">
-                            <li>Automatizirano skeniranje SIEM-a, vatrozida, pružatelja identiteta</li>
-                            <li>Mapiranje nalaza na specifične članke i kontrole</li>
-                            <li>Prioritizirano bodovanje rizika prema ozbiljnosti</li>
-                            <li>Kontinuirana ponovna procjena — ne jednokratni snimak</li>
+                            <li>Automatizirano skeniranje SIEM sustava, vatrozida i upravljanja identitetima</li>
+                            <li>Preslikavanje tehničkih nalaza u specifične zakonske zahtjeve (npr. NIS2 Članak 30)</li>
+                            <li>Rizici ocijenjeni strogim prioritetima prema potencijalnom poslovnom udaru</li>
+                            <li>Kontinuirana revizija sustava — odbacujemo jednokratne statične procjene</li>
                         </ul>
                         <div class="tab-visual">
                             <div style="display:flex;flex-direction:column;gap:8px">
@@ -224,12 +259,12 @@
                     </div>
                     <div class="tab-panel" id="tabEvidence">
                         <h3>Kriptografski lanac dokaza</h3>
-                        <p>Svaka provjera proizvodi nepromjenjiv, vremenski označen trag dokaza koji revizori mogu neovisno verificirati.</p>
+                        <p>Svako skeniranje infrastrukture stvara nepromjenjiv i digitalno potpisan trag dokaza koji prolazi i najstrože neovisne revizije bez ikakve rasprave.</p>
                         <ul class="tab-highlights">
-                            <li>SHA-256 hash lanac koji povezuje svaki dokaz</li>
-                            <li>Vremenske oznake otporne na manipulaciju</li>
-                            <li>Potpuna revizijska staza — tko je što provjerio, kada i što je nađeno</li>
-                            <li>Revizori verificiraju matematiku, ne vašu riječ</li>
+                            <li>Matematički SHA-256 niz koji kontinuirano ulančano povezuje sve mjere</li>
+                            <li>Precizne vremenske oznake (timestamps) potpuno otporne na naknadne manipulacije</li>
+                            <li>Potpuni i neizbrisivi revizijski trag svih skeniranih operacija</li>
+                            <li>IT revizori verificiraju objektivnu matematiku, a ne vaše Excel izvještaje</li>
                         </ul>
                         <div class="tab-visual">
                             <div style="display:flex;flex-direction:column;gap:2px;align-items:center">
@@ -242,12 +277,12 @@
                         </div>
                     </div>
                     <div class="tab-panel" id="tabRemediation">
-                        <h3>Automatski popravci</h3>
-                        <p>Ne samo pronaći propuste — i ispraviti ih. SIGVERA generira konkretne korake za popravak vezane uz vašu infrastrukturu.</p>
+                        <h3>Pametno otklanjanje i sanacija</h3>
+                        <p>Locirajte IT propuste i odmah ih eliminirajte. Platforma izbacuje iskoristive smjernice i specifične inženjerske korake prilagođene strukturi vaše postojeće opreme.</p>
                         <ul class="tab-highlights">
-                            <li>Automatski generirani koraci za popravak svakog nalaza</li>
-                            <li>Rangirano po utjecaju na usklađenost i ozbiljnosti rizika</li>
-                            <li>Praćenje napretka s dokazima o rješavanju</li>
+                            <li>Automatski generirani sanacijski planovi za brže zatvaranje tehničkih propusta</li>
+                            <li>Preporuke svrstane prema razini opasnosti i ukupnom poslovnom utjecaju</li>
+                            <li>Jasno praćenje izvršenih promjena s generiranim rješenjima u ticketing sustavu</li>
                         </ul>
                         <div class="tab-visual">
                             <div style="display:flex;flex-direction:column;gap:8px">
@@ -258,13 +293,13 @@
                         </div>
                     </div>
                     <div class="tab-panel" id="tabReporting">
-                        <h3>Automatizirano izvještavanje</h3>
-                        <p>Generirajte izvješća za upravu i detaljne tehničke izvještaje jednim klikom, potkrijepljene stvarnim dokazima.</p>
+                        <h3>Automatizirano izvještavanje na zahtjev</h3>
+                        <p>Generirajte elegantne izvršne sažetke za upravu ili tehnički brutalno precizne izvještaje od desetaka stranica. Sve u par sekundi uz kriptografski čiste dokaze.</p>
                         <ul class="tab-highlights">
-                            <li>Izvješće za upravu i nadzorni odbor</li>
-                            <li>Detaljan tehnički izvještaj za revizore i IT timove</li>
-                            <li>Nadzorne ploče trendova usklađenosti</li>
-                            <li>Izvoz u PDF, CSV i strukturirane formate</li>
+                            <li>Kompaktni probavljivi izvještaji fokusirani na C-level upravu i nadzorni odbor</li>
+                            <li>Ispis sirovih tehničkih opservacija s dokazima idealan za inženjere i vanjsku reviziju</li>
+                            <li>Višetjedna nadzorna ploča praćenja rasta usklađenosti unutar tvrtke</li>
+                            <li>Direktan API ili ručni izvoz izvornih dokaza u .pdf format ili .csv tablice</li>
                         </ul>
                         <div class="tab-visual">
                             <div style="display:flex;gap:12px">
@@ -275,14 +310,14 @@
                         </div>
                     </div>
                     <div class="tab-panel" id="tabIntegration">
-                        <h3>Neovisne integracije</h3>
-                        <p>SIGVERA se povezuje s onim što već koristite. Bez zamjene, bez novih agenata.</p>
+                        <h3>Potpuno platformski agnostično</h3>
+                        <p>Sustav se ugrađuje izravno uz mrežni hardver koji tvrtka već posjeduje u statusu promatrača. Bez uvođenja novih kontrolnih agenata i skupe operativne zamjene opreme.</p>
                         <ul class="tab-highlights">
-                            <li>SIEM: Wazuh, Splunk, Microsoft Sentinel</li>
-                            <li>Vatrozidi: Cisco FTD, Fortinet, Palo Alto</li>
-                            <li>Identitet: Azure AD, Okta, LDAP</li>
-                            <li>ITSM: ServiceNow, Jira, Freshservice</li>
-                            <li>Izgrađeno na open-weight AI (Mistral) — EU suverenitet podataka</li>
+                            <li>Centralni SIEM i log nadzor: Wazuh, Microsoft Sentinel i Splunk</li>
+                            <li>Sigurnosni vatrozidi i rute: Cisco platforms (FTD/ASA), Fortinet i Palo Alto Networks</li>
+                            <li>Upravljanje identitetima i korisničkim rolama: lokalni On-premise LDAP repozitoriji sve do moderne AAD Okta sinkronizacije</li>
+                            <li>Sustavi upravljanja zahtjevima (ITSM tickets): automatizacija s alatima poput ServiceNow, Jira Service Management te Freshservice-a</li>
+                            <li>Etična AI integracija izgrađena striktno na open-weight Mistral podlogama u svrhu supsidijarnosti i obveze zaštite europskog suvereniteta i autonomije nad izdanim i deponiranim klijent podacima.</li>
                         </ul>
                         <div class="tab-visual">
                             <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:8px">
@@ -304,64 +339,64 @@
     </section>
 
     <!-- Frameworks Section -->
-    <section class="frameworks" id="frameworks">
+    <section class="frameworks scroll-section" id="frameworks">
         <div class="container">
-            <div class="section-header">
+            <div class="section-header scroll-animate delay-1">
                 <span class="section-tag">Regulatorna pokrivenost</span>
                 <h2>Jedna platforma, svaki okvir</h2>
             </div>
             <div class="frameworks-grid">
-                <div class="framework-card">
+                <div class="framework-card scroll-animate delay-2">
                     <div class="framework-name">NIS2</div>
                     <div class="framework-desc">EU Direktiva o mrežnoj i informacijskoj sigurnosti</div>
                 </div>
-                <div class="framework-card">
+                <div class="framework-card scroll-animate delay-3">
                     <div class="framework-name">DORA</div>
                     <div class="framework-desc">Akt o digitalnoj operativnoj otpornosti</div>
                 </div>
-                <div class="framework-card">
+                <div class="framework-card scroll-animate delay-4">
                     <div class="framework-name">ISO 27001</div>
                     <div class="framework-desc">Upravljanje informacijskom sigurnošću</div>
                 </div>
             </div>
         </div>
     </section>
-    </section>
+    <!-- Removed extra closing section tag that was present here before -->
 
     <!-- How It Works Section -->
-    <section class="how-it-works" id="how-it-works">
+    <section class="how-it-works scroll-section" id="how-it-works">
         <div class="container">
-            <div class="section-header">
-                <span class="section-tag">Proces</span>
-                <h2>Rezultati u danima. Ne u mjesecima. Četiri koraka do potpune usklađenosti.</h2>
+            <div class="section-header scroll-animate delay-1">
+                <span class="section-tag">Metodologija uvođenja</span>
+                <h2>Rezultati mjereni u danima. Brz i jednostavan put do potpune usklađenosti.</h2>
             </div>
             <div class="steps">
-                <div class="step">
+                <div class="step scroll-animate delay-2">
                     <div class="step-number">01</div>
                     <div class="step-content">
-                        <h3>Povežite</h3>
-                        <p>Integrirajte se s postojećom infrastrukturom: SIEM, vatrozidi, pružatelji identiteta, CMDB. Bez agenata za instalaciju, bez promjena arhitekture.</p>
+                        <h3>Sigurno povezivanje</h3>
+                        <p>Platforma se pasivno osluškuje mrežni promet te integrira s vašom postojećom mrežnom infrastrukturom (poput SIEM-a, vatrozida i sustava identiteta). Povezivanje se vrši bez intruzivnih agenata na krajnjoj opremi, tako da vaša arhitektura i radni procesi nastavljaju funkcionirati potpuno nesmetano.</p>
                     </div>
                 </div>
-                <div class="step">
+                <div class="step scroll-animate delay-3">
                     <div class="step-number">02</div>
                     <div class="step-content">
-                        <h3>Procjenite</h3>
-                        <p>AI neprestano nadzire vašu infrastrukturu i generira dokaze o usklađenosti. Vi samo gledate rezultate.</p>
+                        <h3>Kontinuirana provjera</h3>
+                        <p>Naš AI neprestano komunicira s podacima sa sustava te evaluira razinu usklađenosti uspoređujući ih s traženim regulativama (poput mjera članka 30 NIS2 cjeline). Umjesto standardne mjesečne kontrole, platforma vam konstantno prikazuje pravno-vrijedne dokaze bez obzira jeste li obavili promjenu danas ili nekad prije.</p>
                     </div>
                 </div>
-                <div class="step">
+                <div class="step scroll-animate delay-4">
                     <div class="step-number">03</div>
                     <div class="step-content">
-                        <h3>Verificirajte</h3>
-                        <p>Svaki nalaz potkrijepljen je kriptografskim lancem dokaza. Nepromjenjiv, vremenski označen i neovisno provjerljiv od strane bilo kojeg revizora.</p>
+                        <h3>Kriptografska verifikacija</h3>
+                        <p>Apsolutno svaki generirani nalaz platforma zaključava u nepromjenjivi kriptografski lanac prateći napredni WORM standard. Na taj način, IT propusti ili rješenja dobivaju neprobojne vremenske žigove koje svaki vanjski državni revizor može pročitati te im vjerovati u matematičkom kontekstu uz visoku ocjenu.</p>
                     </div>
                 </div>
-                <div class="step">
+                <div class="step scroll-animate delay-5">
                     <div class="step-number">04</div>
                     <div class="step-content">
-                        <h3>Izvješće</h3>
-                        <p>Generirajte izvješća za upravu, detaljne tehničke izvještaje i nadzorne ploče trendova usklađenosti. Automatski.</p>
+                        <h3>Izvještavanje na zahtjev</h3>
+                        <p>Višetjedno manualno generiranje izvještaja je stvar prošlosti. Sustav vizualno prilagođuje sučelje (Nadzornu ploču) generalnom stanju infrastrukture i izbacuje jasne preglede za upravu i IT auditore koji su trenutno raspoloživi jednim klikom — sa svim prilozima.</p>
                     </div>
                 </div>
             </div>
@@ -369,25 +404,25 @@
     </section>
 
     <!-- Resources Section -->
-    <section class="resources-section" id="resources">
+    <section class="resources-section scroll-section" id="resources">
         <div class="container">
-            <div class="section-header">
+            <div class="section-header scroll-animate delay-1">
                 <span class="section-tag">Resursi</span>
                 <h2>Ubrzajte svoj put do usklađenosti</h2>
             </div>
             <div class="resources-grid">
-                <a class="resource-card" href="#" onclick="openContactModal(); return false;"><span class="resource-tag guide">Vodič</span><h3>NIS2 kontrolna lista usklađenosti</h3><p>Svih 10 mjera članka 30 mapirano na praktične kontrole. Ključna lista za svakog CISO-a koji se priprema za NIS2.</p><span class="resource-card-cta">Preuzmite vodič →</span></a>
-                <a class="resource-card" href="#" onclick="openContactModal(); return false;"><span class="resource-tag report">Izvještaj</span><h3>Pregled EU regulativa kibernetičke sigurnosti</h3><p>NIS2, DORA i Akt o kiberotpornosti uspoređeni. Saznajte koje regulative se primjenjuju na vašu organizaciju.</p><span class="resource-card-cta">Pročitajte izvještaj →</span></a>
-                <a class="resource-card" href="#" onclick="openContactModal(); return false;"><span class="resource-tag blog">Blog</span><h3>Od ručnih revizija do AI usklađenosti</h3><p>Kako AI transformira način na koji organizacije dokazuju usklađenost — i zašto su kriptografski lanci dokaza budućnost.</p><span class="resource-card-cta">Pročitajte članak →</span></a>
-                <a class="resource-card" href="#" onclick="openContactModal(); return false;"><span class="resource-tag guide">Vodič</span><h3>Izgradnja kriptografskog lanca dokaza</h3><p>Zašto su nepromjenjivi revizijski tragovi važni za modernu usklađenost. Tehnički uvid u arhitekturu dokaza SIGVERE.</p><span class="resource-card-cta">Preuzmite vodič →</span></a>
+                <a class="resource-card scroll-animate delay-2" href="#" onclick="openContactModal(); return false;"><span class="resource-tag guide">Vodič</span><h3>NIS2 kontrolna lista usklađenosti</h3><p>Svih 10 mjera članka 30 mapirano na praktične kontrole. Ključna lista za svakog CISO-a koji se priprema za NIS2.</p><span class="resource-card-cta">Preuzmite vodič →</span></a>
+                <a class="resource-card scroll-animate delay-3" href="#" onclick="openContactModal(); return false;"><span class="resource-tag report">Izvještaj</span><h3>Pregled EU regulativa kibernetičke sigurnosti</h3><p>NIS2, DORA i Akt o kiberotpornosti uspoređeni. Saznajte koje regulative se primjenjuju na vašu organizaciju.</p><span class="resource-card-cta">Pročitajte izvještaj →</span></a>
+                <a class="resource-card scroll-animate delay-4" href="#" onclick="openContactModal(); return false;"><span class="resource-tag blog">Blog</span><h3>Od ručnih revizija do AI usklađenosti</h3><p>Kako AI transformira način na koji organizacije dokazuju usklađenost — i zašto su kriptografski lanci dokaza budućnost.</p><span class="resource-card-cta">Pročitajte članak →</span></a>
+                <a class="resource-card scroll-animate delay-5" href="#" onclick="openContactModal(); return false;"><span class="resource-tag guide">Vodič</span><h3>Izgradnja kriptografskog lanca dokaza</h3><p>Zašto su nepromjenjivi revizijski tragovi važni za modernu usklađenost. Tehnički uvid u arhitekturu dokaza SIGVERE.</p><span class="resource-card-cta">Preuzmite vodič →</span></a>
             </div>
         </div>
     </section>
 
     <!-- CTA Section -->
-    <section class="cta-section" id="contact">
+    <section class="cta-section scroll-section" id="contact">
         <div class="container">
-            <div class="cta-card">
+            <div class="cta-card scroll-animate delay-1">
                 <h2>Jeste li spremni automatizirati vašu NIS2 usklađenost?</h2>
                 <p>Pridružite se organizacijama koje zamjenjuju ručnu pripremu revizije s AI platformom za kontinuiranu usklađenost.</p>
                 <div class="cta-buttons">
@@ -497,7 +532,7 @@
                     [3100,  function() { var a = getArrow(3); if (a) a.classList.add('arrow-visible'); }],
                     [3400,  function() { if (phases[4]) phases[4].classList.add('phase-visible'); }],
                     [3900,  function() { var a = getArrow(4); if (a) a.classList.add('arrow-visible'); }],
-                    [4400,  function() { if (center) center.classList.add('center-visible'); loopAnimationDone = true; }]
+                    [4400,  function() { if (center) center.classList.add('center-visible'); loopAnimationDone = true; setTimeout(drawLoopArrows, 50); }]
                 ];
                 seq.forEach(function(s) { setTimeout(s[1], s[0]); });
             }
@@ -541,6 +576,64 @@
         document.getElementById('demoModal').addEventListener('click', function(e) {
             if (e.target === this) closeDemoModal();
         });
+
+        // Stats counter animation & Scroll animations
+        function setupAnimations() {
+            var numberObs = new IntersectionObserver(function(entries) {
+                entries.forEach(function(entry) {
+                    if (entry.isIntersecting) {
+                        var el = entry.target;
+                        if (!el.dataset.animated) {
+                            el.dataset.animated = 'true';
+                            var target = parseInt(el.getAttribute('data-target'));
+                            var suffix = el.getAttribute('data-suffix') || '';
+                            var prefix = el.getAttribute('data-prefix') || '';
+                            var current = 0;
+                            var duration = el.classList.contains('impact-stat-number') ? 2500 : 1200; // ms
+                            var increment = target / (duration / 40); // update every 40ms
+                            
+                            var timer = setInterval(function() {
+                                current += increment;
+                                if (current >= target) {
+                                    el.textContent = prefix + target + suffix;
+                                    clearInterval(timer);
+                                } else {
+                                    el.textContent = prefix + Math.floor(current) + suffix;
+                                }
+                            }, 40);
+                        }
+                    }
+                });
+            }, { threshold: 0.1 });
+
+            // Initialize scroll animations
+            var scrollObs = new IntersectionObserver(function(entries) {
+                entries.forEach(function(entry) {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('is-visible');
+                        scrollObs.unobserve(entry.target);
+                    }
+                });
+            }, { threshold: 0.15 });
+
+            document.querySelectorAll('.scroll-section').forEach(function(el) {
+                scrollObs.observe(el);
+            });
+
+            // Observe impact stats immediately based on scroll
+            document.querySelectorAll('.impact-stat-number.stat-counter').forEach(function(el) {
+                numberObs.observe(el);
+            });
+
+            // For hero stats, we delay the observation slightly so they don't count up while invisible during CSS fade-up
+            setTimeout(function() {
+                document.querySelectorAll('.hero-stats .stat-number').forEach(function(el) {
+                    numberObs.observe(el);
+                });
+            }, 1700);
+        }
+
+        window.addEventListener('load', setupAnimations);
     </script>
 
     <!-- Cookie Consent Banner -->
@@ -677,7 +770,7 @@
             marker.setAttribute('orient', 'auto');
             const poly = document.createElementNS(ns, 'polygon');
             poly.setAttribute('points', '0 0, 10 3.5, 0 7');
-            poly.setAttribute('fill', '#6B7B8D');
+            poly.setAttribute('fill', '#5a9bc7');
             marker.appendChild(poly);
             defs.appendChild(marker);
             svg.appendChild(defs);
@@ -704,10 +797,10 @@
 
             function edgePt(box, edge, alignX) {
                 switch(edge) {
-                    case 'top':    return { x: alignX !== undefined ? alignX : box.cx, y: box.top };
-                    case 'bottom': return { x: alignX !== undefined ? alignX : box.cx, y: box.bottom };
-                    case 'left':   return { x: box.left, y: box.cy };
-                    case 'right':  return { x: box.right, y: box.cy };
+                    case 'top':    return { x: alignX !== undefined ? alignX : box.cx, y: box.top - 2 };
+                    case 'bottom': return { x: alignX !== undefined ? alignX : box.cx, y: box.bottom + 2 };
+                    case 'left':   return { x: box.left - 2, y: box.cy };
+                    case 'right':  return { x: box.right + 2, y: box.cy };
                 }
             }
 
@@ -740,7 +833,7 @@
                 const path = document.createElementNS(ns, 'path');
                 path.setAttribute('d', 'M ' + sx + ' ' + sy + ' L ' + ex + ' ' + ey);
                 path.setAttribute('fill', 'none');
-                path.setAttribute('stroke', '#8993A0');
+                path.setAttribute('stroke', '#5a9bc7');
                 path.setAttribute('stroke-width', '2');
                 path.setAttribute('marker-end', 'url(#ah)');
                 path.classList.add('arrow-path');
@@ -750,11 +843,16 @@
                 path.style.strokeDashoffset = len;
                 if (typeof loopAnimationDone !== 'undefined' && loopAnimationDone) {
                     path.style.strokeDashoffset = '0';
+                    path.classList.add('arrow-visible');
                 }
             });
         }
 
-        window.addEventListener('load', () => setTimeout(drawLoopArrows, 100));
+        if (document.fonts && document.fonts.ready) {
+            document.fonts.ready.then(function() { setTimeout(drawLoopArrows, 50); });
+        } else {
+            window.addEventListener('load', () => setTimeout(drawLoopArrows, 300));
+        }
         window.addEventListener('resize', drawLoopArrows);
 
         // Contact modal

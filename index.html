@@ -17,6 +17,7 @@
     <link rel="canonical" href="https://sigvera.eu/">
     <link rel="alternate" hreflang="en" href="https://sigvera.eu/">
     <link rel="alternate" hreflang="hr" href="https://sigvera.eu/hr/">
+    <link rel="alternate" hreflang="x-default" href="https://sigvera.eu/">
     <link rel="icon" type="image/png" sizes="192x192" href="/favicon.png">
     <link rel="shortcut icon" href="/favicon.ico">
     <link rel="apple-touch-icon" sizes="192x192" href="/favicon.png">
@@ -62,7 +63,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600;700&family=Source+Serif+4:wght@400;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="style.css?v=2">
 </head>
 <body>
     <!-- Announcement Bar -->
@@ -76,7 +77,10 @@
     <nav class="nav" id="nav">
         <div class="nav-container">
             <div class="nav-logo">
-                <a href="#hero" class="logo-text">SIGVERA</a>
+                <a href="#hero" style="display: flex; align-items: center; text-decoration: none;">
+                    <img src="favicon.png" alt="SIGVERA Icon" style="width: 28px; height: 28px; margin-right: 12px; border-radius: 4px;">
+                    <span class="logo-text">SIGVERA</span>
+                </a>
             </div>
             <div class="nav-links">
                 <a href="#features">Features</a>
@@ -93,7 +97,11 @@
         <div class="hero-bg-grid"></div>
         <div class="hero-content">
             <div class="hero-badge">The First AI-Native NIS2 Compliance Platform</div>
-            <h1>Continuous Compliance<br>Cryptographic Proof<br><span class="hero-highlight">Always Audit Ready</span></h1>
+            <h1>
+                <span class="title-line title-line-1">Continuous Compliance</span><br>
+                <span class="title-line title-line-2">Cryptographic Proof</span><br>
+                <span class="title-line title-line-3 hero-highlight">Always Audit Ready</span>
+            </h1>
             <div class="hero-description">
                 <p>SIGVERA continuously assesses your NIS2 security posture, generates cryptographic evidence, and delivers real-time compliance scoring. Instead of annual scrambles to gather screenshots and spreadsheets, your compliance is verified every hour, automatically, against every regulatory requirement.</p>
                 <p>The platform connects to the systems you already run: <strong>SIEM, firewalls, identity providers, backup systems</strong> and more. A dual-collection AI engine cross-references live infrastructure data against NIS2 requirements in real time. Every finding is sealed with a <strong>cryptographic evidence chain</strong> that auditors can verify independently.</p>
@@ -106,24 +114,25 @@
             </div>
             <div class="hero-stats">
                 <div class="stat">
-                    <span class="stat-number">10x</span>
+                    <span class="stat-number" data-target="10" data-suffix="x">0x</span>
                     <span class="stat-label">Faster audit preparation</span>
                 </div>
                 <div class="stat-divider"></div>
                 <div class="stat">
-                    <span class="stat-number">24/7</span>
+                    <span class="stat-number" data-target="24" data-suffix="/7">0/7</span>
                     <span class="stat-label">Continuous monitoring</span>
                 </div>
                 <div class="stat-divider"></div>
                 <div class="stat">
-                    <span class="stat-number">100%</span>
+                    <span class="stat-number" data-target="100" data-suffix="%">0%</span>
                     <span class="stat-label">EU data sovereignty</span>
                 </div>
             </div>
             <div class="hero-eu-banner">
                 <span><strong>Built in the EU, for the EU.</strong></span>
             </div>
-            <div class="hero-diagram">
+            <div class="hero-diagram scroll-section">
+                <h2 class="diagram-title scroll-animate delay-1">Closed-Loop Compliance</h2>
                 <div class="loop-container" id="loopContainer">
                     <svg class="loop-arrows" id="loopArrows" viewBox="0 0 600 600"></svg>
                     <div class="loop-phase phase-detect" data-phase="0">
@@ -153,45 +162,45 @@
     </section>
 
     <!-- Origin Story Section -->
-    <section class="origin" id="origin">
+    <section class="origin scroll-section" id="origin">
         <div class="container">
-            <div class="section-header">
-                <span class="section-tag">Born from the Infrastructure</span>
-                <h2>Built by engineers who've seen the audit from the other side.</h2>
+            <div class="section-header scroll-animate delay-1">
+                <span class="section-tag">Architectural Background</span>
+                <h2>Built from engineering experience, not PowerPoint. Because we know what a Tuesday morning audit feels like.</h2>
             </div>
             <div class="origin-content">
-                <p>SIGVERA didn't start in a lab. It started in server rooms, data centres, and control rooms of regulated organizations across the EU. For over a decade, the team behind SIGVERA designed, deployed, and managed critical IT infrastructure for EU institutions, regulated financial entities, and energy sector operators across multiple EU countries. SIEM, firewalls, backup, identity management, monitoring. The full stack.</p>
-                <p>That experience revealed a fundamental disconnect: <strong>organizations invest heavily in security, but struggle to prove they're compliant.</strong> Audits still mean weeks of manual evidence gathering, folders full of screenshots, and Word documents that are outdated the moment they're written. Meanwhile, the actual proof sits unused in the systems already deployed.</p>
-                <p>SIGVERA was built to close that gap. An AI-native platform that connects to the infrastructure an organization already runs and continuously evaluates compliance against regulatory requirements. Automatically, with cryptographic proof attached to every finding.</p>
+                <p class="scroll-animate delay-2">SIGVERA wasn't conceived in a <em>startup</em> incubator. It was born in the network and control rooms of strictly regulated organizations across Europe. For over a decade, the IT team behind this platform built and managed critical architecture for European institutions, regulated financial entities, and energy sector operators. SIEM solutions, firewalls, massive server backups, zero-trust identity management, and comprehensive network monitoring — we maintained the entire <em>stack</em>.</p>
+                <p class="scroll-animate delay-3">Working at the level of systems engineering and management revealed a clear and frustrating paradox: organizations invest millions in network security, yet fail the test when they need to prove it. Preparations for regulatory audits routinely turn into weeks of manual evidence gathering, resulting in folders packed with <em>screenshots</em> and IT documentation that becomes outdated the second you click "Save". Meanwhile, the actual, mathematically irrefutable evidence sits meaninglessly unused within systems that are already running at full capacity.</p>
+                <p class="scroll-animate delay-4"><strong>SIGVERA was developed strategically to extinguish this outdated paradigm forever.</strong> Our AI platform passively attaches to your existing network hardware, assuming the role of the strictest in-house auditor, and tirelessly evaluates your compliance against regulatory requirements in complete autonomy. It does all this quietly, with every finding or remediation permanently and irrefutably sealed with cryptographic proof.</p>
             </div>
 
         </div>
     </section>
 
     <!-- Impact Stats -->
-    <section class="impact-stats">
+    <section class="impact-stats scroll-section">
         <div class="container">
-            <div class="section-header">
+            <div class="section-header scroll-animate delay-1">
                 <span class="section-tag">Platform Impact</span>
                 <h2>Measurable compliance acceleration</h2>
             </div>
             <div class="impact-stats-grid">
-                <div class="impact-stat"><span class="impact-stat-number">10x</span><span class="impact-stat-label">Faster Audit Prep</span><span class="impact-stat-desc">From weeks of manual evidence gathering to continuous compliance</span></div>
-                <div class="impact-stat"><span class="impact-stat-number">90%</span><span class="impact-stat-label">Less Manual Work</span><span class="impact-stat-desc">Automated evidence collection replaces spreadsheets and screenshots</span></div>
-                <div class="impact-stat"><span class="impact-stat-number">30+</span><span class="impact-stat-label">NIS2 Measures</span><span class="impact-stat-desc">All 10 measures of Article 30 mapped to automated controls</span></div>
-                <div class="impact-stat"><span class="impact-stat-number">&lt;24h</span><span class="impact-stat-label">First Score</span><span class="impact-stat-desc">Connect your infrastructure today, get your compliance score tomorrow</span></div>
+                <div class="impact-stat scroll-animate delay-2"><span class="impact-stat-number stat-counter" data-target="10" data-suffix="x">0x</span><span class="impact-stat-label">Faster Audit Prep</span><span class="impact-stat-desc">From weeks of manual evidence gathering to continuous compliance</span></div>
+                <div class="impact-stat scroll-animate delay-3"><span class="impact-stat-number stat-counter" data-target="90" data-suffix="%">0%</span><span class="impact-stat-label">Less Manual Work</span><span class="impact-stat-desc">Automated evidence collection replaces spreadsheets and screenshots</span></div>
+                <div class="impact-stat scroll-animate delay-4"><span class="impact-stat-number stat-counter" data-target="30" data-suffix="+">0+</span><span class="impact-stat-label">NIS2 Measures</span><span class="impact-stat-desc">All 10 measures of Article 30 mapped to automated controls</span></div>
+                <div class="impact-stat scroll-animate delay-5"><span class="impact-stat-number stat-counter" data-target="24" data-prefix="&lt;" data-suffix="h">&lt;0h</span><span class="impact-stat-label">First Score</span><span class="impact-stat-desc">Connect your infrastructure today, get your compliance score tomorrow</span></div>
             </div>
         </div>
     </section>
 
     <!-- Features Section (Tabbed) -->
-    <section class="features" id="features">
+    <section class="features scroll-section" id="features">
         <div class="container">
-            <div class="section-header">
+            <div class="section-header scroll-animate delay-1">
                 <span class="section-tag">Core Capabilities</span>
                 <h2>Compliance automation, reimagined from the ground up</h2>
             </div>
-            <div class="feature-tabs-container">
+            <div class="feature-tabs-container scroll-animate delay-2">
                 <div class="tab-nav">
                     <button class="tab-btn active" data-tab="tabDashboard"><span class="tab-btn-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg></span> Compliance Dashboard</button>
                     <button class="tab-btn" data-tab="tabAnalysis"><span class="tab-btn-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.35-4.35"/><path d="M8 11h6M11 8v6"/></svg></span> AI Gap Analysis</button>
@@ -213,9 +222,35 @@
                             <div class="mockup-bar"><span class="mockup-bar-label">NIS2</span><div class="mockup-bar-track"><div class="mockup-bar-fill" style="width:87%"></div></div><span class="mockup-bar-value">87%</span></div>
                             <div class="mockup-bar"><span class="mockup-bar-label">DORA</span><div class="mockup-bar-track"><div class="mockup-bar-fill" style="width:72%"></div></div><span class="mockup-bar-value">72%</span></div>
                             <div class="mockup-bar"><span class="mockup-bar-label">ISO 27001</span><div class="mockup-bar-track"><div class="mockup-bar-fill" style="width:64%"></div></div><span class="mockup-bar-value">64%</span></div>
-                            <div style="display:flex;justify-content:center;margin-top:16px;gap:24px">
-                                <div style="text-align:center"><div style="width:64px;height:64px;border-radius:50%;border:4px solid var(--accent-steel);border-top-color:transparent;display:flex;align-items:center;justify-content:center;margin:0 auto 6px"><span style="font-weight:700;color:var(--accent-navy);font-size:0.85rem">74%</span></div><span style="font-size:0.7rem;color:var(--text-muted)">Overall Score</span></div>
-                                <div style="text-align:center"><div style="width:64px;height:64px;border-radius:50%;border:4px solid #22c55e;border-left-color:transparent;display:flex;align-items:center;justify-content:center;margin:0 auto 6px"><span style="font-weight:700;color:#16a34a;font-size:0.85rem">↑ 12%</span></div><span style="font-size:0.7rem;color:var(--text-muted)">30d Trend</span></div>
+                            <div style="display:flex;justify-content:center;margin-top:24px;gap:40px;flex-wrap:wrap">
+                                <div style="text-align:center">
+                                    <div class="mockup-gauge">
+                                        <svg viewBox="0 0 36 36"><path class="gauge-bg" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" /><path class="gauge-path" style="stroke: var(--accent-steel); --target: 74;" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" /></svg>
+                                        <div class="gauge-content"><span class="gauge-number" style="color:var(--accent-navy)">74%</span></div>
+                                    </div>
+                                    <span style="font-size:0.75rem;color:var(--text-muted);font-weight:600">Overall Score</span>
+                                </div>
+                                <div style="text-align:center">
+                                    <div class="mockup-gauge">
+                                        <svg viewBox="0 0 36 36"><path class="gauge-bg" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" /><path class="gauge-path" style="stroke: #22c55e; --target: 40;" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" /></svg>
+                                        <div class="gauge-content"><span class="gauge-number" style="color:#16a34a">↑ 12%</span></div>
+                                    </div>
+                                    <span style="font-size:0.75rem;color:var(--text-muted);font-weight:600">30d Trend</span>
+                                </div>
+                                <div style="text-align:center">
+                                    <div class="mockup-gauge">
+                                        <svg viewBox="0 0 36 36"><path class="gauge-bg" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" /><path class="gauge-path" style="stroke: #ef4444; --target: 10;" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" /></svg>
+                                        <div class="gauge-content"><span class="gauge-number" style="color:#ef4444">3</span></div>
+                                    </div>
+                                    <span style="font-size:0.75rem;color:var(--text-muted);font-weight:600">Critical Gaps</span>
+                                </div>
+                                <div style="text-align:center">
+                                    <div class="mockup-gauge">
+                                        <svg viewBox="0 0 36 36"><path class="gauge-bg" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" /><path class="gauge-path" style="stroke: #3b82f6; --target: 92;" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" /></svg>
+                                        <div class="gauge-content"><span class="gauge-number" style="color:#3b82f6">248</span></div>
+                                    </div>
+                                    <span style="font-size:0.75rem;color:var(--text-muted);font-weight:600">Monitored Nodes</span>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -319,64 +354,64 @@
     </section>
 
     <!-- Frameworks Section -->
-    <section class="frameworks" id="frameworks">
+    <section class="frameworks scroll-section" id="frameworks">
         <div class="container">
-            <div class="section-header">
+            <div class="section-header scroll-animate delay-1">
                 <span class="section-tag">Regulatory Coverage</span>
                 <h2>One platform, every framework</h2>
             </div>
             <div class="frameworks-grid">
-                <div class="framework-card">
+                <div class="framework-card scroll-animate delay-2">
                     <div class="framework-name">NIS2</div>
                     <div class="framework-desc">EU Network and Information Security Directive</div>
                 </div>
-                <div class="framework-card">
+                <div class="framework-card scroll-animate delay-3">
                     <div class="framework-name">DORA</div>
                     <div class="framework-desc">Digital Operational Resilience Act</div>
                 </div>
-                <div class="framework-card">
+                <div class="framework-card scroll-animate delay-4">
                     <div class="framework-name">ISO 27001</div>
                     <div class="framework-desc">Information Security Management</div>
                 </div>
             </div>
         </div>
     </section>
-    </section>
+    <!-- Removed extra closing section tag that was present here before -->
 
     <!-- How It Works Section -->
-    <section class="how-it-works" id="how-it-works">
+    <section class="how-it-works scroll-section" id="how-it-works">
         <div class="container">
-            <div class="section-header">
-                <span class="section-tag">The Process</span>
-                <h2>From integration to audit-ready in days, not months</h2>
+            <div class="section-header scroll-animate delay-1">
+                <span class="section-tag">Integration Methodology</span>
+                <h2>Results measured in days. A streamlined path to full compliance.</h2>
             </div>
             <div class="steps">
-                <div class="step">
+                <div class="step scroll-animate delay-2">
                     <div class="step-number">01</div>
                     <div class="step-content">
-                        <h3>Connect</h3>
-                        <p>Integrate with your existing infrastructure: SIEM, firewalls, identity providers, CMDB. No agents to install, no architecture changes.</p>
+                        <h3>Secure Integration</h3>
+                        <p>The platform passively integrates with your existing network infrastructure (SIEM, firewalls, and identity systems). Connection is strictly agentless, meaning your architecture, endpoints, and daily IT operations run completely undisturbed.</p>
                     </div>
                 </div>
-                <div class="step">
+                <div class="step scroll-animate delay-3">
                     <div class="step-number">02</div>
                     <div class="step-content">
-                        <h3>Assess</h3>
-                        <p>SIGVERA's AI engine continuously evaluates your security posture against your target frameworks, identifying gaps and generating evidence.</p>
+                        <h3>Continuous Assessment</h3>
+                        <p>Our AI continuously communicates with your systems, evaluating compliance levels against strict frameworks (like NIS2 Article 30 measures). Removing the need for static monthly checks, the platform translates real-time operational telemetry straight into actionable compliance evidence.</p>
                     </div>
                 </div>
-                <div class="step">
+                <div class="step scroll-animate delay-4">
                     <div class="step-number">03</div>
                     <div class="step-content">
-                        <h3>Verify</h3>
-                        <p>Every finding is backed by a cryptographic evidence chain. Tamper-proof, timestamped, and independently verifiable by any auditor.</p>
+                        <h3>Cryptographic Verification</h3>
+                        <p>Every finding is securely locked into an immutable cryptographic chain following the advanced WORM standard. IT gaps and remediation steps receive tamper-proof digital timestamps that external auditors can mathematically verify and fully trust.</p>
                     </div>
                 </div>
-                <div class="step">
+                <div class="step scroll-animate delay-5">
                     <div class="step-number">04</div>
                     <div class="step-content">
-                        <h3>Report</h3>
-                        <p>Generate board-ready executive packages, detailed technical reports, and compliance trend dashboards. Automatically.</p>
+                        <h3>On-Demand Reporting</h3>
+                        <p>Manual multi-week reporting is entirely a thing of the past. The platform visually adapts its dashboards to your infrastructure's health, extracting clear executive board summaries and granular technical auditor reports—all instantly available with one click.</p>
                     </div>
                 </div>
             </div>
@@ -384,25 +419,25 @@
     </section>
 
     <!-- Resources Section -->
-    <section class="resources-section" id="resources">
+    <section class="resources-section scroll-section" id="resources">
         <div class="container">
-            <div class="section-header">
+            <div class="section-header scroll-animate delay-1">
                 <span class="section-tag">Resources</span>
                 <h2>Accelerate your compliance journey</h2>
             </div>
             <div class="resources-grid">
-                <a class="resource-card" href="#" onclick="openContactModal(); return false;"><span class="resource-tag guide">Guide</span><h3>NIS2 Compliance Checklist</h3><p>All 10 measures of Article 30 mapped to practical controls. The essential checklist for every CISO preparing for NIS2 compliance.</p><span class="resource-card-cta">Download Guide →</span></a>
-                <a class="resource-card" href="#" onclick="openContactModal(); return false;"><span class="resource-tag report">Report</span><h3>EU Cybersecurity Regulation Overview</h3><p>NIS2, DORA, and the Cyber Resilience Act compared side by side. Understand which regulations apply to your organization.</p><span class="resource-card-cta">Read Report →</span></a>
-                <a class="resource-card" href="#" onclick="openContactModal(); return false;"><span class="resource-tag blog">Blog</span><h3>From Manual Audits to AI-Driven Compliance</h3><p>How AI is transforming the way organizations prove compliance — and why cryptographic evidence chains are the future.</p><span class="resource-card-cta">Read Article →</span></a>
-                <a class="resource-card" href="#" onclick="openContactModal(); return false;"><span class="resource-tag guide">Guide</span><h3>Building a Cryptographic Evidence Chain</h3><p>Why tamper-proof audit trails matter for modern compliance. A technical deep dive into SIGVERA’s evidence architecture.</p><span class="resource-card-cta">Download Guide →</span></a>
+                <a class="resource-card scroll-animate delay-2" href="#" onclick="openContactModal(); return false;"><span class="resource-tag guide">Guide</span><h3>NIS2 Compliance Checklist</h3><p>All 10 measures of Article 30 mapped to practical controls. The essential checklist for every CISO preparing for NIS2 compliance.</p><span class="resource-card-cta">Download Guide →</span></a>
+                <a class="resource-card scroll-animate delay-3" href="#" onclick="openContactModal(); return false;"><span class="resource-tag report">Report</span><h3>EU Cybersecurity Regulation Overview</h3><p>NIS2, DORA, and the Cyber Resilience Act compared side by side. Understand which regulations apply to your organization.</p><span class="resource-card-cta">Read Report →</span></a>
+                <a class="resource-card scroll-animate delay-4" href="#" onclick="openContactModal(); return false;"><span class="resource-tag blog">Blog</span><h3>From Manual Audits to AI-Driven Compliance</h3><p>How AI is transforming the way organizations prove compliance — and why cryptographic evidence chains are the future.</p><span class="resource-card-cta">Read Article →</span></a>
+                <a class="resource-card scroll-animate delay-5" href="#" onclick="openContactModal(); return false;"><span class="resource-tag guide">Guide</span><h3>Building a Cryptographic Evidence Chain</h3><p>Why tamper-proof audit trails matter for modern compliance. A technical deep dive into SIGVERA’s evidence architecture.</p><span class="resource-card-cta">Download Guide →</span></a>
             </div>
         </div>
     </section>
 
     <!-- CTA Section -->
-    <section class="cta-section" id="contact">
+    <section class="cta-section scroll-section" id="contact">
         <div class="container">
-            <div class="cta-card">
+            <div class="cta-card scroll-animate delay-1">
                 <h2>Ready to automate your NIS2 compliance?</h2>
                 <p>Join organizations replacing manual audit preparation with continuous, AI-driven compliance assurance.</p>
                 <div class="cta-buttons">
@@ -516,7 +551,7 @@
                     [3100,  function() { var a = getArrow(3); if (a) a.classList.add('arrow-visible'); }],
                     [3400,  function() { if (phases[4]) phases[4].classList.add('phase-visible'); }],
                     [3900,  function() { var a = getArrow(4); if (a) a.classList.add('arrow-visible'); }],
-                    [4400,  function() { if (center) center.classList.add('center-visible'); loopAnimationDone = true; }]
+                    [4400,  function() { if (center) center.classList.add('center-visible'); loopAnimationDone = true; setTimeout(drawLoopArrows, 50); }]
                 ];
                 seq.forEach(function(s) { setTimeout(s[1], s[0]); });
             }
@@ -563,6 +598,64 @@
         document.getElementById('demoModal').addEventListener('click', function(e) {
             if (e.target === this) closeDemoModal();
         });
+
+        // Stats counter animation & Scroll animations
+        function setupAnimations() {
+            var numberObs = new IntersectionObserver(function(entries) {
+                entries.forEach(function(entry) {
+                    if (entry.isIntersecting) {
+                        var el = entry.target;
+                        if (!el.dataset.animated) {
+                            el.dataset.animated = 'true';
+                            var target = parseInt(el.getAttribute('data-target'));
+                            var suffix = el.getAttribute('data-suffix') || '';
+                            var prefix = el.getAttribute('data-prefix') || '';
+                            var current = 0;
+                            var duration = el.classList.contains('impact-stat-number') ? 2500 : 1200; // ms
+                            var increment = target / (duration / 40); // update every 40ms
+                            
+                            var timer = setInterval(function() {
+                                current += increment;
+                                if (current >= target) {
+                                    el.textContent = prefix + target + suffix;
+                                    clearInterval(timer);
+                                } else {
+                                    el.textContent = prefix + Math.floor(current) + suffix;
+                                }
+                            }, 40);
+                        }
+                    }
+                });
+            }, { threshold: 0.1 });
+
+            // Initialize scroll animations
+            var scrollObs = new IntersectionObserver(function(entries) {
+                entries.forEach(function(entry) {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('is-visible');
+                        scrollObs.unobserve(entry.target);
+                    }
+                });
+            }, { threshold: 0.15 });
+
+            document.querySelectorAll('.scroll-section').forEach(function(el) {
+                scrollObs.observe(el);
+            });
+
+            // Observe impact stats immediately based on scroll
+            document.querySelectorAll('.impact-stat-number.stat-counter').forEach(function(el) {
+                numberObs.observe(el);
+            });
+
+            // For hero stats, we delay the observation slightly so they don't count up while invisible during CSS fade-up
+            setTimeout(function() {
+                document.querySelectorAll('.hero-stats .stat-number').forEach(function(el) {
+                    numberObs.observe(el);
+                });
+            }, 1700);
+        }
+
+        window.addEventListener('load', setupAnimations);
     </script>
 
     <!-- Cookie Consent Banner -->
@@ -699,7 +792,7 @@
             marker.setAttribute('orient', 'auto');
             const poly = document.createElementNS(ns, 'polygon');
             poly.setAttribute('points', '0 0, 10 3.5, 0 7');
-            poly.setAttribute('fill', '#6B7B8D');
+            poly.setAttribute('fill', '#5a9bc7');
             marker.appendChild(poly);
             defs.appendChild(marker);
             svg.appendChild(defs);
@@ -728,12 +821,12 @@
             ];
 
             function edgePt(box, edge, alignX) {
-                // Returns a point on the box edge, optionally aligned to alignX for vertical lines
+                // Returns a point slightly outside the box edge (so arrowhead doesn't overlap the box)
                 switch(edge) {
-                    case 'top':    return { x: alignX !== undefined ? alignX : box.cx, y: box.top };
-                    case 'bottom': return { x: alignX !== undefined ? alignX : box.cx, y: box.bottom };
-                    case 'left':   return { x: box.left, y: box.cy };
-                    case 'right':  return { x: box.right, y: box.cy };
+                    case 'top':    return { x: alignX !== undefined ? alignX : box.cx, y: box.top - 2 };
+                    case 'bottom': return { x: alignX !== undefined ? alignX : box.cx, y: box.bottom + 2 };
+                    case 'left':   return { x: box.left - 2, y: box.cy };
+                    case 'right':  return { x: box.right + 2, y: box.cy };
                 }
             }
 
@@ -769,7 +862,7 @@
                 const path = document.createElementNS(ns, 'path');
                 path.setAttribute('d', 'M ' + sx + ' ' + sy + ' L ' + ex + ' ' + ey);
                 path.setAttribute('fill', 'none');
-                path.setAttribute('stroke', '#8993A0');
+                path.setAttribute('stroke', '#5a9bc7');
                 path.setAttribute('stroke-width', '2');
                 path.setAttribute('marker-end', 'url(#ah)');
                 path.classList.add('arrow-path');
@@ -780,11 +873,16 @@
                 path.style.strokeDashoffset = len;
                 if (typeof loopAnimationDone !== 'undefined' && loopAnimationDone) {
                     path.style.strokeDashoffset = '0';
+                    path.classList.add('arrow-visible');
                 }
             });
         }
 
-        window.addEventListener('load', () => setTimeout(drawLoopArrows, 100));
+        if (document.fonts && document.fonts.ready) {
+            document.fonts.ready.then(function() { setTimeout(drawLoopArrows, 50); });
+        } else {
+            window.addEventListener('load', () => setTimeout(drawLoopArrows, 300));
+        }
         window.addEventListener('resize', drawLoopArrows);
 
         // Contact modal
