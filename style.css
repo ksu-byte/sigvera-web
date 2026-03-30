@@ -357,7 +357,7 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
-    background: linear-gradient(145deg, #0a1628 0%, #111d33 40%, #0d1a2d 100%);
+    background: var(--accent-navy);
     padding: 48px 24px 56px;
     position: relative;
     overflow: hidden;
@@ -712,41 +712,61 @@ body {
 /* ========== FRAMEWORKS ========== */
 .frameworks {
     padding: 120px 0;
-    background: var(--bg-secondary);
+    background: var(--accent-navy);
+    position: relative;
+    overflow: hidden;
 }
+
+.frameworks::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image:
+        linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px);
+    background-size: 60px 60px;
+    mask-image: radial-gradient(ellipse at center, black 30%, transparent 70%);
+    -webkit-mask-image: radial-gradient(ellipse at center, black 30%, transparent 70%);
+    pointer-events: none;
+}
+
+.frameworks .section-tag { background: rgba(255,255,255,0.1); color: rgba(255,255,255,0.8); }
+.frameworks .section-header h2 { color: #FFFFFF; }
 
 .frameworks-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 20px;
+    position: relative;
 }
 
 .framework-card {
     padding: 32px;
-    background: var(--bg-card);
-    border: 1px solid var(--border);
+    background: rgba(255,255,255,0.06);
+    border: 1px solid rgba(255,255,255,0.12);
     border-radius: var(--radius-md);
     text-align: center;
     transition: var(--transition);
 }
 
 .framework-card:hover {
-    border-color: var(--accent-steel);
+    background: rgba(255,255,255,0.1);
+    border-color: rgba(255,255,255,0.25);
     transform: translateY(-2px);
-    box-shadow: var(--shadow-md);
+    box-shadow: 0 8px 32px rgba(0,0,0,0.2);
 }
 
 .framework-name {
     font-size: 1.6rem;
     font-weight: 700;
-    color: var(--accent-navy);
+    color: #FFFFFF;
     margin-bottom: 8px;
     letter-spacing: 1px;
 }
 
 .framework-desc {
     font-size: 0.85rem;
-    color: var(--text-muted);
+    color: rgba(255,255,255,0.6);
 }
 
 /* ========== HOW IT WORKS ========== */
